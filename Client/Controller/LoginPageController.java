@@ -30,15 +30,14 @@ public class LoginPageController {
         else
             password = password_visible.getText();
 
-        if (API.login(username , password)) {
-            Database.updateDataBase();
-            wrong_input.setVisible(false);
-            new PageLoader().load("timeLine");
-        } else {
+        while (!API.login(username , password)){
             wrong_input.setVisible(true);
             username = username_field.getText();
             password = password_field.getText();
         }
+        Database.updateDataBase();
+        wrong_input.setVisible(false);
+        new PageLoader().load("timeLine");
     }
 
     public void show_password(ActionEvent actionEvent) {

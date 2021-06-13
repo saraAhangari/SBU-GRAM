@@ -1,15 +1,13 @@
 package Client.Controller;
 
 import Client.Model.PageLoader;
-import Server.ClientHandler;
-import Server.Database;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+import Client.*;
 import java.io.File;
 import java.io.IOException;
 
@@ -71,13 +69,19 @@ public class signUpController {
         String usernameText = username.getText();
         String passwordText = password.getText();
         String confirmationText = confirmation.getText();
-        if (passwordText.equals(confirmationText))
-            new PageLoader().load("login");
-        else{
+
+        while (!API.signUp(usernameText , passwordText)) {
+            email_address = email.getText();
+            usernameText = username.getText();
+            passwordText = password.getText();
+            confirmationText = confirmation.getText();
+        }
+        while (!passwordText.equals(confirmationText)){
             wrong_input.setVisible(true);
             password.getText();
             confirmation.getText();
         }
+        new PageLoader().load("login");
     }
 
     public void back_button(ActionEvent actionEvent) throws IOException {

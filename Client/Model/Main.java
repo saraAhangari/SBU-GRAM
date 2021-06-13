@@ -1,8 +1,10 @@
 package Client.Model;
 
 import Common.User;
+import Server.ClientHandler;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import Client.*;
 
 
 public class Main extends Application {
@@ -20,7 +22,7 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        ClientToServer.disconnectFromServer();
+        ClientNetworker.disconnectFromServer();
         super.stop();
     }
 
