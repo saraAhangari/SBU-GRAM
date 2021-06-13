@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #121617;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.ForgetPass">
+    <children>
+        <Text fill="WHITE" layoutX="26.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Forget">
+            <font>
+                <Font name="Yaqout-Bold" size="46.0" />
+            </font>
+        </Text>
+        <Text fill="WHITE" layoutX="26.0" layoutY="129.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+            <font>
+                <Font name="Yaqout-Bold" size="46.0" />
+            </font>
+        </Text>
+        <ImageView fitHeight="131.0" fitWidth="150.0" layoutX="114.0" layoutY="144.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="file:/C:/Users/baran/Desktop/sbu_gram/images/4756449-free-forgot-password-icon-251783-download-forgot-password-icon-forgot-password-png-512_512_preview.png" />
+            </image>
+        </ImageView>
+        <MenuButton layoutX="104.0" layoutY="283.0" mnemonicParsing="false" text="Security Question">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#nickname" text="Your Nickname" />
+                <MenuItem mnemonicParsing="false" onAction="#color" text="Your favourite color" />
+                <MenuItem mnemonicParsing="false" onAction="#food" text="Your favourite food" />
+            </items>
+            <font>
+                <Font name="Yaqout-Bold" size="14.0" />
+            </font>
+        </MenuButton>
+        <TextField fx:id="Answer" layoutX="105.0" layoutY="364.0" promptText="Answer" />
+        <TextField fx:id="question" editable="false" layoutX="105.0" layoutY="329.0" mouseTransparent="true" promptText="Question" />
+        <Button layoutX="209.0" layoutY="470.0" mnemonicParsing="false" onAction="#first_next" prefHeight="37.0" prefWidth="109.0" text="Next">
+            <font>
+                <Font name="Yaqout-Bold" size="14.0" />
+            </font>
+        </Button>
+        <Button layoutX="30.0" layoutY="470.0" mnemonicParsing="false" onAction="#first_back" prefHeight="37.0" prefWidth="109.0" text="Back">
+            <font>
+                <Font name="Yaqout-Bold" size="14.0" />
+            </font>
+        </Button>
+    </children>
+</Pane>

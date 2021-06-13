@@ -1,10 +1,13 @@
-package Controller;
+package Client.Controller;
 
-import Model.PageLoader;
+import Client.Model.PageLoader;
+import Server.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
+import Common.*;
+import Client.*;
 
 
 public class LoginPageController {
@@ -27,11 +30,14 @@ public class LoginPageController {
         else
             password = password_visible.getText();
 
-        if (username.equalsIgnoreCase("Baran") && password.equalsIgnoreCase("rain")) {
+        if (API.login(username , password)) {
+            Database.updateDataBase();
             wrong_input.setVisible(false);
             new PageLoader().load("timeLine");
         } else {
             wrong_input.setVisible(true);
+            username = username_field.getText();
+            password = password_field.getText();
         }
     }
 
@@ -56,3 +62,4 @@ public class LoginPageController {
         new PageLoader().load("ForgetPass");
     }
 }
+

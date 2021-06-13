@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #121617;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.signUpController">
+    <children>
+        <Button layoutX="42.0" layoutY="496.0" mnemonicParsing="false" onAction="#back_button" prefHeight="37.0" prefWidth="109.0" text="Back">
+            <font>
+                <Font name="Yaqout" size="14.0" />
+            </font>
+        </Button>
+        <Button layoutX="222.0" layoutY="496.0" mnemonicParsing="false" onAction="#signUp_button" prefHeight="37.0" prefWidth="109.0" text="Sign Up">
+            <font>
+                <Font name="Yaqout" size="14.0" />
+            </font>
+        </Button>
+        <TextField fx:id="email" layoutX="97.0" layoutY="316.0" prefHeight="25.0" prefWidth="163.0" promptText="Email" />
+        <TextField fx:id="username" layoutX="106.0" layoutY="209.0" promptText="username" />
+        <PasswordField fx:id="password" layoutX="106.0" layoutY="245.0" promptText="password" />
+        <PasswordField fx:id="confirmation" layoutX="106.0" layoutY="281.0" promptText="confirm password" />
+        <TextField fx:id="password_hint" layoutX="106.0" layoutY="423.0" promptText="Answer" />
+        <MenuButton layoutX="83.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Security Question">
+            <items>
+                <MenuItem mnemonicParsing="false" onAction="#Nickname" text="Your Nickname" />
+                <MenuItem mnemonicParsing="false" onAction="#color" text="Your favourite color" />
+                <MenuItem mnemonicParsing="false" onAction="#food" text="Your favourite food" />
+            </items>
+            <font>
+                <Font name="Yaqout-Bold" size="15.0" />
+            </font>
+        </MenuButton>
+        <Text fill="#fefefe" layoutX="19.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up">
+            <font>
+                <Font name="Yaqout-Bold" size="46.0" />
+            </font>
+        </Text>
+        <ImageView fitHeight="121.0" fitWidth="149.0" layoutX="120.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="file:/C:/Users/baran/Desktop/sbu_gram/images/user-log-in-or-signup-988719.png" />
+            </image>
+        </ImageView>
+      <TextField fx:id="question" editable="false" layoutX="106.0" layoutY="394.0" mouseTransparent="true" promptText="Question" />
+      <Label fx:id="wrong_input" layoutX="97.0" layoutY="455.0" prefHeight="32.0" prefWidth="169.0" text="password doesn't match !" textFill="#26eee4" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+    </children>
+</Pane>

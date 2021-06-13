@@ -1,4 +1,4 @@
-package Model;
+package Client.Model;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -34,13 +34,14 @@ public class PageLoader {
     }
 
     public Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../View/" + fxml + ".fxml"));
         return fxmlLoader.load();
     }
 
     public void load(String fxml, Object controller) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/View/" + fxml + ".fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("../View/" + fxml + ".fxml"));
         fxmlLoader.setController(controller);
         fxmlLoader.load();
     }
 }
+
