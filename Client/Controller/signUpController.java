@@ -73,6 +73,7 @@ public class signUpController {
 
         if (!API.signUp(usernameText , passwordText)) {
             repeated_username.setVisible(true);
+            return;
             /*email_address = email.getText();
             usernameText = username.getText();
             passwordText = password.getText();
@@ -80,6 +81,7 @@ public class signUpController {
         }
         if (!passwordText.equals(confirmationText)){
             wrong_input.setVisible(true);
+            return;
             /*password.getText();
             confirmation.getText();*/
         }

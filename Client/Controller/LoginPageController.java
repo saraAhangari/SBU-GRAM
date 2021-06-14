@@ -30,10 +30,11 @@ public class LoginPageController {
         else
             password = password_visible.getText();
 
-        while (!API.login(username , password)){
+        if (!API.login(username , password)){
             wrong_input.setVisible(true);
-            username = username_field.getText();
-            password = password_field.getText();
+            return;
+            /*username = username_field.getText();
+            password = password_field.getText();*/
         }
         Database.updateDataBase();
         wrong_input.setVisible(false);
