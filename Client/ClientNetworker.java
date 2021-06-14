@@ -20,20 +20,18 @@ public class ClientNetworker{
         return isConnected;
     }
 
-    public static Boolean connectToServer(){
-        if(socket != null) return false;
+    public static void connectToServer(){
+        if(socket != null) return ;
         try{
             System.out.println("server ip : " + serverAddress);
             socket = new Socket( serverAddress, PORT);
             socketOut = new ObjectOutputStream( socket.getOutputStream() );
             socketIn = new ObjectInputStream( socket.getInputStream() );
             isConnected = true;
-            return true;
 
         } catch (IOException e){
             e.printStackTrace();
         }
-        return false;
     }
 
 

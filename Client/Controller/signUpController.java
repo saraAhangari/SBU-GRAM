@@ -24,6 +24,7 @@ public class signUpController {
     public TextField question;
     public ImageView profileImage;
     public Label wrong_input;
+    public Label repeated_username;
 
     public void Next(ActionEvent actionEvent) throws IOException{
         Firstname.getText();
@@ -70,16 +71,17 @@ public class signUpController {
         String passwordText = password.getText();
         String confirmationText = confirmation.getText();
 
-        while (!API.signUp(usernameText , passwordText)) {
-            email_address = email.getText();
+        if (!API.signUp(usernameText , passwordText)) {
+            repeated_username.setVisible(true);
+            /*email_address = email.getText();
             usernameText = username.getText();
             passwordText = password.getText();
-            confirmationText = confirmation.getText();
+            confirmationText = confirmation.getText();*/
         }
-        while (!passwordText.equals(confirmationText)){
+        if (!passwordText.equals(confirmationText)){
             wrong_input.setVisible(true);
-            password.getText();
-            confirmation.getText();
+            /*password.getText();
+            confirmation.getText();*/
         }
         new PageLoader().load("login");
     }

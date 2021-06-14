@@ -6,8 +6,7 @@ import java.io.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Database {
-    public static final String FILE_PREFIX = "./UserData/";
-    public static final String PROFILES_FILE = FILE_PREFIX + "Users";
+    public static final String PROFILES_FILE = "C:/Users/baran/Desktop/AP/SBU_gram/src/UserData/Users";
     public static Database database = new Database();
 
     public static Database getInstance(){

@@ -20,7 +20,7 @@ public class API {
         Map<String, Object> toSend = new HashMap<>();
         Map<String, Object> received;
         Object answer;
-        if (!isUserNameExists(username))
+        if (isUserNameExists(username))
             return false;
         else {
             toSend.put("command", Commands.SingUp);
