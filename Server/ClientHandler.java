@@ -13,7 +13,7 @@ public class ClientHandler implements Runnable{
     private Socket userSocket;
     private ObjectOutputStream socketOut;
     private ObjectInputStream socketIn;
-    public Boolean clientOnline = true;
+    public Boolean clientOnline = false;
 
     public ClientHandler(Socket socket){
         try {

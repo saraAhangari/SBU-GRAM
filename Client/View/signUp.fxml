@@ -2,6 +2,10 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,36 +13,72 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #121617;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.signUpController">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #121617;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.signUpController">
     <children>
-        <ImageView fx:id="profileImage" fitHeight="124.0" fitWidth="132.0" layoutX="119.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="profileImage" fitHeight="94.0" fitWidth="100.0" layoutX="135.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="file:/C:/Users/baran/Desktop/sbu_gram/images/User-icon.png" />
             </image>
         </ImageView>
-        <Button layoutX="127.0" layoutY="166.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddImage" prefHeight="37.0" prefWidth="109.0" text="Add Image">
+        <Button layoutX="128.0" layoutY="163.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddImage" prefHeight="37.0" prefWidth="109.0" text="Add Image">
             <font>
                 <Font name="Yaqout" size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="Firstname" layoutX="106.0" layoutY="232.0" promptText="Firstname" />
-        <TextField fx:id="Lastname" layoutX="106.0" layoutY="263.0" promptText="Lastname" />
-        <DatePicker fx:id="DateofBirth" layoutX="94.0" layoutY="300.0" promptText="DateofBirth" />
-        <Button layoutX="126.0" layoutY="389.0" mnemonicParsing="false" onAction="#Next" prefHeight="37.0" prefWidth="109.0" text="Next">
+        <TextField fx:id="firstname_field" layoutX="19.0" layoutY="212.0" promptText="Firstname" />
+        <TextField fx:id="lastname_field" layoutX="194.0" layoutY="212.0" promptText="Lastname" />
+        <DatePicker fx:id="DateBirth" layoutX="194.0" layoutY="334.0" prefWidth="150.0" promptText="DateofBirth" />
+        <Text fill="#eeefef" layoutX="95.0" layoutY="588.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" wrappingWidth="182.5999755859375">
             <font>
-                <Font name="Yaqout" size="14.0" />
-            </font>
-        </Button>
-        <Text fill="#eeefef" layoutX="93.0" layoutY="470.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" wrappingWidth="200.99993896484375">
-            <font>
-                <Font name="Yaqout-Bold" size="16.0" />
+                <Font name="Yaqout-Bold" size="15.0" />
             </font>
         </Text>
-        <Button layoutX="127.0" layoutY="488.0" mnemonicParsing="false" onAction="#Sign_In" prefHeight="37.0" prefWidth="109.0" text="Sign In">
+        <Button layoutX="134.0" layoutY="599.0" mnemonicParsing="false" onAction="#Sign_In" prefHeight="36.0" prefWidth="94.0" text="Sign In">
             <font>
                 <Font name="Yaqout" size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="PhoneNumber" layoutX="107.0" layoutY="332.0" prefHeight="25.0" prefWidth="149.0" promptText="Phone Number" />
+        <TextField fx:id="PhoneNumber" layoutX="194.0" layoutY="253.0" prefHeight="25.0" prefWidth="149.0" promptText="Phone Number" />
+      <TextField fx:id="username_field" layoutX="20.0" layoutY="253.0" promptText="username" />
+      <PasswordField fx:id="password_field" layoutX="20.0" layoutY="293.0" promptText="password" />
+      <PasswordField fx:id="confirmation" layoutX="194.0" layoutY="293.0" promptText="confirm password" />
+      <TextField fx:id="email" layoutX="20.0" layoutY="334.0" promptText="Email" />
+      <TextField fx:id="answer" layoutX="108.0" layoutY="454.0" promptText="Answer" />
+      <MenuButton layoutX="84.0" layoutY="378.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Security Question">
+         <items>
+            <MenuItem mnemonicParsing="false" onAction="#Nickname" text="Your Nickname" />
+            <MenuItem mnemonicParsing="false" onAction="#color" text="Your favourite color" />
+            <MenuItem mnemonicParsing="false" onAction="#food" text="Your favourite food" />
+         </items>
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </MenuButton>
+      <TextField fx:id="question" editable="false" layoutX="108.0" layoutY="421.0" mouseTransparent="true" promptText="Question" />
+      <Button layoutX="125.0" layoutY="494.0" mnemonicParsing="false" onAction="#signUp_button" prefHeight="37.0" prefWidth="109.0" text="Sign Up">
+         <font>
+            <Font name="Yaqout" size="14.0" />
+         </font>
+      </Button>
+      <Text fill="#fefefe" layoutX="81.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign Up" wrappingWidth="182.5999755859375">
+         <font>
+            <Font name="Yaqout-Bold" size="38.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="62.0" fitWidth="65.0" layoutX="14.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/sbu_gram/images/user-log-in-or-signup-988719.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="wrong_input" layoutX="107.0" layoutY="535.0" prefHeight="22.0" prefWidth="176.0" text="weak security !" textFill="#14cae5" visible="false">
+         <font>
+            <Font name="Yaqout-Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="repeated_username" layoutX="45.0" layoutY="537.0" prefHeight="41.0" prefWidth="322.0" text="username already existed !" textFill="#14cae5">
+         <font>
+            <Font name="Yaqout-Bold" size="23.0" />
+         </font>
+      </Label>
     </children>
 </Pane>

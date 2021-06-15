@@ -1,9 +1,10 @@
 package Common;
 
+import javafx.scene.control.TextField;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class User implements Serializable {
     private final String username;
@@ -11,10 +12,28 @@ public class User implements Serializable {
     private String firstname;
     private String lastName;
     private String phoneNumber;
+    private String email;
     private static List<Post> posts=new ArrayList<>();
+    private String profileImagePath;
 
     public User(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public User authenticate(String username, String password) {
@@ -24,14 +43,6 @@ public class User implements Serializable {
 
     public String getUsername() {
         return username;
-    }
-
-    public String getName() {
-        return firstname;
-    }
-
-    public void setName(String name) {
-        this.firstname = name;
     }
 
     public String getLastName() {
@@ -73,5 +84,16 @@ public class User implements Serializable {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public User Conformity(String username , String password){
+        if(this.username.equals(username) && this.password.equals(password)){
+            return this;
+        }
+        return null;
+    }
+
+    public void setProfileImage(String profilePath) {
+        this.profileImagePath = profilePath;
     }
 }

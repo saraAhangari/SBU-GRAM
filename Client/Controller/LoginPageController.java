@@ -1,5 +1,6 @@
 package Client.Controller;
 
+import Client.Model.Main;
 import Client.Model.PageLoader;
 import Server.Database;
 import javafx.event.ActionEvent;
@@ -22,23 +23,29 @@ public class LoginPageController {
     public Button Forger_Password;
 
     public void login(ActionEvent actionEvent) throws IOException {
-        String username = username_field.getText();
-        String password;
+        String username=username_field.getText();
+        String password = null;
 
-        if (password_field.isVisible())
-            password = password_field.getText();
-        else
-            password = password_visible.getText();
-
-        if (!API.login(username , password)){
-            wrong_input.setVisible(true);
-            return;
-            /*username = username_field.getText();
-            password = password_field.getText();*/
+        if (!ClientNetworker.isConnected()){
+            System.out.println("not connected");
         }
-        Database.updateDataBase();
-        wrong_input.setVisible(false);
-        new PageLoader().load("timeLine");
+
+        if(password_field.isVisible()){
+            password=password_field.getText();
+        }
+        else {
+            password=password_visible.getText();
+        }
+
+        User user=API.login(username , password);
+        if(user==null){
+            wrong_input.setVisible(true);
+        }
+        else{
+            wrong_input.setVisible(false);
+            Main.setUser(user);
+            new PageLoader().load("timeLine");
+        }
     }
 
     public void show_password(ActionEvent actionEvent) {

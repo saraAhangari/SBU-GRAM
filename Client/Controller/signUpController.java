@@ -1,6 +1,8 @@
 package Client.Controller;
 
+import Client.Model.Main;
 import Client.Model.PageLoader;
+import Common.User;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -10,42 +12,64 @@ import javafx.stage.Stage;
 import Client.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class signUpController {
-    public TextField Firstname;
-    public TextField Lastname;
-    public DatePicker DateofBirth;
+    public TextField firstname_field;
+    public TextField lastname_field;
+    public DatePicker DateBirth;
     public TextField PhoneNumber;
     public TextField email;
-    public TextField username;
-    public PasswordField password;
+    public TextField username_field;
+    public PasswordField password_field;
     public PasswordField confirmation;
-    public TextField password_hint;
+    public TextField answer;
     public TextField question;
     public ImageView profileImage;
     public Label wrong_input;
     public Label repeated_username;
+    public String profilePath;
+    public User user;
+    private static final String passwordRegex="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
+    private static final Pattern pattern = Pattern.compile(passwordRegex);
 
-    public void Next(ActionEvent actionEvent) throws IOException{
-        Firstname.getText();
-        Lastname.getText();
-        PhoneNumber.getText();
-        new PageLoader().load("SignUpNext");
+
+    public void signUp_button(ActionEvent actionEvent) throws IOException {
+        String password = password_field.getText();
+        String username = username_field.getText();
+
+        wrong_input.setVisible(!validPassword(password));
+        repeated_username.setVisible(validUsername(username));
+        if(validPassword(password) && validUsername(username)){
+            user = new User(username_field.getText());
+
+            user.setFirstname(firstname_field.getText());
+            user.setLastName(lastname_field.getText());
+            user.setPhoneNumber(PhoneNumber.getText());
+            user.setEmail(email.getText());
+            user.setProfileImage(profilePath);
+            user.setPassword(password_field.getText());
+            Main.setUser(user);
+            API.signUp(user);
+            new PageLoader().load("login");
+        }
     }
+
 
     public void Nickname(ActionEvent actionEvent) {
         question.setText("Your Nickname");
-        password_hint.getText();
+        answer.getText();
     }
 
     public void color(ActionEvent actionEvent) {
         question.setText("Your favourite color");
-        password_hint.getText();
+        answer.getText();
     }
 
     public void food(ActionEvent actionEvent) {
         question.setText("Your favourite food");
-        password_hint.getText();
+        answer.getText();
     }
 
     public void Sign_In(ActionEvent actionEvent) throws IOException {
@@ -61,35 +85,17 @@ public class signUpController {
             label.setText(file.getAbsolutePath() + "selected");
         assert file != null;
         Image image=new Image(file.toURI().toString());
+        profilePath = file.toURI().toString();
         profileImage.setImage(image);
     }
 
-    //Page 2
-    public void signUp_button(ActionEvent actionEvent) throws IOException {
-        String email_address = email.getText();
-        String usernameText = username.getText();
-        String passwordText = password.getText();
-        String confirmationText = confirmation.getText();
-
-        if (!API.signUp(usernameText , passwordText)) {
-            repeated_username.setVisible(true);
-            return;
-            /*email_address = email.getText();
-            usernameText = username.getText();
-            passwordText = password.getText();
-            confirmationText = confirmation.getText();*/
-        }
-        if (!passwordText.equals(confirmationText)){
-            wrong_input.setVisible(true);
-            return;
-            /*password.getText();
-            confirmation.getText();*/
-        }
-        new PageLoader().load("login");
+    public boolean validPassword(String password){
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
     }
 
-    public void back_button(ActionEvent actionEvent) throws IOException {
-        new PageLoader().load("signUp");
+    public boolean validUsername(String username){
+        return API.isUserNameExists(username);
     }
 }
 

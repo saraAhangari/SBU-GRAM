@@ -14,7 +14,7 @@ public class PageLoader {
     private static Stage stage;
     private static Scene scene;
     public static final int WIDTH = 360;
-    public static final int HEIGHT = 600;
+    public static final int HEIGHT = 650;
 
     public static void initStage(Stage primaryStage) {
         stage = primaryStage;
