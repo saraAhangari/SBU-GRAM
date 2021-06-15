@@ -8,7 +8,7 @@ import java.util.*;
 public class ClientNetworker{
 
     // you might set this from graphic
-    public static String serverAddress = "localhost";
+    public static String serverAddress="localhost";
     public static final int PORT = 2222;
 
     private static boolean isConnected = false;
@@ -20,20 +20,23 @@ public class ClientNetworker{
         return isConnected;
     }
 
-    public static void connectToServer(){
-        if(socket != null) return ;
+    public static Boolean connectToServer(){
+        if(socket != null){
+            return false;
+        }
         try{
             System.out.println("server ip : " + serverAddress);
-            socket = new Socket( serverAddress, PORT);
+            socket = new Socket( serverAddress , PORT);
             socketOut = new ObjectOutputStream( socket.getOutputStream() );
             socketIn = new ObjectInputStream( socket.getInputStream() );
             isConnected = true;
+            return true;
 
-        } catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+        return false;
     }
-
 
     public static Boolean disconnectFromServer(){
         try{
@@ -41,13 +44,14 @@ public class ClientNetworker{
             socketOut.close();
             socket.close();
             isConnected = false;
-
             socket = null;
             socketIn = null;
             socketOut = null;
-
             return true;
-        } catch (Exception e){
+        }
+        catch (SocketException | NullPointerException ignored){
+        }
+        catch( Exception e){
             e.printStackTrace();
         }
         socket = null;
@@ -56,9 +60,8 @@ public class ClientNetworker{
         return false;
     }
 
-    @SuppressWarnings("unchecked")
     public static Map<String,Object> serve(Map<String,Object> toSend){
-        Map<String,Object> received= new HashMap<>();
+        Map<String,Object> received = null;
         try{
             socketOut.writeObject(toSend);
             socketOut.flush();
@@ -66,7 +69,7 @@ public class ClientNetworker{
             received = (Map<String,Object>) socketIn.readObject();
             return received;
 
-        } catch (ClassNotFoundException | IOException e){
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         return received;

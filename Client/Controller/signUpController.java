@@ -41,7 +41,7 @@ public class signUpController {
 
         wrong_input.setVisible(!validPassword(password));
         repeated_username.setVisible(validUsername(username));
-        if(validPassword(password) && validUsername(username)){
+        if(validPassword(password) && !validUsername(username)){
             user = new User(username_field.getText());
 
             user.setFirstname(firstname_field.getText());
