@@ -29,18 +29,38 @@ public class signUpController {
     public ImageView profileImage;
     public Label wrong_input;
     public Label repeated_username;
+    public Label weak_security;
     public String profilePath;
     public User user;
     private static final String passwordRegex="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     private static final Pattern pattern = Pattern.compile(passwordRegex);
 
 
+
     public void signUp_button(ActionEvent actionEvent) throws IOException {
         String password = password_field.getText();
+        String pass_confirm = confirmation.getText();
         String username = username_field.getText();
 
-        wrong_input.setVisible(!validPassword(password));
-        repeated_username.setVisible(validUsername(username));
+        if (!password.equals(pass_confirm)){
+            wrong_input.setVisible(true);
+        }
+        else {
+            wrong_input.setVisible(false);
+        }
+
+        if(!validPassword(password)){
+            weak_security.setVisible(true);
+        }
+        else {
+            weak_security.setVisible(false);
+        }
+        if(!validUsername(username)){
+            repeated_username.setVisible(true);
+        }
+        else {
+            repeated_username.setVisible(false);
+        }
         if(validPassword(password) && !validUsername(username)){
             user = new User(username_field.getText());
 

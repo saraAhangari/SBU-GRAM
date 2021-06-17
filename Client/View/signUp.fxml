@@ -70,12 +70,17 @@
             <Image url="file:/C:/Users/baran/Desktop/sbu_gram/images/user-log-in-or-signup-988719.png" />
          </image>
       </ImageView>
-      <Label fx:id="wrong_input" layoutX="107.0" layoutY="535.0" prefHeight="22.0" prefWidth="176.0" text="weak security !" textFill="#14cae5" visible="false">
+      <Label fx:id="wrong_input" layoutX="107.0" layoutY="535.0" prefHeight="22.0" prefWidth="176.0" text="password doesn't match" textFill="#14cae5" visible="false">
          <font>
             <Font name="Yaqout-Bold" size="23.0" />
          </font>
       </Label>
-      <Label fx:id="repeated_username" layoutX="45.0" layoutY="537.0" prefHeight="41.0" prefWidth="322.0" text="username already existed !" textFill="#14cae5">
+      <Label fx:id="repeated_username" layoutX="45.0" layoutY="537.0" prefHeight="41.0" prefWidth="322.0" text="username already existed !" textFill="#14cae5" visible="false">
+         <font>
+            <Font name="Yaqout-Bold" size="23.0" />
+         </font>
+      </Label>
+      <Label fx:id="weak_security" layoutX="117.0" layoutY="545.0" prefHeight="22.0" prefWidth="176.0" text="weak security !" textFill="#14cae5" visible="false">
          <font>
             <Font name="Yaqout-Bold" size="23.0" />
          </font>
