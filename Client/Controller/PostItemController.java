@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 
@@ -18,8 +19,9 @@ public class PostItemController {
     Post post;
     public Label usernameLabel;
     public Label titleLabel;
-    public Image profileImage;
+    public ImageView profileImage;
     public AnchorPane anchorPane;
+
     public PostItemController(Post post) throws IOException {
         new PageLoader().load("PostItem" , this);
         this.post=post;

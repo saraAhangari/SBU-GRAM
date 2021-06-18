@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import Client.*;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +33,7 @@ public class signUpController {
     public Label weak_security;
     public String profilePath;
     public User user;
+    public static LinkedList<User> profiles = new LinkedList<>();
     private static final String passwordRegex="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     private static final Pattern pattern = Pattern.compile(passwordRegex);
 
@@ -44,6 +46,7 @@ public class signUpController {
 
         if (!password.equals(pass_confirm)){
             wrong_input.setVisible(true);
+            return;
         }
         else {
             wrong_input.setVisible(false);
@@ -51,17 +54,20 @@ public class signUpController {
 
         if(!validPassword(password)){
             weak_security.setVisible(true);
+            return;
         }
         else {
             weak_security.setVisible(false);
         }
         if(!validUsername(username)){
             repeated_username.setVisible(true);
+            return;
         }
         else {
             repeated_username.setVisible(false);
         }
-        if(validPassword(password) && !validUsername(username)){
+
+        if(validPassword(password) && validUsername(username)){
             user = new User(username_field.getText());
 
             user.setFirstname(firstname_field.getText());
@@ -72,6 +78,7 @@ public class signUpController {
             user.setPassword(password_field.getText());
             Main.setUser(user);
             API.signUp(user);
+            profiles.add(user);
             new PageLoader().load("login");
         }
     }
@@ -109,13 +116,13 @@ public class signUpController {
         profileImage.setImage(image);
     }
 
-    public boolean validPassword(String password){
+    public static boolean validPassword(String password){
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
 
-    public boolean validUsername(String username){
-        return API.isUserNameExists(username);
+    public static boolean validUsername(String username){
+        return !API.isUserNameExists(username);
     }
 }
 

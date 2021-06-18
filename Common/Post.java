@@ -3,51 +3,70 @@ package Common;
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.*;
 import java.util.Objects;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Post implements Serializable {
-    private final String writer = null;
-    private final String title = null;
-    private final String description= null;
-    private final Image image= null;
+    public String writer;
+    public String title;
+    public int like = 0;
+    public int repost = 0;
+    public Image image;
+    public static CopyOnWriteArrayList<String> comments;
 
     public Post() {
-    }
-
-    public String getTitle() {
-        return title;
     }
 
     public String getWriter() {
         return writer;
     }
 
-    public String getDescription() {
-        return description;
+    public void setWriter(String writer) {
+        this.writer = writer;
     }
 
-    public boolean equals(Object o){
-        if(this==o){
-            return true;
-        }
-        if(o==null || getClass()!=o.getClass()){
-            return false;
-        }
-        Post post=(Post) o;
-        return (Objects.equals(getTitle() , ((Post) o).getTitle()) && Objects.equals(getDescription() , ((Post) o).getDescription()));
+    public String getTitle() {
+        return title;
     }
 
-    public void setTitle(String s) {
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public void setDescription(String s) {
+    public int getLike() {
+        return like;
     }
 
-    public void setWriter(String s) {
+    public void setLike(int like) {
+        this.like = like;
+    }
+
+    public int getRepost() {
+        return repost;
+    }
+
+    public void setRepost(int repost) {
+        this.repost = repost;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Post post = (Post) o;
+        return writer.equals(post.writer) && title.equals(post.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(writer, title);
     }
 }
