@@ -41,12 +41,12 @@
         </MenuButton>
         <TextField fx:id="Answer" layoutX="26.0" layoutY="444.0" promptText="Answer" />
         <TextField fx:id="question" editable="false" layoutX="26.0" layoutY="409.0" mouseTransparent="true" promptText="Question" />
-        <Button layoutX="208.0" layoutY="518.0" mnemonicParsing="false" onAction="#login" prefHeight="37.0" prefWidth="109.0" text="Login">
+        <Button layoutX="208.0" layoutY="530.0" mnemonicParsing="false" onAction="#login" prefHeight="37.0" prefWidth="109.0" text="Login">
             <font>
                 <Font name="Yaqout-Bold" size="14.0" />
             </font>
         </Button>
-        <Button layoutX="36.0" layoutY="518.0" mnemonicParsing="false" onAction="#sign_up" prefHeight="37.0" prefWidth="109.0" text="Sign Up">
+        <Button layoutX="36.0" layoutY="530.0" mnemonicParsing="false" onAction="#sign_up" prefHeight="37.0" prefWidth="109.0" text="Sign Up">
             <font>
                 <Font name="Yaqout-Bold" size="14.0" />
             </font>
@@ -68,8 +68,23 @@
       </Text>
       <TextField fx:id="new_pass" layoutX="190.0" layoutY="409.0" promptText="New password" />
       <PasswordField fx:id="confirmation" layoutX="190.0" layoutY="444.0" promptText="Confirm new password" />
-      <TextField fx:id="email" layoutX="190.0" layoutY="368.0" promptText="Email" />
-      <Label fx:id="wrong_input" layoutX="100.0" layoutY="480.0" prefHeight="32.0" prefWidth="169.0" text="passwords don't match !" textFill="#26eee4" visible="false">
+      <TextField fx:id="username" layoutX="190.0" layoutY="368.0" promptText="username" />
+      <Label fx:id="wrong_input" layoutX="100.0" layoutY="480.0" prefHeight="32.0" prefWidth="169.0" text="passwords doesn't match !" textFill="#26eee4" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="weak_security" layoutX="132.0" layoutY="480.0" prefHeight="37.0" prefWidth="138.0" text="weak   security !" textFill="#26eee4" visible="false">
+         <font>
+            <Font name="Yaqout-Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="wrong_answer" layoutX="110.0" layoutY="490.0" prefHeight="32.0" prefWidth="169.0" text="wrong answer !" textFill="#26eee4" visible="false">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label fx:id="wrong_user" layoutX="110.0" layoutY="490.0" prefHeight="32.0" prefWidth="169.0" text="username not found" textFill="#26eee4" visible="false">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>

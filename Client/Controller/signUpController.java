@@ -76,6 +76,8 @@ public class signUpController {
             user.setEmail(email.getText());
             user.setProfileImage(profilePath);
             user.setPassword(password_field.getText());
+            user.setSecurityQuestion(question.getText());
+            user.setSecurityAnswer(answer.getText());
             Main.setUser(user);
             API.signUp(user);
             profiles.add(user);

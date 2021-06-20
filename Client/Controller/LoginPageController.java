@@ -2,7 +2,6 @@ package Client.Controller;
 
 import Client.Model.Main;
 import Client.Model.PageLoader;
-import Server.Database;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

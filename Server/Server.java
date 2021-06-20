@@ -10,7 +10,7 @@ import java.util.Map;
 public class Server {
     private static final int port = 2222;
     private static final boolean isServerUp = true;
-    public static Map<String , User> users = null;
+    public static Map<String, User> users = null;
 
     public static boolean isServerUp() {
         return isServerUp;

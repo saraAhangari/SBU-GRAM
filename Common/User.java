@@ -13,11 +13,29 @@ public class User implements Serializable {
     private String lastName;
     private String phoneNumber;
     private String email;
+    private String SecurityQuestion;
+    private String SecurityAnswer;
     private static List<Post> posts=new ArrayList<>();
     private String profileImagePath;
 
     public User(String username) {
         this.username = username;
+    }
+
+    public String getSecurityQuestion() {
+        return SecurityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        SecurityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswer() {
+        return SecurityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        SecurityAnswer = securityAnswer;
     }
 
     public String getEmail() {
@@ -86,11 +104,16 @@ public class User implements Serializable {
         }
     }
 
-    public User Conformity(String username , String password){
-        if(this.username.equals(username) && this.password.equals(password)){
+    public User Conformity(String username , String password) {
+        if (this.username.equals(username) && this.password.equals(password)) {
             return this;
         }
         return null;
+    }
+
+    public boolean toChangePass(String email , String securityAnswer , String securityQuestion){
+        return this.getEmail().equals(email) && this.getSecurityAnswer().equals(securityAnswer)
+                && this.getSecurityQuestion().equals(securityQuestion);
     }
 
     public void setProfileImage(String profilePath) {

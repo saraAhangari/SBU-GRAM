@@ -61,7 +61,7 @@ public class ClientNetworker{
     }
 
     public static Map<String,Object> serve(Map<String,Object> toSend){
-        Map<String,Object> received = null;
+        Map<String,Object> received = new HashMap<>();
         try{
             socketOut.writeObject(toSend);
             socketOut.flush();

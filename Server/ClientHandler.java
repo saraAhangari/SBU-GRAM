@@ -2,7 +2,6 @@ package Server;
 
 import Common.Commands;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -34,13 +33,16 @@ public class ClientHandler implements Runnable{
                 Commands command = (Commands) income.get("command");
                 switch(command){
                     case UsernameUnique:
-                        answer = API.isUserNameFound(income);
+                        answer = API.isUserNameExists(income);
                         break;
                     case Login:
                         answer = API.login(income);
                         break;
                     case SingUp:
                         answer = API.signUp(income);
+                        break;
+                    case ForgetPass :
+                        answer = API.ForgetPass(income);
                         break;
                 }
                 socketOut.writeObject(answer);

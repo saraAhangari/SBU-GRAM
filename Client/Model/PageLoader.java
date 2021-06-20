@@ -44,4 +44,3 @@ public class PageLoader {
         fxmlLoader.load();
     }
 }
-
