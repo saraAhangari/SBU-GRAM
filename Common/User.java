@@ -111,9 +111,9 @@ public class User implements Serializable {
         return null;
     }
 
-    public boolean toChangePass(String email , String securityAnswer , String securityQuestion){
-        return this.getEmail().equals(email) && this.getSecurityAnswer().equals(securityAnswer)
-                && this.getSecurityQuestion().equals(securityQuestion);
+    public boolean toChangePass(String email , String SecQuestion , String SecAnswer){
+        return this.getEmail().equals(email) && this.getSecurityAnswer().equals(SecAnswer)
+                && this.getSecurityQuestion().equals(SecQuestion);
     }
 
     public void setProfileImage(String profilePath) {

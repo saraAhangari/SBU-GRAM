@@ -42,7 +42,7 @@ public class ClientHandler implements Runnable{
                         answer = API.signUp(income);
                         break;
                     case ForgetPass :
-                        answer = API.ForgetPass(income);
+                        //answer = API.ForgetPass(income);
                         break;
                 }
                 socketOut.writeObject(answer);

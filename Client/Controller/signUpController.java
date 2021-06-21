@@ -3,6 +3,7 @@ package Client.Controller;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.User;
+import Server.Server;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -33,7 +34,6 @@ public class signUpController {
     public Label weak_security;
     public String profilePath;
     public User user;
-    public static LinkedList<User> profiles = new LinkedList<>();
     private static final String passwordRegex="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     private static final Pattern pattern = Pattern.compile(passwordRegex);
 
@@ -80,7 +80,7 @@ public class signUpController {
             user.setSecurityAnswer(answer.getText());
             Main.setUser(user);
             API.signUp(user);
-            profiles.add(user);
+            Server.Profiles.add(user);
             new PageLoader().load("login");
         }
     }

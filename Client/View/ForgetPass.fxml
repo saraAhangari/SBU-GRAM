@@ -41,7 +41,7 @@
         </MenuButton>
         <TextField fx:id="Answer" layoutX="26.0" layoutY="444.0" promptText="Answer" />
         <TextField fx:id="question" editable="false" layoutX="26.0" layoutY="409.0" mouseTransparent="true" promptText="Question" />
-        <Button layoutX="208.0" layoutY="530.0" mnemonicParsing="false" onAction="#login" prefHeight="37.0" prefWidth="109.0" text="Login">
+        <Button fx:id="login" layoutX="208.0" layoutY="530.0" mnemonicParsing="false" onAction="#Next" prefHeight="37.0" prefWidth="109.0" text="Next">
             <font>
                 <Font name="Yaqout-Bold" size="14.0" />
             </font>

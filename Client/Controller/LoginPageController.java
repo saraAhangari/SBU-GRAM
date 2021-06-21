@@ -23,7 +23,7 @@ public class LoginPageController {
 
     public void login(ActionEvent actionEvent) throws IOException {
         String username=username_field.getText();
-        String password = null;
+        String password;
 
         if (!ClientNetworker.isConnected()){
             System.out.println("not connected");

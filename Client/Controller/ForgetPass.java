@@ -3,7 +3,9 @@ package Client.Controller;
 import Client.API;
 import Client.Model.PageLoader;
 import Common.User;
+import Server.Server;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -19,10 +21,11 @@ public class ForgetPass {
     public TextField new_pass;
     public TextField username;
     public PasswordField confirmation;
-    public Label wrong_input;
-    public Label weak_security;
-    public Label wrong_answer;
-    public Label wrong_user;
+    public Label wrong_input; //password ha yeki nabashan
+    public Label weak_security; //password ba regex hamkhani nadare
+    public Label wrong_answer; //soal o javab eshtebah
+    public Label wrong_user; //user vojod nadare
+    public Button login;
 
 
     public void nickname(ActionEvent actionEvent) {
@@ -40,59 +43,78 @@ public class ForgetPass {
         Answer.getText();
     }
 
-    public void login(ActionEvent actionEvent) throws IOException {
+    public void Next(ActionEvent actionEvent) throws IOException {
         String username_field = username.getText();
-        String question_field = question.getText();
-        String answer_field = Answer.getText();
         String pass_field = new_pass.getText();
-        String confirm_field = confirmation.getText();
 
-        if(!validUsername(username_field)){
+        if(validUsername(username_field)){
             wrong_user.setVisible(true);
             return;
         }
         else{
             wrong_user.setVisible(false);
         }
-        if(!validAnswer(username_field , question_field,answer_field)){
+
+        if (!validPassword(pass_field)){
+            weak_security.setVisible(true);
+            return;
+        }
+        else {
+            weak_security.setVisible(false);
+        }
+
+        if (!correctPassword()){
+            wrong_input.setVisible(true);
+            return;
+        }
+        else {
+            wrong_input.setVisible(false);
+        }
+
+        if (!validAnswers()){
             wrong_answer.setVisible(true);
             return;
         }
         else {
             wrong_answer.setVisible(false);
         }
-        if(validAnswer(username_field , question_field,answer_field) && validUsername(username_field)){
-            wrong_answer.setVisible(false);
-            wrong_user.setVisible(false);
-        }
-        if(!validPassword(pass_field)){
-            weak_security.setVisible(true);
-        }
-        else {
-            if (!pass_field.equals(confirm_field)){
-                wrong_input.setVisible(true);
-                return;
-            }
-            weak_security.setVisible(false);
-            wrong_input.setVisible(false);
-            ChangePass(username_field, pass_field);
+        if (API.ForgetPass(username_field , pass_field)){
+            ChangePass();
+            login.setText("Login");
             new PageLoader().load("login");
         }
+
     }
 
     private boolean validUsername(String username) {
         return !API.isUserNameExists(username);
     }
+    private boolean correctPassword(){
+        return new_pass.getText().equals(confirmation.getText());
+    }
+    private boolean validAnswers() {
+        for (int i = 0; i < Server.Profiles.size(); i++) {
+            if (Server.Profiles.get(i).getUsername().equals(username.getText())) {
+                if (Server.Profiles.get(i).getSecurityQuestion().equals(question.getText())
+                        && Server.Profiles.get(i).getSecurityAnswer().equals(Answer.getText())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void ChangePass() {
+        for (int i = 0; i < Server.Profiles.size(); i++) {
+            if (Server.Profiles.get(i).getUsername().equals(username.getText())) {
+                Server.Profiles.get(i).setPassword(new_pass.getText());
+                break;
+            }
+        }
+    }
 
     public void sign_up(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("signUp");
-    }
-
-    public boolean validAnswer(String email , String question , String answer){
-        return API.ForgetPass(email , question , answer);
-    }
-    public void ChangePass(String username , String newPass){
-        API.changePassword(username, newPass);
     }
 
 }
