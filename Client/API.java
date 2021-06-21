@@ -38,11 +38,11 @@ public class API {
         return (User)received.get("answer");
     }
 
-    public static boolean ForgetPass(String username , String newPass){
+    public static boolean ForgetPass(String username , String newPassword){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.ForgetPass);
         toSend.put("username" , username);
-        toSend.put("newPassword" , newPass);
+        toSend.put("newPassword" , newPassword);
         Map<String , Object> received = ClientNetworker.serve(toSend);
         return (boolean)received.get("answer");
     }

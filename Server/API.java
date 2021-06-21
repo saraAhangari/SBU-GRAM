@@ -59,6 +59,8 @@ public class API {
 
         Map<String , Object> toSend=new HashMap<>();
         toSend.put("command" , Commands.ForgetPass);
+        toSend.put("username" , username);
+        toSend.put("newPassword" , newPassword);
         toSend.put("answer" , Boolean.TRUE);
         return toSend;
     }

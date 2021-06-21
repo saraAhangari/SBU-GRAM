@@ -71,7 +71,7 @@ public class ForgetPass {
             wrong_input.setVisible(false);
         }
 
-        if (!validAnswers()){
+        if (validAnswers()){
             wrong_answer.setVisible(true);
             return;
         }
