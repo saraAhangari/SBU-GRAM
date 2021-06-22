@@ -25,6 +25,9 @@ public class TimeLineController {
     public static ArrayList<Post> postArrayList = new ArrayList<>();
 
 
+    @FXML
+    public void initialize(){
+    }
     public void show_menu(MouseEvent mouseEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
         tt.setToX(103);

@@ -3,6 +3,7 @@ package Client.Controller;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import javafx.scene.image.ImageView;
@@ -26,5 +27,10 @@ public class PostItemController {
         writer.setText(Main.getUser().getUsername());
         title.setText(post.getTitle());
         return root;
+    }
+
+    @FXML
+    public void show_details(){
+
     }
 }

@@ -7,13 +7,16 @@
 
 <AnchorPane fx:id="root" prefHeight="116.0" prefWidth="360.0" style="-fx-background-color: #93DFED; -fx-border-color: #2B4851;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label fx:id="title" layoutX="148.0" layoutY="48.0" text="Post Title" />
-        <Label fx:id="writer" layoutX="132.0" layoutY="14.0" prefHeight="17.0" prefWidth="106.0" text="Post Writer Name">
+        <Label fx:id="title" layoutX="154.0" layoutY="47.0" text="Post Title" textAlignment="CENTER">
          <font>
-            <Font name="Yaqout" size="12.0" />
+            <Font name="Yaqout-Bold" size="12.0" />
          </font></Label>
-        <Button layoutX="145.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="See more" />
-      <Button layoutX="262.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Like" />
-      <Button layoutX="35.0" layoutY="76.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" text="Repost" />
+        <Label fx:id="writer" layoutX="132.0" layoutY="14.0" prefHeight="17.0" prefWidth="106.0" text="Post Writer Name" textAlignment="CENTER">
+         <font>
+            <Font name="Yaqout-Bold" size="12.0" />
+         </font></Label>
+        <Button layoutX="145.0" layoutY="76.0" mnemonicParsing="false" onAction="#show_details" prefHeight="25.0" prefWidth="70.0" text="See more" />
+      <Button layoutX="262.0" layoutY="76.0" mnemonicParsing="false" onAction="#like" prefHeight="25.0" prefWidth="70.0" text="Like" />
+      <Button layoutX="35.0" layoutY="76.0" mnemonicParsing="false" onAction="#repost" prefHeight="25.0" prefWidth="70.0" text="Repost" />
     </children>
 </AnchorPane>

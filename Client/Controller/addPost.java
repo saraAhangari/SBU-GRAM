@@ -65,7 +65,8 @@ public class addPost {
         new PageLoader().load("timeLine");
     }
 
-    public void Profile(MouseEvent mouseEvent) {
+    public void Profile(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Profile");
     }
 
     public void log_out(MouseEvent mouseEvent) {
