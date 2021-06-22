@@ -1,6 +1,7 @@
 package Client.Controller;
 
 import Client.Model.API;
+import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
 import Server.Server;
@@ -43,8 +44,9 @@ public class TimeLineController {
     }
 
     public void refresh(ActionEvent actionEvent) {
+        postArrayList = API.getPosts(Main.getUser().getUsername());
         //show the post array in list view
-        postListview.setItems(FXCollections.observableArrayList(Server.Posts));
+        postListview.setItems(FXCollections.observableArrayList(postArrayList));
 
         //customize each cell of postList with new graphic object PostItem
         postListview.setCellFactory(postListview -> new PostItem());

@@ -12,10 +12,10 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class PostItemController {
-    Post post;
     public Label writer;
     public Label title;
     public AnchorPane root;
+    public Post post;
 
     public PostItemController(Post post) throws IOException {
         new PageLoader().load("PostItem" , this);

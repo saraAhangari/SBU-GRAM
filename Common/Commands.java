@@ -1,5 +1,5 @@
 package Common;
 
 public enum Commands {
-    Login , UsernameUnique , SingUp , ForgetPass , addPost
+    Login , UsernameUnique , SingUp , ForgetPass , addPost , getPosts
 }

@@ -6,6 +6,7 @@ import Common.Post;
 import Common.User;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -83,14 +84,33 @@ public class API {
 
     public static Map<String , Object> addPost(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
-        Post post = (Post) input.get("post");
+        String username = (String)input.get("username");
+        Post post = (Post)input.get("post");
 
+        Server.users.get(username).addPost(post);
         Server.Posts.add(post);
         message.put("command" , Commands.addPost);
         message.put("post" , post);
+        message.put("username" , username);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
-        System.out.println("[" + input.get("username") + "] : add post");
+        System.out.println(username + " publish");
+        System.out.println("message : " +"["+ post.title + "] [" + post.writer +"]" );
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> getPosts(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User user = Server.users.get((String)input.get("username"));
+        ArrayList<Post> timeLine = new ArrayList<>(user.getPosts());
+        if(user.getFollowings() != null){
+            user.getFollowings().stream().map(s -> Server.users.get(s).getPosts()).forEach(timeLine::addAll);
+        }
+        message.put("command" , Commands.getPosts);
+        message.put("answer" , timeLine);
+        Database.getInstance().updateDataBase();
+        System.out.println(user.getUsername() + " get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }

@@ -43,11 +43,20 @@ public class API {
         return (boolean)toReceive.get("answer");
     }
 
-    public static ArrayList<Post> addPost(Post post){
+    public static boolean addPost(String username , Post post){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.addPost);
+        toSend.put("username" , username);
         toSend.put("post" , post);
         Map<String , Object> toReceive = Network.serve(toSend);
-        return (ArrayList<Post>) toReceive.get("answer");
+        return (boolean) toReceive.get("answer");
+    }
+
+    public static ArrayList<Post> getPosts(String username){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.getPosts);
+        toSend.put("username" , username);
+        Map<String , Object> toReceive = Network.serve(toSend);
+        return (ArrayList<Post>)toReceive.get("answer");
     }
 }

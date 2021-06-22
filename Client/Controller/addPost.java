@@ -28,7 +28,7 @@ public class addPost {
     public TextField post_title;
     public TextArea post_description;
     public VBox vbox;
-    public Post currentPost = new Post();
+    public Post currentPost;
     ArrayList<Post> posts = new ArrayList<>();
 
     @FXML
@@ -44,20 +44,15 @@ public class addPost {
             label.setText(file.getAbsolutePath() + "selected");
         assert file != null;
         Image image=new Image(file.toURI().toString());
+        currentPost.setImage(image);
     }
 
     public void publish(ActionEvent actionEvent) throws IOException {
-        //set the post features
+        currentPost = new Post();
         currentPost.setTitle(post_title.getText());
         currentPost.setDescription(post_description.getText());
-
-        TimeLineController.postArrayList = API.addPost(currentPost);
-        Server.Posts.add(currentPost);
-        currentPost = new Post();
-
-        //empty fields
-        post_title.setText("");
-        post_description.setText("");
+        currentPost.setWriter(Main.getUser().getUsername());
+        API.addPost(Main.getUser().getUsername() , currentPost);
     }
 
     public void show_menu(MouseEvent mouseEvent) {

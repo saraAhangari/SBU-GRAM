@@ -4,6 +4,7 @@ import javafx.scene.control.TextField;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class User implements Serializable {
@@ -15,7 +16,9 @@ public class User implements Serializable {
     private String email;
     private String SecurityQuestion;
     private String SecurityAnswer;
-    private static List<Post> posts=new ArrayList<>();
+    private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<String> followers = new ArrayList<>();
+    private ArrayList<String> followings = new ArrayList<>();
     private String profileImagePath;
 
     public User(String username) {
@@ -90,11 +93,39 @@ public class User implements Serializable {
         return profileImagePath;
     }
 
+    public void setPosts(ArrayList<Post> posts) {
+        this.posts = posts;
+    }
+
+    public ArrayList<Post> getPosts() {
+        return posts;
+    }
+
+    public ArrayList<String> getFollowers() {
+        return followers;
+    }
+
+    public void setFollowers(ArrayList<String> followers) {
+        this.followers = followers;
+    }
+
+    public ArrayList<String> getFollowings() {
+        return followings;
+    }
+
+    public void setFollowings(ArrayList<String> followings) {
+        this.followings = followings;
+    }
+
     public User Submission(String username , String password) {
         if (this.username.equals(username) && this.password.equals(password)) {
             return this;
         }
         return null;
+    }
+
+    public void addPost(Post post) {
+        posts.add(post);
     }
 
     @Override
