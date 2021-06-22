@@ -1,5 +1,7 @@
 package Client.Controller;
 
+import Client.Model.API;
+import Client.Model.Network;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import javafx.event.ActionEvent;
@@ -7,7 +9,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import java.io.IOException;
 import Common.*;
-import Client.*;
 
 
 public class LoginPageController {
@@ -20,14 +21,11 @@ public class LoginPageController {
     public Button signUp_Button;
     public Button LogIn_Button;
     public Button Forger_Password;
+    private User user;
 
     public void login(ActionEvent actionEvent) throws IOException {
         String username=username_field.getText();
         String password;
-
-        if (!ClientNetworker.isConnected()){
-            System.out.println("not connected");
-        }
 
         if(password_field.isVisible()){
             password=password_field.getText();
@@ -36,7 +34,7 @@ public class LoginPageController {
             password=password_visible.getText();
         }
 
-        User user=API.login(username , password);
+        user = API.login(username , password);
         if(user==null){
             wrong_input.setVisible(true);
         }

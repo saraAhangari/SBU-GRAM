@@ -1,68 +1,98 @@
 package Server;
 
+import Client.Model.Main;
 import Common.Commands;
+import Common.Post;
 import Common.User;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
 public class API {
-    public static Map<String,Object> isUserNameExists(Map<String,Object> income){
+    public static Map<String,Object> isUserNameExists(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        String username2Check = (String) input.get("username");
+        User user = Server.users.get(username2Check);
+        boolean exists;
 
-        String usernameToCheck = (String) income.get("username");
-        User user = Server.users.get(usernameToCheck);
-        Boolean exists = (user!=null);
-        Map<String,Object> answer = new HashMap<>();
-        answer.put("answer" , exists);
-        answer.put("command" , Commands.UsernameUnique);
+        if (user != null)
+            exists = true;
+        else
+            exists = false;
 
-        return answer;
+        message.put("answer" , exists);
+        message.put("command" , Commands.UsernameUnique);
+
+        return message;
     }
 
-    public static Map<String,Object> signUp(Map<String,Object> income){
-        Map<String,Object> answer = new HashMap<>();
-        User newUser = (User)income.get("user");
-        String username = newUser.getUsername();
+    public static Map<String , Object> login(Map<String , Object> input){
+        Map<String , Object> message=new HashMap<>();
+        User user;
+        String username = (String)input.get("username");
+        String password = (String)input.get("password");
+        boolean exists;
+        if (Server.users.get(username) != null)
+            exists = true;
+        else
+            exists = false;
+        message.put("command",Commands.Login);
+        message.put("exists",exists);
 
-        Server.users.put(username , newUser);
-        Database.getInstance().updateDataBase();
-        answer.put("command" , Commands.SingUp);
-        answer.put("answer" , Boolean.TRUE);
-        System.out.println(newUser.getUsername() + " register");
-        System.out.println(newUser.getUsername() + " Login");
-
-        return answer;
-    }
-
-    public static Map<String , Object> login(Map<String , Object> income){
-        String username = (String)income.get("username");
-        String password = (String)income.get("password");
-        Map<String , Object> answer=new HashMap<>();
-        answer.put("command",Commands.Login);
-        answer.put("exists",!(Server.users.get(username) == null));
-
-        User user=Server.users.get(username).Conformity(username , password);
+        user = Server.users.get(username).Submission(username , password);
         if(user==null){
-            return answer;
+            return message;
         }
-        answer.put("answer" , user);
-        System.out.println(user.getUsername() + " : SignUp");
-        return answer;
+        message.put("answer" , user);
+        System.out.println("[" + username + "] : has logged in");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String,Object> signUp(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        User user = (User)input.get("user");
+        String username = user.getUsername();
+
+        Server.users.put(username , user);
+        message.put("command" , Commands.SingUp);
+        message.put("answer" , Boolean.TRUE);
+        Database.getInstance().updateDataBase();
+        System.out.println("[" + username +"] : register " + user.getProfileImagePath());
+        System.out.println("time : " + LocalDateTime.now());
+
+        return message;
     }
 
     public static Map<String , Object> ForgetPass(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
         String username = (String)input.get("username");
         String newPassword = (String)input.get("newPassword");
-        Server.users.get(username).setPassword(newPassword);
-        Database.getInstance().updateDataBase();
-        System.out.println(username + "change password");
 
-        Map<String , Object> toSend=new HashMap<>();
-        toSend.put("command" , Commands.ForgetPass);
-        toSend.put("username" , username);
-        toSend.put("newPassword" , newPassword);
-        toSend.put("answer" , Boolean.TRUE);
-        return toSend;
+        Server.users.get(username).setPassword(newPassword);
+        message.put("command" , Commands.ForgetPass);
+        message.put("username" , username);
+        message.put("newPassword" , newPassword);
+        message.put("answer" , Boolean.TRUE);
+        Database.getInstance().updateDataBase();
+        System.out.println("[" + username + "] : changed password");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> addPost(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        Post post = (Post) input.get("post");
+
+        Server.Posts.add(post);
+        message.put("command" , Commands.addPost);
+        message.put("post" , post);
+        message.put("answer" , Boolean.TRUE);
+        Database.getInstance().updateDataBase();
+        System.out.println("[" + input.get("username") + "] : add post");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
     }
 
 }

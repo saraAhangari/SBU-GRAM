@@ -14,7 +14,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="49.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #000000; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.TimeLineController">
    <children>
-      <ListView fx:id="postListview" layoutX="1.0" layoutY="49.0" prefHeight="566.0" prefWidth="358.0" style="-fx-background-color: #81A2AB;" />
+      <ListView fx:id="postListview" layoutX="1.0" layoutY="49.0" prefHeight="610.0" prefWidth="360.0" style="-fx-background-color: #81A2AB;" />
       <ImageView fitHeight="47.0" fitWidth="50.0" layoutY="3.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/grey-menu-icon-transparent-png-stickpng-menu-icon-png-2000_2000.png" />

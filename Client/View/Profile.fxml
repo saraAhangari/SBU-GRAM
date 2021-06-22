@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<SplitPane dividerPositions="0.3357245337159254" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="560.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Profile">
+  <items>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #2B4851;">
+         <children>
+            <ImageView fx:id="profile_image" fitHeight="95.0" fitWidth="121.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="name_lastname" layoutX="179.0" layoutY="30.0" prefHeight="17.0" prefWidth="152.0" text="Name &amp; Lastname" />
+            <Label fx:id="username" layoutX="179.0" layoutY="58.0" prefHeight="17.0" prefWidth="112.0" text="username" />
+            <Label fx:id="birthDate" layoutX="179.0" layoutY="87.0" prefHeight="17.0" prefWidth="112.0" text="birth date" />
+            <Text fill="WHITE" layoutX="45.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers">
+               <font>
+                  <Font name="Yaqout-Bold" size="12.0" />
+               </font>
+            </Text>
+            <Text fill="#f3f2f2" layoutX="206.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followings">
+               <font>
+                  <Font name="Yaqout-Bold" size="12.0" />
+               </font>
+            </Text>
+            <Label fx:id="followers" layoutX="103.0" layoutY="147.0" text="followers" />
+            <Label fx:id="followings" layoutX="273.0" layoutY="147.0" text="followings" />
+         </children></AnchorPane>
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="358.0">
+         <children>
+            <ListView fx:id="myPosts" prefHeight="367.0" prefWidth="358.0" style="-fx-background-color: #81A2AB;" />
+         </children></AnchorPane>
+  </items>
+</SplitPane>

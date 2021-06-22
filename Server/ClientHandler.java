@@ -26,23 +26,26 @@ public class ClientHandler implements Runnable{
     @Override
     public void run() {
         while(clientOnline){
-            Map<String,Object> income = null;
+            Map<String,Object> input;
             try{
-                income = (Map<String,Object>) socketIn.readObject();
+                input = (Map<String,Object>) socketIn.readObject();
                 Map<String,Object> answer = null;
-                Commands command = (Commands) income.get("command");
+                Commands command = (Commands) input.get("command");
                 switch(command){
                     case UsernameUnique:
-                        answer = API.isUserNameExists(income);
+                        answer = API.isUserNameExists(input);
                         break;
                     case Login:
-                        answer = API.login(income);
+                        answer = API.login(input);
                         break;
                     case SingUp:
-                        answer = API.signUp(income);
+                        answer = API.signUp(input);
                         break;
                     case ForgetPass :
-                        answer = API.ForgetPass(income);
+                        answer = API.ForgetPass(input);
+                        break;
+                    case addPost:
+                        answer = API.addPost(input);
                         break;
                 }
                 socketOut.writeObject(answer);

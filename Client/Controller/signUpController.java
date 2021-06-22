@@ -1,5 +1,6 @@
 package Client.Controller;
 
+import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.User;
@@ -10,10 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import Client.*;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.LinkedList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,12 +32,19 @@ public class signUpController {
     public Label wrong_input;
     public Label repeated_username;
     public Label weak_security;
-    public String profilePath;
-    public User user;
+    private String profilePath;
+    private User user;
     private static final String passwordRegex="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     private static final Pattern pattern = Pattern.compile(passwordRegex);
 
+    public static boolean authenticPassword(String password){
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
 
+    public static boolean authenticUsername(String username){
+        return !API.isUserNameExists(username);
+    }
 
     public void signUp_button(ActionEvent actionEvent) throws IOException {
         String password = password_field.getText();
@@ -52,14 +59,14 @@ public class signUpController {
             wrong_input.setVisible(false);
         }
 
-        if(!validPassword(password)){
+        if(!authenticPassword(password)){
             weak_security.setVisible(true);
             return;
         }
         else {
             weak_security.setVisible(false);
         }
-        if(!validUsername(username)){
+        if(!authenticUsername(username)){
             repeated_username.setVisible(true);
             return;
         }
@@ -67,9 +74,8 @@ public class signUpController {
             repeated_username.setVisible(false);
         }
 
-        if(validPassword(password) && validUsername(username)){
+        if(authenticPassword(password) && authenticUsername(username)){
             user = new User(username_field.getText());
-
             user.setFirstname(firstname_field.getText());
             user.setLastName(lastname_field.getText());
             user.setPhoneNumber(PhoneNumber.getText());
@@ -84,7 +90,6 @@ public class signUpController {
             new PageLoader().load("login");
         }
     }
-
 
     public void Nickname(ActionEvent actionEvent) {
         question.setText("Your Nickname");
@@ -116,15 +121,6 @@ public class signUpController {
         Image image=new Image(file.toURI().toString());
         profilePath = file.toURI().toString();
         profileImage.setImage(image);
-    }
-
-    public static boolean validPassword(String password){
-        Matcher matcher = pattern.matcher(password);
-        return matcher.matches();
-    }
-
-    public static boolean validUsername(String username){
-        return !API.isUserNameExists(username);
     }
 }
 

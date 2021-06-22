@@ -1,7 +1,12 @@
 package Client.Controller;
 
+import Client.Model.API;
+import Client.Model.Main;
 import Client.Model.PageLoader;
+import Common.Post;
+import Server.Server;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,11 +21,15 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Time;
+import java.util.ArrayList;
 
 public class addPost {
     public TextField post_title;
     public TextArea post_description;
     public VBox vbox;
+    public Post currentPost = new Post();
+    ArrayList<Post> posts = new ArrayList<>();
 
     @FXML
     public void initialize(){
@@ -37,13 +46,18 @@ public class addPost {
         Image image=new Image(file.toURI().toString());
     }
 
-    public void publish(ActionEvent actionEvent) {
-        /*for (int i = 0; i <signUpController.profiles.size() ; i++) {
-            if (signUpController.profiles.get(i).getUsername().equals()){
-                //add kone post ro be profile yaru
-            }
-        }
-        add kone post ro be time line ke age home ro bezanim time line ro neshun bede*/
+    public void publish(ActionEvent actionEvent) throws IOException {
+        //set the post features
+        currentPost.setTitle(post_title.getText());
+        currentPost.setDescription(post_description.getText());
+
+        TimeLineController.postArrayList = API.addPost(currentPost);
+        Server.Posts.add(currentPost);
+        currentPost = new Post();
+
+        //empty fields
+        post_title.setText("");
+        post_description.setText("");
     }
 
     public void show_menu(MouseEvent mouseEvent) {

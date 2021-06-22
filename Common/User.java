@@ -54,10 +54,6 @@ public class User implements Serializable {
         this.firstname = firstname;
     }
 
-    public User authenticate(String username, String password) {
-        if (this.username.equals(username) && this.password.equals(password)) return this;
-        return null;
-    }
 
     public String getUsername() {
         return username;
@@ -87,7 +83,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public void setProfileImage(String profilePath) {
+        this.profileImagePath = profilePath;
+    }
+    public String getProfileImagePath() {
+        return profileImagePath;
+    }
 
+    public User Submission(String username , String password) {
+        if (this.username.equals(username) && this.password.equals(password)) {
+            return this;
+        }
+        return null;
+    }
 
     @Override
     public int hashCode() {
@@ -102,21 +110,5 @@ public class User implements Serializable {
         } catch (Exception e) {
             return false;
         }
-    }
-
-    public User Conformity(String username , String password) {
-        if (this.username.equals(username) && this.password.equals(password)) {
-            return this;
-        }
-        return null;
-    }
-
-    public boolean toChangePass(String email , String SecQuestion , String SecAnswer){
-        return this.getEmail().equals(email) && this.getSecurityAnswer().equals(SecAnswer)
-                && this.getSecurityQuestion().equals(SecQuestion);
-    }
-
-    public void setProfileImage(String profilePath) {
-        this.profileImagePath = profilePath;
     }
 }

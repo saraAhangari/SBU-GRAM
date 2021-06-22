@@ -1,11 +1,11 @@
-package Client;
+package Client.Model;
 
 import Common.*;
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
-public class ClientNetworker{
+public class Network {
 
     // you might set this from graphic
     public static String serverAddress="localhost";
@@ -25,6 +25,7 @@ public class ClientNetworker{
             return false;
         }
         try{
+            System.out.println("action : connect");
             System.out.println("server ip : " + serverAddress);
             socket = new Socket( serverAddress , PORT);
             socketOut = new ObjectOutputStream( socket.getOutputStream() );

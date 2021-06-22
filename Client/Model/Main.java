@@ -3,7 +3,6 @@ package Client.Model;
 import Common.User;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import Client.*;
 
 
 public class Main extends Application {
@@ -11,7 +10,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        ClientNetworker.connectToServer();
+        Network.connectToServer();
         PageLoader.initStage(primaryStage);
         new PageLoader().load("login");
     }
@@ -22,7 +21,7 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        ClientNetworker.disconnectFromServer();
+        Network.disconnectFromServer();
         super.stop();
     }
 

@@ -9,12 +9,21 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Post implements Serializable {
     public String writer;
     public String title;
+    public String description;
     public int like = 0;
     public int repost = 0;
     public Image image;
     public static CopyOnWriteArrayList<String> comments;
 
     public Post() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getWriter() {
