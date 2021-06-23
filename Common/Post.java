@@ -1,21 +1,43 @@
 package Common;
 
-import javafx.scene.image.Image;
-
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Post implements Serializable {
     public String writer;
     public String title;
     public String description;
-    public int like = 0;
-    public int repost = 0;
+    public int like;
+    public int repost;
+    private final LocalDateTime dateWithTime;
+    private final Map<Integer , Post> likes = new ConcurrentHashMap<>();
+    private final Map<Integer , Post> reposts = new ConcurrentHashMap<>();
+    private final Map<String , Post> comments = new ConcurrentHashMap<>();
     public byte[] image;
-    public static CopyOnWriteArrayList<String> comments;
+
+    public void likePost() {
+        likes.put(like++ , this);
+    }
+
+    public void unlikePost() {
+        likes.put(like-- , this);
+    }
+
+    public void setReposts() {
+        reposts.put(repost++ , this);
+    }
+
+    public void addComment(String comment) {
+        comments.put(comment , this);
+    }
 
     public Post() {
+        this.dateWithTime=LocalDateTime.now();
+        like = 0;
+        repost = 0;
     }
 
     public String getDescription() {
@@ -66,6 +88,10 @@ public class Post implements Serializable {
         this.image = image;
     }
 
+    public LocalDateTime getDateWithTime() {
+        return dateWithTime;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,5 +103,10 @@ public class Post implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(writer, title);
+    }
+
+
+    public int compareTo(Object o) {
+        return this.getDateWithTime().compareTo(((Post) o).getDateWithTime());
     }
 }

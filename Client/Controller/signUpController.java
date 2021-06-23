@@ -14,6 +14,7 @@ import javafx.stage.Popup;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -83,6 +84,7 @@ public class signUpController {
             user.setPassword(password_field.getText());
             user.setSecurityQuestion(question.getText());
             user.setSecurityAnswer(answer.getText());
+            user.setProfilePhoto(photo);
             Main.setUser(user);
             API.signUp(user);
             Server.Profiles.add(user);
@@ -110,13 +112,17 @@ public class signUpController {
     }
 
     public void AddImage(ActionEvent actionEvent) throws IOException {
+        Stage stage=new Stage();
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(new Popup());
-        FileInputStream fileInputStream = new FileInputStream(file);
-        photo = fileInputStream.readAllBytes();
-        Image image = new Image(new ByteArrayInputStream(photo));
-        user.setPhotoPath(file.toURI().toString());
+        fileChooser.setTitle("select profile");
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PNG" , "*.png") ,
+                new FileChooser.ExtensionFilter("JPG" , "*.jpg"));
+        File file = fileChooser.showOpenDialog(stage);
+        Image image=new Image(file.toURI().toString());
         profileImage.setImage(image);
-        user.setProfilePhoto(fileInputStream.readAllBytes());
+        byte[] imageToByteArray;
+        imageToByteArray= Files.readAllBytes(file.toPath());
+        photo = imageToByteArray;
+        profileImage.setImage(image);
     }
 }

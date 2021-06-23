@@ -27,6 +27,7 @@ public class PostItemController {
     }
 
     public void show_details(ActionEvent actionEvent) throws IOException {
+        Main.post = post;
         new PageLoader().load("postDetails");
     }
 

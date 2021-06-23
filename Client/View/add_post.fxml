@@ -13,18 +13,18 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="360.0" style="-fx-background-color: #81A2AB;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.addPost">
    <children>
-      <TextField fx:id="post_title" layoutX="90.0" layoutY="104.0" prefHeight="37.0" prefWidth="180.0" promptText="Post Title">
+      <TextField fx:id="post_title" layoutX="90.0" layoutY="74.0" prefHeight="37.0" prefWidth="180.0" promptText="Post Title">
          <font>
             <Font name="Yaqout-Bold" size="11.0" />
          </font>
       </TextField>
-      <TextArea fx:id="post_description" layoutX="80.0" layoutY="173.0" prefHeight="200.0" prefWidth="200.0" promptText="Post Description">
+      <TextArea fx:id="post_description" layoutX="80.0" layoutY="290.0" prefHeight="119.0" prefWidth="200.0" promptText="Post Description">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font>
       </TextArea>
-      <Button layoutX="124.0" layoutY="405.0" mnemonicParsing="false" onAction="#add_image" prefHeight="30.0" prefWidth="105.0" text="Add Image" />
-      <Button layoutX="124.0" layoutY="471.0" mnemonicParsing="false" onAction="#publish" prefHeight="64.0" prefWidth="114.0" text="Publish" />
+      <Button layoutX="128.0" layoutY="421.0" mnemonicParsing="false" onAction="#add_image" prefHeight="30.0" prefWidth="105.0" text="Add Image" />
+      <Button layoutX="123.0" layoutY="467.0" mnemonicParsing="false" onAction="#publish" prefHeight="64.0" prefWidth="114.0" text="Publish" />
       <ImageView fitHeight="47.0" fitWidth="50.0" layoutY="8.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/menu+icon-1320166582507593596.png" />
@@ -59,5 +59,11 @@
             </Label>
          </children>
       </VBox>
+      <ImageView fitHeight="47.0" fitWidth="50.0" layoutX="247.0" layoutY="8.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-instagram-100.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="post_image" fitHeight="150.0" fitWidth="200.0" layoutX="80.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>

@@ -3,6 +3,7 @@ package Client.Model;
 import Common.Commands;
 import Common.Post;
 import Common.User;
+import Server.Server;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -66,5 +67,24 @@ public class API {
         toSend.put("username" , username);
         Map<String , Object> toReceive = Network.serve(toSend);
         return (ArrayList<User>)toReceive.get("answer");
+    }
+
+
+    public static Boolean Logout(String username){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.Logout);
+        toSend.put("username" , username);
+        Map<String,Object> toReceive = Network.serve(toSend);
+        if ( toReceive.get("answer") == null ) return false;
+        return (Boolean) toReceive.get("answer");
+    }
+
+    public static Boolean updateInfo(User user){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.UPDATE_PROFILE);
+        toSend.put("user", user);
+        Map<String,Object> toReceive = Network.serve(toSend);
+        if ( toReceive.get("answer") == null ) return false;
+        return (Boolean) toReceive.get("answer");
     }
 }

@@ -5,11 +5,13 @@ import Common.Commands;
 import Common.Post;
 import Common.User;
 
+import javax.xml.stream.events.Comment;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class API {
     public static Map<String,Object> isUserNameExists(Map<String,Object> input){
@@ -108,6 +110,10 @@ public class API {
         if(user.getFollowings() != null){
             user.getFollowings().stream().map(s -> Server.users.get(s).getPosts()).forEach(timeLine::addAll);
         }
+        timeLine = (ArrayList<Post>) timeLine.stream()
+                .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
+                .collect(Collectors.toList());
+
         message.put("command" , Commands.getPosts);
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
@@ -128,6 +134,81 @@ public class API {
         message.put("answer" , user_profile);
         Database.getInstance().updateDataBase();
         System.out.println(user.getUsername() + " get user info");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String,Object> Logout(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        String username = (String) input.get("username");
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.Logout);
+        message.put("answer" , Boolean.TRUE);
+        System.out.println(username + " log out");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String,Object> updateInfo(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        User user = (User) input.get("user");
+        String username = user.getUsername();
+        Server.users.replace(username,user);
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.UPDATE_PROFILE);
+        message.put("answer",Boolean.TRUE);
+        System.out.println(username + " : update info");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String,Object> like(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        Post post = (Post) input.get("post");
+        User user = (User) input.get("user");
+        post.likePost();
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.Like);
+        message.put("answer", Boolean.TRUE);
+        System.out.println("action : like");
+        System.out.println(user.getUsername() + " like");
+        //message : post sender - post subject
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+    public static Map<String,Object> unlike(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        Post post = (Post) input.get("post");
+        post.unlikePost();
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.Unlike);
+        message.put("answer", Boolean.TRUE);
+        return message;
+    }
+    public static Map<String,Object> comment(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        String comment = (String) input.get("comment");
+        Post post = (Post) input.get("post");
+        User user = (User) input.get("user");
+        post.addComment(comment);
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.Comment);
+        message.put("answer", Boolean.TRUE);
+        System.out.println(user.getUsername() + " comment");
+        //message post subject
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String,Object> deleteAccount(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        String username = (String) input.get("username");
+        User user = (User) input.get("user");
+        Server.users.remove(username , user);
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.deleteAccount);
+        message.put("answer" , Boolean.TRUE);
+        System.out.println(username + " delete account");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }

@@ -1,5 +1,6 @@
 package Client.Model;
 
+import Common.Post;
 import Common.User;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -7,6 +8,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public static User user;
+    public static Post post;
 
     @Override
     public void start(Stage primaryStage) throws Exception{

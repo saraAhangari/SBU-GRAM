@@ -34,7 +34,7 @@ public class myProfile {
     public ArrayList<Post> selfPosts = new ArrayList<>();
 
     @FXML
-    public void initialize() throws IOException {
+    public void initialize() {
         User user = Main.getUser();
         name_lastname.setText(user.getFirstname() + " " + user.getLastName());
         username.setText(user.getUsername());
@@ -44,12 +44,9 @@ public class myProfile {
         selfPosts = API.getPosts(user.getUsername());
         myPosts.setItems(FXCollections.observableArrayList(selfPosts));
         myPosts.setCellFactory(myPosts -> new PostItem());
-
-        /*File file = new File(user.getPhotoPath());
-        FileInputStream fileInputStream = new FileInputStream(file) ;
-        byte[] b = fileInputStream.readAllBytes();
-        Image image = new Image(new ByteArrayInputStream(b));
-        profile_image.setImage(image);*/
+        if(user.getProfilePhoto()!=null){
+            profile_image.setImage(new Image(new ByteArrayInputStream(user.getProfilePhoto())));
+        }
     }
 
     public void Home(MouseEvent mouseEvent) throws IOException {

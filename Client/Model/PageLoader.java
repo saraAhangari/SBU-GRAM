@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 public class PageLoader {
     private static Stage stage;
     private static Scene scene;
-    public static final int WIDTH = 385;
+    public static final int WIDTH = 400;
     public static final int HEIGHT = 665;
 
     public static void initStage(Stage primaryStage) {
