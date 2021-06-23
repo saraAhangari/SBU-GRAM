@@ -3,12 +3,9 @@ package Client.Controller;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
-
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-
 
 import java.io.IOException;
 
@@ -29,8 +26,16 @@ public class PostItemController {
         return root;
     }
 
-    @FXML
-    public void show_details(){
-
+    public void show_details(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("postDetails");
     }
+
+
+    public void like(ActionEvent actionEvent) {
+    }
+
+    public void repost(ActionEvent actionEvent) {
+    }
+
+
 }

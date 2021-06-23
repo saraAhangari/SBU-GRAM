@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="374.0" style="-fx-background-color: #81A2AB;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Search">
+   <children>
+      <TextField fx:id="search" layoutX="58.0" layoutY="14.0" prefHeight="25.0" prefWidth="271.0" promptText="Search" />
+      <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="5.0" layoutY="7.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/grey-menu-icon-transparent-png-stickpng-menu-icon-png-2000_2000.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="25.0" fitWidth="24.0" layoutX="300.0" layoutY="14.0" onMouseClicked="#search" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/search.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vbox" layoutX="-100.0" layoutY="7.0" prefHeight="213.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+         <children>
+            <Label onMouseClicked="#Home" prefHeight="56.0" prefWidth="68.0" text="Home">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#Profile" text="Profile">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#add_post" prefHeight="60.0" prefWidth="75.0" text="New Post">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#log_out" prefHeight="20.0" prefWidth="62.0" text="Log Out">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ListView fx:id="search_profiles" layoutX="4.0" layoutY="220.0" prefHeight="272.0" prefWidth="366.0" />
+   </children>
+</Pane>

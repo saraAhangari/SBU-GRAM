@@ -10,10 +10,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,8 +32,8 @@ public class signUpController {
     public Label wrong_input;
     public Label repeated_username;
     public Label weak_security;
-    private String profilePath;
-    private User user;
+    public byte[] photo;
+    private User user = new User();
     private static final String passwordRegex="^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$";
     private static final Pattern pattern = Pattern.compile(passwordRegex);
 
@@ -75,12 +75,11 @@ public class signUpController {
         }
 
         if(authenticPassword(password) && authenticUsername(username)){
-            user = new User(username_field.getText());
+            user.setUsername(username_field.getText());
             user.setFirstname(firstname_field.getText());
             user.setLastName(lastname_field.getText());
             user.setPhoneNumber(PhoneNumber.getText());
             user.setEmail(email.getText());
-            user.setProfileImage(profilePath);
             user.setPassword(password_field.getText());
             user.setSecurityQuestion(question.getText());
             user.setSecurityAnswer(answer.getText());
@@ -110,17 +109,14 @@ public class signUpController {
         new PageLoader().load("login");
     }
 
-    public void AddImage(ActionEvent actionEvent) {
-        Stage stage = new Stage();
+    public void AddImage(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
-        Label label = new Label("no files selected");
-        File file = fileChooser.showOpenDialog(stage);
-        if (file != null)
-            label.setText(file.getAbsolutePath() + "selected");
-        assert file != null;
-        Image image=new Image(file.toURI().toString());
-        profilePath = file.toURI().toString();
+        File file = fileChooser.showOpenDialog(new Popup());
+        FileInputStream fileInputStream = new FileInputStream(file);
+        photo = fileInputStream.readAllBytes();
+        Image image = new Image(new ByteArrayInputStream(photo));
+        user.setPhotoPath(file.toURI().toString());
         profileImage.setImage(image);
+        user.setProfilePhoto(fileInputStream.readAllBytes());
     }
 }
-

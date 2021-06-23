@@ -9,7 +9,6 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #000000; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.TimeLineController">
@@ -24,26 +23,30 @@
             <font>
                 <Font name="Yaqout-Bold" size="15.0" />
             </font></Button>
-        <VBox fx:id="vbox" layoutX="-102.0" layoutY="11.0" prefHeight="222.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
-            <children>
-                <Label onMouseClicked="#Profile" prefHeight="56.0" prefWidth="68.0" text="Profile">
-                    <font>
-                        <Font name="Yaqout-Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Label onMouseClicked="#add_post" prefHeight="60.0" prefWidth="75.0" text="New Post">
-                    <font>
-                        <Font name="Yaqout-Bold" size="18.0" />
-                    </font>
-                </Label>
-                <Label onMouseClicked="#log_out" prefHeight="54.0" prefWidth="62.0" text="Log Out">
-                    <font>
-                        <Font name="Yaqout-Bold" size="18.0" />
-                    </font>
-                </Label>
-            </children>
-        </VBox>
-        <Line endX="-6.099999904632568" layoutY="72.0" startX="-100.0" />
+      <VBox fx:id="vbox" layoutX="-100.0" layoutY="5.0" prefHeight="194.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+         <children>
+            <Label onMouseClicked="#search" prefHeight="56.0" prefWidth="68.0" text="Search">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#Profile" text="Profile">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#add_post" prefHeight="60.0" prefWidth="75.0" text="New Post">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#log_out" prefHeight="22.0" prefWidth="62.0" text="Log Out">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
     </children>
     <effect>
         <ColorAdjust />

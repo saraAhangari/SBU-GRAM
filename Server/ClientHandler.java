@@ -50,6 +50,9 @@ public class ClientHandler implements Runnable{
                     case getPosts:
                         answer = API.getPosts(input);
                         break;
+                    case getUser:
+                        answer = API.getUser(input);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

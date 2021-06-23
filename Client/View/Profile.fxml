@@ -1,37 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.3357245337159254" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="560.0" prefWidth="360.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Profile">
-  <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: #2B4851;">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="380.0" style="-fx-background-color: #2B4851;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.myProfile">
+   <children>
+      <ImageView fx:id="profile_image" fitHeight="101.0" fitWidth="130.0" layoutX="34.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="name_lastname" layoutX="207.0" layoutY="30.0" text="name &amp; lastname" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="username" layoutX="207.0" layoutY="72.0" text="username" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="birthDate" layoutX="208.0" layoutY="108.0" text="birthDate" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="followers" layoutX="115.0" layoutY="157.0" text="followers" textFill="#4fc3dd" />
+      <Text fill="WHITE" layoutX="31.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers">
+         <font>
+            <Font name="Yaqout-Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="207.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followings">
+         <font>
+            <Font name="Yaqout-Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="followings" layoutX="298.0" layoutY="157.0" text="followings" textFill="#4fc3dd" />
+      <ListView fx:id="myPosts" layoutX="-1.0" layoutY="190.0" prefHeight="499.0" prefWidth="380.0" style="-fx-background-color: #81A2AB;" />
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/grey-menu-icon-transparent-png-stickpng-menu-icon-png-2000_2000.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vbox" layoutX="-101.0" layoutY="7.0" prefHeight="202.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
          <children>
-            <ImageView fx:id="profile_image" fitHeight="95.0" fitWidth="121.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-            <Label fx:id="name_lastname" layoutX="179.0" layoutY="30.0" prefHeight="17.0" prefWidth="152.0" text="Name &amp; Lastname" />
-            <Label fx:id="username" layoutX="179.0" layoutY="58.0" prefHeight="17.0" prefWidth="112.0" text="username" />
-            <Label fx:id="birthDate" layoutX="179.0" layoutY="87.0" prefHeight="17.0" prefWidth="112.0" text="birth date" />
-            <Text fill="WHITE" layoutX="45.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers">
+            <Label onMouseClicked="#Home" prefHeight="56.0" prefWidth="68.0" text="Home">
                <font>
-                  <Font name="Yaqout-Bold" size="12.0" />
+                  <Font name="Yaqout-Bold" size="18.0" />
                </font>
-            </Text>
-            <Text fill="#f3f2f2" layoutX="206.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followings">
+            </Label>
+            <Label onMouseClicked="#search" text="Search">
                <font>
-                  <Font name="Yaqout-Bold" size="12.0" />
+                  <Font name="Yaqout-Bold" size="18.0" />
                </font>
-            </Text>
-            <Label fx:id="followers" layoutX="103.0" layoutY="147.0" text="followers" />
-            <Label fx:id="followings" layoutX="273.0" layoutY="147.0" text="followings" />
-         </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="206.0" prefWidth="358.0">
-         <children>
-            <ListView fx:id="myPosts" prefHeight="367.0" prefWidth="358.0" style="-fx-background-color: #81A2AB;" />
-         </children></AnchorPane>
-  </items>
-</SplitPane>
+            </Label>
+            <Label onMouseClicked="#add_post" prefHeight="60.0" prefWidth="75.0" text="New Post">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#log_out" prefHeight="33.0" prefWidth="62.0" text="Log Out">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="340.0" layoutY="6.0" onMouseClicked="#edit_profile" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/120451.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+   </children>
+</Pane>

@@ -1,5 +1,4 @@
 package Client.Controller;
-
 import Common.Post;
 import javafx.scene.control.ListCell;
 
@@ -17,4 +16,5 @@ public class PostItem extends ListCell<Post> {
             }
         }
     }
+
 }

@@ -30,29 +30,34 @@
             <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/menu+icon-1320166582507593596.png" />
          </image>
       </ImageView>
-      <VBox fx:id="vbox" layoutX="-106.0" layoutY="13.0" prefHeight="222.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+      <Text fill="#134563" layoutX="126.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Post" wrappingWidth="200.0">
+         <font>
+            <Font name="Yaqout-Bold" size="30.0" />
+         </font>
+      </Text>
+      <VBox fx:id="vbox" layoutX="-100.0" layoutY="14.0" prefHeight="193.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
          <children>
             <Label onMouseClicked="#Home" prefHeight="56.0" prefWidth="68.0" text="Home">
                <font>
                   <Font name="Yaqout-Bold" size="18.0" />
                </font>
             </Label>
-            <Label onMouseClicked="#Profile" prefHeight="60.0" prefWidth="75.0" text="Profile">
+            <Label onMouseClicked="#Profile" text="Profile">
                <font>
                   <Font name="Yaqout-Bold" size="18.0" />
                </font>
             </Label>
-            <Label onMouseClicked="#log_out" prefHeight="54.0" prefWidth="62.0" text="Log Out">
+            <Label onMouseClicked="#search" prefHeight="60.0" prefWidth="75.0" text="Search">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#log_out" prefHeight="19.0" prefWidth="62.0" text="Log Out">
                <font>
                   <Font name="Yaqout-Bold" size="18.0" />
                </font>
             </Label>
          </children>
       </VBox>
-      <Text fill="#134563" layoutX="126.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Post" wrappingWidth="200.0">
-         <font>
-            <Font name="Yaqout-Bold" size="30.0" />
-         </font>
-      </Text>
    </children>
 </Pane>

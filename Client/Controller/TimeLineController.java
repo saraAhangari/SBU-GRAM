@@ -28,6 +28,7 @@ public class TimeLineController {
     @FXML
     public void initialize(){
     }
+
     public void show_menu(MouseEvent mouseEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
         tt.setToX(103);
@@ -53,5 +54,9 @@ public class TimeLineController {
 
         //customize each cell of postList with new graphic object PostItem
         postListview.setCellFactory(postListview -> new PostItem());
+    }
+
+    public void search(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search");
     }
 }

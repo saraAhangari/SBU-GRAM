@@ -7,6 +7,7 @@ import Common.User;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -60,7 +61,7 @@ public class API {
         message.put("command" , Commands.SingUp);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
-        System.out.println("[" + username +"] : register " + user.getProfileImagePath());
+        System.out.println("[" + username +"] : register ");
         System.out.println("time : " + LocalDateTime.now());
 
         return message;
@@ -111,6 +112,22 @@ public class API {
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
         System.out.println(user.getUsername() + " get posts list");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> getUser(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User user = Server.users.get((String)input.get("username"));
+        ArrayList<User> user_profile = new ArrayList<>();
+        user_profile.add(user);
+        if (user == null){
+            return message;
+        }
+        message.put("command" , Commands.getUser);
+        message.put("answer" , user_profile);
+        Database.getInstance().updateDataBase();
+        System.out.println(user.getUsername() + " get user info");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }

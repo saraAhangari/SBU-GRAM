@@ -4,51 +4,45 @@ import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
-import Server.Server;
 import javafx.animation.TranslateTransition;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.FileChooser;
-import javafx.stage.Stage;
+import javafx.stage.Popup;
 import javafx.util.Duration;
-
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class addPost {
     public TextField post_title;
     public TextArea post_description;
     public VBox vbox;
-    public Post currentPost;
+    public Post currentPost = new Post();
+    public byte[] photo;
     ArrayList<Post> posts = new ArrayList<>();
 
     @FXML
     public void initialize(){
     }
 
-    public void add_image(ActionEvent actionEvent) {
-        Stage stage = new Stage();
+    public void add_image(ActionEvent actionEvent) throws IOException {
         FileChooser fileChooser = new FileChooser();
-        Label label = new Label("no files selected");
-        File file = fileChooser.showOpenDialog(stage);
-        if (file != null)
-            label.setText(file.getAbsolutePath() + "selected");
-        assert file != null;
-        Image image=new Image(file.toURI().toString());
-        currentPost.setImage(image);
+        File file = fileChooser.showOpenDialog(new Popup());
+        FileInputStream fileInputStream = new FileInputStream(file);
+        photo = fileInputStream.readAllBytes();
+        Image image = new Image(new ByteArrayInputStream(photo));
+        currentPost.setImage(photo);
     }
 
-    public void publish(ActionEvent actionEvent) throws IOException {
-        currentPost = new Post();
+    public void publish(ActionEvent actionEvent) {
         currentPost.setTitle(post_title.getText());
         currentPost.setDescription(post_description.getText());
         currentPost.setWriter(Main.getUser().getUsername());
@@ -66,9 +60,14 @@ public class addPost {
     }
 
     public void Profile(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("Profile");
+        new PageLoader().load("myProfile");
     }
 
-    public void log_out(MouseEvent mouseEvent) {
+    public void log_out(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("logout");
+    }
+
+    public void search(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search");
     }
 }

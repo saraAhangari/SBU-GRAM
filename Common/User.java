@@ -1,52 +1,62 @@
 package Common;
 
-import javafx.scene.control.TextField;
-
+import javafx.scene.image.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 public class User implements Serializable {
-    private final String username;
+    private String username;
     private String password;
     private String firstname;
     private String lastName;
     private String phoneNumber;
     private String email;
+    private String birthDate;
     private String SecurityQuestion;
     private String SecurityAnswer;
+    private String photoPath;
+    private byte[] profileImage ;
     private ArrayList<Post> posts = new ArrayList<>();
     private ArrayList<String> followers = new ArrayList<>();
     private ArrayList<String> followings = new ArrayList<>();
-    private String profileImagePath;
 
     public User(String username) {
         this.username = username;
     }
 
-    public String getSecurityQuestion() {
-        return SecurityQuestion;
+    public User(){
+
     }
 
-    public void setSecurityQuestion(String securityQuestion) {
-        SecurityQuestion = securityQuestion;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getSecurityAnswer() {
-        return SecurityAnswer;
+    public String getPhotoPath() {
+        return photoPath;
     }
 
-    public void setSecurityAnswer(String securityAnswer) {
-        SecurityAnswer = securityAnswer;
+    public void setPhotoPath(String photoPath) {
+        this.photoPath = photoPath;
     }
 
-    public String getEmail() {
-        return email;
+    public byte[] getProfilePhoto() {
+        return profileImage;
+    }
+    public void setProfilePhoto(byte[] profilePhoto) {
+        this.profileImage = profilePhoto;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getFirstname() {
@@ -55,11 +65,6 @@ public class User implements Serializable {
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
-    }
-
-
-    public String getUsername() {
-        return username;
     }
 
     public String getLastName() {
@@ -78,27 +83,44 @@ public class User implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setProfileImage(String profilePath) {
-        this.profileImagePath = profilePath;
-    }
-    public String getProfileImagePath() {
-        return profileImagePath;
+    public String getBirthDate() {
+        return birthDate;
     }
 
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
+    public void setBirthDate(String birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public String getSecurityQuestion() {
+        return SecurityQuestion;
+    }
+
+    public void setSecurityQuestion(String securityQuestion) {
+        SecurityQuestion = securityQuestion;
+    }
+
+    public String getSecurityAnswer() {
+        return SecurityAnswer;
+    }
+
+    public void setSecurityAnswer(String securityAnswer) {
+        SecurityAnswer = securityAnswer;
     }
 
     public ArrayList<Post> getPosts() {
         return posts;
+    }
+
+    public void setPosts(ArrayList<Post> posts) {
+        this.posts = posts;
     }
 
     public ArrayList<String> getFollowers() {

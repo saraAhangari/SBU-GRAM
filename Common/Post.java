@@ -12,7 +12,7 @@ public class Post implements Serializable {
     public String description;
     public int like = 0;
     public int repost = 0;
-    public Image image;
+    public byte[] image;
     public static CopyOnWriteArrayList<String> comments;
 
     public Post() {
@@ -58,11 +58,11 @@ public class Post implements Serializable {
         this.repost = repost;
     }
 
-    public Image getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
