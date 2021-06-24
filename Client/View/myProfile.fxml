@@ -13,21 +13,6 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="380.0" style="-fx-background-color: #2B4851;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.myProfile">
    <children>
       <ImageView fx:id="profile_image" fitHeight="101.0" fitWidth="130.0" layoutX="34.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="name_lastname" layoutX="207.0" layoutY="30.0" text="name &amp; lastname" textFill="WHITE">
-         <font>
-            <Font name="Yaqout-Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="username" layoutX="207.0" layoutY="72.0" text="username" textFill="WHITE">
-         <font>
-            <Font name="Yaqout-Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="birthDate" layoutX="208.0" layoutY="108.0" text="birthDate" textFill="WHITE">
-         <font>
-            <Font name="Yaqout-Bold" size="15.0" />
-         </font>
-      </Label>
       <Label fx:id="followers" layoutX="115.0" layoutY="157.0" text="followers" textFill="#4fc3dd" />
       <Text fill="WHITE" layoutX="31.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers">
          <font>
@@ -78,5 +63,35 @@
             <Cursor fx:constant="DEFAULT" />
          </cursor>
       </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="175.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-name-64.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="176.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-username-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="175.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-age-64.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="name_lastname" layoutX="206.0" layoutY="30.0" text="name &amp; lastname" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="username" layoutX="206.0" layoutY="70.0" text="username" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="birthDate" layoutX="207.0" layoutY="108.0" text="birthDate" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
    </children>
 </Pane>

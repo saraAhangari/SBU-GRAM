@@ -81,7 +81,7 @@ public class API {
 
     public static Boolean updateInfo(User user){
         Map<String,Object> toSend = new HashMap<>();
-        toSend.put("command", Commands.UPDATE_PROFILE);
+        toSend.put("command", Commands.UpdateProfile);
         toSend.put("user", user);
         Map<String,Object> toReceive = Network.serve(toSend);
         if ( toReceive.get("answer") == null ) return false;

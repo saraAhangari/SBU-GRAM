@@ -53,7 +53,7 @@ public class postDetails {
 
     public void show_comments(ActionEvent actionEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1200), commentsListview);
-        tt.setToY(-400);
+        tt.setToY(-250);
         tt.playFromStart();
     }
 

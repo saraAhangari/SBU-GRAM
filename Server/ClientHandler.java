@@ -53,6 +53,9 @@ public class ClientHandler implements Runnable{
                     case getUser:
                         answer = API.getUser(input);
                         break;
+                    case UpdateProfile:
+                        answer = API.updateInfo(input);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

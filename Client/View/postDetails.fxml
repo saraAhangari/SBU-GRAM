@@ -13,7 +13,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="390.0" style="-fx-background-color: #81A2AB; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.postDetails">
    <children>
-      <Label fx:id="title" layoutX="157.0" layoutY="43.0" prefHeight="45.0" prefWidth="229.0" text="Post Title" textAlignment="CENTER">
+      <Label fx:id="title" layoutX="185.0" layoutY="43.0" prefHeight="45.0" prefWidth="204.0" text="Post Title" textAlignment="CENTER">
          <font>
             <Font name="Yaqout-Bold" size="26.0" />
          </font></Label>
@@ -24,19 +24,19 @@
          </font></Label>
       <TextArea fx:id="description" editable="false" layoutX="187.0" layoutY="220.0" prefHeight="132.0" prefWidth="191.0" promptText="post description" />
       <Label fx:id="dateofpost" layoutX="186.0" layoutY="383.0" text="date and time" />
-      <Button layoutX="16.0" layoutY="222.0" mnemonicParsing="false" onAction="#repost" prefHeight="30.0" prefWidth="104.0" text="repost">
+      <Button layoutX="16.0" layoutY="222.0" mnemonicParsing="false" onAction="#repost" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="repost">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="16.0" layoutY="255.0" mnemonicParsing="false" onAction="#add_comment" prefHeight="30.0" prefWidth="104.0" text="add comment">
+      <Button layoutX="16.0" layoutY="255.0" mnemonicParsing="false" onAction="#add_comment" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="add comment">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="16.0" layoutY="290.0" mnemonicParsing="false" onAction="#show_comments" text="show comments">
+      <Button layoutX="16.0" layoutY="290.0" mnemonicParsing="false" onAction="#show_comments" style="-fx-background-color: #C2D8D5;" text="show comments">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="16.0" layoutY="324.0" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="104.0" text="like">
+      <Button layoutX="16.0" layoutY="324.0" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="like">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
@@ -89,6 +89,6 @@
             <Font name="Yaqout-Bold" size="16.0" />
          </font>
       </Text>
-      <ListView fx:id="commentsListview" layoutX="21.0" layoutY="681.0" prefHeight="228.0" prefWidth="356.0" />
+      <ListView fx:id="commentsListview" layoutX="18.0" layoutY="681.0" prefHeight="228.0" prefWidth="356.0" style="-fx-background-color: #C2D8D5;" />
    </children>
 </Pane>

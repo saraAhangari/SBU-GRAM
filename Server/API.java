@@ -155,7 +155,7 @@ public class API {
         String username = user.getUsername();
         Server.users.replace(username,user);
         Database.getInstance().updateDataBase();
-        message.put("command",Commands.UPDATE_PROFILE);
+        message.put("command",Commands.UpdateProfile);
         message.put("answer",Boolean.TRUE);
         System.out.println(username + " : update info");
         System.out.println("time : " + LocalDateTime.now());

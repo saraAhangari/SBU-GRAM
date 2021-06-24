@@ -1,17 +1,17 @@
 package Client.Controller;
 
-import Common.Post;
+import Common.Comment;
 import javafx.scene.control.ListCell;
 
 import java.io.IOException;
 
-public class CommentItem extends ListCell<Post> {
+public class CommentItem extends ListCell<Comment> {
     @Override
-    public void updateItem(Post post, boolean empty) {
-        super.updateItem(post, empty);
-        if(post!=null){
+    public void updateItem(Comment comment, boolean empty) {
+        super.updateItem(comment, empty);
+        if(comment!=null){
             try {
-                setGraphic(new PostItemController(post).init());
+                setGraphic(new CommentItemController(comment).init());
             } catch (IOException e) {
                 e.printStackTrace();
             }

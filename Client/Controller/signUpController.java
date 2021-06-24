@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -85,6 +86,7 @@ public class signUpController {
             user.setSecurityQuestion(question.getText());
             user.setSecurityAnswer(answer.getText());
             user.setProfilePhoto(photo);
+            user.setBirthDate(DateBirth.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             Main.setUser(user);
             API.signUp(user);
             Server.Profiles.add(user);

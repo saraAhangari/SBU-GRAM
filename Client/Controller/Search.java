@@ -7,6 +7,7 @@ import Common.User;
 import Server.Server;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -31,6 +32,10 @@ public class Search {
     public void search(MouseEvent mouseEvent) {
         String username2Find = search.getText();
         userArrayList = API.getUser(username2Find);
+        if (userArrayList==null){
+            Alert alert = new Alert(Alert.AlertType.WARNING , "User doesn't exist !");
+            alert.showAndWait();
+        }
         search_profiles.setItems(FXCollections.observableArrayList(userArrayList));
         search_profiles.setCellFactory(search_profiles -> new profileItem());
     }
@@ -44,7 +49,7 @@ public class Search {
     }
 
     public void add_post(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("addPost");
+        new PageLoader().load("add_post");
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {

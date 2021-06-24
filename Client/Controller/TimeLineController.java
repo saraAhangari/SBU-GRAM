@@ -36,7 +36,7 @@ public class TimeLineController {
     }
 
     public void Profile(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("Profile");
+        new PageLoader().load("myProfile");
     }
 
     public void add_post(MouseEvent mouseEvent) throws IOException {

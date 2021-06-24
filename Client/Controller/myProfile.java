@@ -8,6 +8,7 @@ import Common.User;
 import Server.Server;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -31,7 +32,7 @@ public class myProfile {
     public Label followings;
     public ListView myPosts;
     public VBox vbox;
-    public ArrayList<Post> selfPosts = new ArrayList<>();
+    public ArrayList<Post> selfPosts = new ArrayList<>(Main.getUser().getPosts());
 
     @FXML
     public void initialize() {
@@ -41,7 +42,6 @@ public class myProfile {
         birthDate.setText(user.getBirthDate());
         followers.setText(String.valueOf(user.getFollowers().size()));
         followings.setText(String.valueOf(user.getFollowings().size()));
-        selfPosts = API.getPosts(user.getUsername());
         myPosts.setItems(FXCollections.observableArrayList(selfPosts));
         myPosts.setCellFactory(myPosts -> new PostItem());
         if(user.getProfilePhoto()!=null){
@@ -73,5 +73,6 @@ public class myProfile {
     }
 
     public void edit_profile(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("edit_myProfile");
     }
 }
