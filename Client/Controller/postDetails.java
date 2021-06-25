@@ -48,6 +48,14 @@ public class postDetails {
     }
 
     public void repost(ActionEvent actionEvent) {
+        if (!repost_button.getText().equals("reposted")
+        && !post.getWriter().equals(Main.getUser().getUsername())) {
+            Main.setPost(post);
+            Main.post.setReposts(Main.getUser(), Main.getPost());
+            repost_button.setText("reposted");
+            reports_count.setText(String.valueOf(post.getRepost()));
+            API.Repost(Main.getPost(), Main.getUser());
+        }
     }
 
     public void add_comment(ActionEvent actionEvent) {

@@ -13,8 +13,6 @@ import java.util.Map;
 public class Main extends Application {
     public static User user;
     public static ArrayList<User> profiles = new ArrayList<>();
-    public static Map<User , User> timLine = new HashMap<>();
-                 //follower , following
     public static User searched_user;
     public static Post post;
 
@@ -33,6 +31,14 @@ public class Main extends Application {
     public void stop() throws Exception {
         Network.disconnectFromServer();
         super.stop();
+    }
+
+    public static Post getPost() {
+        return post;
+    }
+
+    public static void setPost(Post post) {
+        Main.post = post;
     }
 
     public static User getUser() {

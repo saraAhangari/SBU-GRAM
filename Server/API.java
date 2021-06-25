@@ -200,6 +200,17 @@ public class API {
         message.put("answer", Boolean.TRUE);
         return message;
     }
+    public static Map<String,Object> Repost(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        Post post = (Post) input.get("post");
+        User user = (User) input.get("user");
+        post.setReposts(user , post);
+        user.addPost(post);
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.Unlike);
+        message.put("answer", Boolean.TRUE);
+        return message;
+    }
     public static Map<String,Object> comment(Map<String,Object> input){
         Map<String,Object> message = new HashMap<>();
         String comment = (String) input.get("comment");

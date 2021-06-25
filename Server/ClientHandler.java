@@ -65,6 +65,18 @@ public class ClientHandler implements Runnable{
                     case Unlike:
                         answer = API.unlike(input);
                         break;
+                    case Repost:
+                        answer = API.Repost(input);
+                        break;
+                    case deleteAccount:
+                        answer = API.deleteAccount(input);
+                        break;
+                    case Comment:
+                        answer = API.comment(input);
+                        break;
+                    case Logout:
+                        answer = API.Logout(input);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

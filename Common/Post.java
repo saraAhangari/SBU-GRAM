@@ -14,8 +14,7 @@ public class Post implements Serializable {
     public int like;
     public int repost;
     private final LocalDateTime dateWithTime;
-    private final ArrayList<User> likers = new ArrayList<>();
-    private final ArrayList<User> reposters = new ArrayList<>();
+    public ArrayList<User> likers = new ArrayList<>();
     private final Map<String , Post> comments = new ConcurrentHashMap<>();
     public byte[] image;
 
@@ -33,8 +32,11 @@ public class Post implements Serializable {
         }
     }
 
-    public void setReposts(User reposter) {
-        reposters.add(reposter);
+    public void setReposts(User reposter , Post post) {
+        if (!reposter.getPosts().contains(post)) {
+            reposter.addPost(post);
+            repost++;
+        }
     }
 
     public void addComment(String comment) {
@@ -81,10 +83,6 @@ public class Post implements Serializable {
 
     public int getRepost() {
         return repost;
-    }
-
-    public void setRepost(int repost) {
-        this.repost = repost;
     }
 
     public byte[] getImage() {

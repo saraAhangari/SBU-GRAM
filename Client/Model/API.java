@@ -114,4 +114,13 @@ public class API {
         Map<String,Object> toReceive = Network.serve(toSend);
         return (Boolean) toReceive.get("answer");
     }
+
+    public static Boolean Repost(Post post , User user){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.Repost);
+        toSend.put("post" , post);
+        toSend.put("user" , user);
+        Map<String,Object> toReceive = Network.serve(toSend);
+        return (Boolean) toReceive.get("answer");
+    }
 }
