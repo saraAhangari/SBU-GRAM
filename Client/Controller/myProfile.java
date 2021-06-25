@@ -32,16 +32,17 @@ public class myProfile {
     public Label followings;
     public ListView myPosts;
     public VBox vbox;
-    public ArrayList<Post> selfPosts = new ArrayList<>(Main.getUser().getPosts());
+    public User user = Main.getUser();
+    public static ArrayList<Post> selfPosts = new ArrayList<>(Main.getUser().getPosts());
 
     @FXML
     public void initialize() {
-        User user = Main.getUser();
         name_lastname.setText(user.getFirstname() + " " + user.getLastName());
         username.setText(user.getUsername());
         birthDate.setText(user.getBirthDate());
         followers.setText(String.valueOf(user.getFollowers().size()));
         followings.setText(String.valueOf(user.getFollowings().size()));
+        selfPosts = API.getselfPosts(Main.getUser().getUsername());
         myPosts.setItems(FXCollections.observableArrayList(selfPosts));
         myPosts.setCellFactory(myPosts -> new PostItem());
         if(user.getProfilePhoto()!=null){
@@ -58,7 +59,7 @@ public class myProfile {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("logout");
+        new PageLoader().load("login");
 
     }
 

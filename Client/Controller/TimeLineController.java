@@ -4,6 +4,7 @@ import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
+import Common.User;
 import Server.Server;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
@@ -22,7 +23,9 @@ public class TimeLineController {
 
     public ListView postListview;
     public VBox vbox;
-    public static ArrayList<Post> postArrayList = new ArrayList<>();
+    public static ArrayList<Post> postArrayList;
+    public static ArrayList<Post> followingPosts;
+    public User user = Main.getUser();
 
 
     @FXML
@@ -48,7 +51,10 @@ public class TimeLineController {
     }
 
     public void refresh(ActionEvent actionEvent) {
-        postArrayList = API.getPosts(Main.getUser().getUsername());
+        postArrayList = API.getPosts(user.getUsername());
+        for (int i = 0; i <user.getFollowings().size() ; i++) {
+            postArrayList.addAll(user.getFollowings().get(i).getPosts());
+        }
         //show the post array in list view
         postListview.setItems(FXCollections.observableArrayList(postArrayList));
 

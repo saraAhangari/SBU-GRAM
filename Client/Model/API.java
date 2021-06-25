@@ -53,9 +53,26 @@ public class API {
         return (boolean) toReceive.get("answer");
     }
 
+    public static boolean addFollower(User follower , User following){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.addFollower);
+        toSend.put("following" , following);
+        toSend.put("follower" , follower);
+        Map<String , Object> toReceive = Network.serve(toSend);
+        return (boolean) toReceive.get("answer");
+    }
+
     public static ArrayList<Post> getPosts(String username){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getPosts);
+        toSend.put("username" , username);
+        Map<String , Object> toReceive = Network.serve(toSend);
+        return (ArrayList<Post>)toReceive.get("answer");
+    }
+
+    public static ArrayList<Post> getselfPosts(String username){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.getselfPosts);
         toSend.put("username" , username);
         Map<String , Object> toReceive = Network.serve(toSend);
         return (ArrayList<Post>)toReceive.get("answer");

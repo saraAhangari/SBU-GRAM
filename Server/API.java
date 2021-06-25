@@ -60,6 +60,7 @@ public class API {
         String username = user.getUsername();
 
         Server.users.put(username , user);
+        Server.Profiles.add(user);
         message.put("command" , Commands.SingUp);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
@@ -103,20 +104,49 @@ public class API {
         return message;
     }
 
+    public static Map<String , Object> addFollower(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User following = (User)input.get("following");
+        User follower = (User) input.get("follower");
+        Server.users.get(follower.getUsername()).getFollowings().add(following);
+        Server.users.get(following.getUsername()).getFollowers().add(follower);
+        message.put("command" , Commands.addFollower);
+        message.put("following" , following);
+        message.put("follower" , follower);
+        message.put("answer" , Boolean.TRUE);
+        Database.getInstance().updateDataBase();
+        System.out.println("action : follow");
+        System.out.println(follower.getUsername() + " follow someone new");
+        //message: [target_user_name]
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
     public static Map<String , Object> getPosts(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
         User user = Server.users.get((String)input.get("username"));
-        ArrayList<Post> timeLine = new ArrayList<>(user.getPosts());
-        if(user.getFollowings() != null){
-            user.getFollowings().stream().map(s -> Server.users.get(s).getPosts()).forEach(timeLine::addAll);
-        }
+        ArrayList<Post> timeLine = user.getPosts();
         timeLine = (ArrayList<Post>) timeLine.stream()
                 .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
                 .collect(Collectors.toList());
-
         message.put("command" , Commands.getPosts);
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
+        System.out.println(user.getUsername() + " get posts list");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> getselfPosts(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User user = Server.users.get((String)input.get("username"));
+        ArrayList<Post> timeLine = user.getPosts();
+        timeLine = (ArrayList<Post>) timeLine.stream()
+                .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
+                .collect(Collectors.toList());
+        message.put("command" , Commands.getselfPosts);
+        message.put("answer" , timeLine);
+        Database.getInstance().updateDataBase(); //nedd to be changed ASAP
         System.out.println(user.getUsername() + " get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;

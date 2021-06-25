@@ -1,5 +1,6 @@
 package Common;
 
+import Client.Model.Main;
 import javafx.scene.image.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,15 +18,14 @@ public class User implements Serializable {
     private String photoPath;
     private byte[] profileImage ;
     private ArrayList<Post> posts = new ArrayList<>();
-    private ArrayList<String> followers = new ArrayList<>();
-    private ArrayList<String> followings = new ArrayList<>();
+    private ArrayList<User> followers = new ArrayList<>();
+    private ArrayList<User> followings = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
     }
 
     public User(){
-
     }
 
     public void setUsername(String username) {
@@ -123,19 +123,19 @@ public class User implements Serializable {
         this.posts = posts;
     }
 
-    public ArrayList<String> getFollowers() {
+    public ArrayList<User> getFollowers() {
         return followers;
     }
 
-    public void setFollowers(ArrayList<String> followers) {
+    public void setFollowers(ArrayList<User> followers) {
         this.followers = followers;
     }
 
-    public ArrayList<String> getFollowings() {
+    public ArrayList<User> getFollowings() {
         return followings;
     }
 
-    public void setFollowings(ArrayList<String> followings) {
+    public void setFollowings(ArrayList<User> followings) {
         this.followings = followings;
     }
 

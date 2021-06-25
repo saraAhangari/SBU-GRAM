@@ -55,4 +55,5 @@ public class Search {
     public void log_out(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("logout");
     }
+
 }

@@ -9,23 +9,23 @@
 
 <AnchorPane fx:id="anchorpane" prefHeight="272.0" prefWidth="366.0" style="-fx-background-color: #2B4851;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="profile_image" fitHeight="136.0" fitWidth="159.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
-      <Label fx:id="name_lastname" layoutX="205.0" layoutY="29.0" text="name &amp; lastname" textFill="WHITE">
+      <ImageView fx:id="searched_profileImage" fitHeight="136.0" fitWidth="159.0" layoutX="14.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="searched_name" layoutX="205.0" layoutY="29.0" text="name &amp; lastname" textFill="WHITE">
          <font>
             <Font name="Yaqout-Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="username" layoutX="205.0" layoutY="71.0" text="username" textFill="WHITE">
+      <Label fx:id="searched_username" layoutX="205.0" layoutY="71.0" text="username" textFill="WHITE">
          <font>
             <Font name="Yaqout-Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="birthDate" layoutX="206.0" layoutY="107.0" text="birthDate" textFill="WHITE">
+      <Label fx:id="searched_date" layoutX="206.0" layoutY="107.0" text="birthDate" textFill="WHITE">
          <font>
             <Font name="Yaqout-Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="followers" layoutX="113.0" layoutY="169.0" text="followers" textFill="#4fc3dd" />
+      <Label fx:id="searched_followers" layoutX="113.0" layoutY="169.0" text="followers" textFill="#4fc3dd" />
       <Text fill="WHITE" layoutX="29.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers">
          <font>
             <Font name="Yaqout-Bold" size="18.0" />
@@ -36,7 +36,7 @@
             <Font name="Yaqout-Bold" size="18.0" />
          </font>
       </Text>
-      <Label fx:id="followings" layoutX="296.0" layoutY="169.0" text="followings" textFill="#4fc3dd" />
+      <Label fx:id="searched_followings" layoutX="296.0" layoutY="169.0" text="followings" textFill="#4fc3dd" />
       <Button layoutX="90.0" layoutY="208.0" mnemonicParsing="false" onAction="#checkOut_user" prefHeight="44.0" prefWidth="194.0" text="Check Out Posts">
          <font>
             <Font name="Yaqout-Bold" size="18.0" />

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="191.0" prefWidth="380.0" style="-fx-background-color: #2B4851;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.OthersProfiles">
+   <children>
+      <ImageView fx:id="profile_image" fitHeight="101.0" fitWidth="130.0" layoutX="34.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="followers" layoutX="115.0" layoutY="157.0" text="followers" textFill="#4fc3dd" />
+      <Text fill="WHITE" layoutX="31.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followers">
+         <font>
+            <Font name="Yaqout-Bold" size="18.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="207.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Followings">
+         <font>
+            <Font name="Yaqout-Bold" size="18.0" />
+         </font>
+      </Text>
+      <Label fx:id="followings" layoutX="298.0" layoutY="157.0" text="followings" textFill="#4fc3dd" />
+      <ListView fx:id="OthersPosts" layoutX="-1.0" layoutY="191.0" prefHeight="498.0" prefWidth="380.0" style="-fx-background-color: #81A2AB;" />
+      <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="1.0" layoutY="1.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/grey-menu-icon-transparent-png-stickpng-menu-icon-png-2000_2000.png" />
+         </image>
+      </ImageView>
+      <VBox fx:id="vbox" layoutX="-101.0" layoutY="7.0" onMouseClicked="#back_menu" prefHeight="202.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+         <children>
+            <Label onMouseClicked="#Home" prefHeight="56.0" prefWidth="68.0" text="Home">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#search" text="Search">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#add_post" prefHeight="60.0" prefWidth="75.0" text="New Post">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#log_out" prefHeight="33.0" prefWidth="62.0" text="Log Out">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </VBox>
+      <ImageView fx:id="follow_image" fitHeight="33.0" fitWidth="35.0" layoutX="151.0" layoutY="6.0" onMouseClicked="#follow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-follow-96.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="209.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-name-64.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="210.0" layoutY="71.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-username-96.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="26.0" fitWidth="29.0" layoutX="209.0" layoutY="107.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-age-64.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="name_lastname" layoutX="240.0" layoutY="30.0" text="name &amp; lastname" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="username" layoutX="240.0" layoutY="70.0" text="username" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="birthDate" layoutX="241.0" layoutY="108.0" text="birthDate" textFill="WHITE">
+         <font>
+            <Font name="Yaqout-Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

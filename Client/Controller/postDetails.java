@@ -1,10 +1,8 @@
 package Client.Controller;
 
-import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
-import Server.Server;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -53,7 +51,7 @@ public class postDetails {
 
     public void show_comments(ActionEvent actionEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1200), commentsListview);
-        tt.setToY(-250);
+        tt.setToY(-270);
         tt.playFromStart();
     }
 

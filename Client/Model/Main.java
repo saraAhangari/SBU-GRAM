@@ -5,9 +5,13 @@ import Common.User;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 
 public class Main extends Application {
     public static User user;
+    public static ArrayList<User> profiles = new ArrayList<>();
+    public static User searched_user;
     public static Post post;
 
     @Override

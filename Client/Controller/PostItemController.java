@@ -21,7 +21,7 @@ public class PostItemController {
     }
 
     public AnchorPane init() {
-        writer.setText(Main.getUser().getUsername());
+        writer.setText(post.getWriter());
         title.setText(post.getTitle());
         return root;
     }

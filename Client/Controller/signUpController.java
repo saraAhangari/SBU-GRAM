@@ -89,7 +89,7 @@ public class signUpController {
             user.setBirthDate(DateBirth.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
             Main.setUser(user);
             API.signUp(user);
-            Server.Profiles.add(user);
+            Main.profiles.add(user);
             new PageLoader().load("login");
         }
     }
