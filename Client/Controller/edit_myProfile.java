@@ -63,17 +63,16 @@ public class edit_myProfile {
     }
 
     public void save_edit(MouseEvent mouseEvent) throws IOException {
-        if (API.updateInfo(user)){
-            Main.setUser(user);
-            user.setFirstname(Firstname.getText());
-            user.setLastName(Lastname.getText());
-            user.setBirthDate(DateBirth.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-            postArrayList = API.getPosts(user.getUsername());
-            user.setPosts(postArrayList);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION , "Edited successfully !");
-            alert.showAndWait();
-            new PageLoader().load("myProfile");
-        }
+        API.updateInfo(user);
+        Main.setUser(user);
+        user.setFirstname(Firstname.getText());
+        user.setLastName(Lastname.getText());
+        user.setBirthDate(DateBirth.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        postArrayList = API.getPosts(user.getUsername());
+        user.setPosts(postArrayList);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited successfully !");
+        alert.showAndWait();
+        new PageLoader().load("myProfile");
     }
 
     public void unchangeable_username(MouseEvent mouseEvent){

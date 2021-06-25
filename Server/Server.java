@@ -15,7 +15,6 @@ public class Server {
     private static final boolean isServerUp = true;
     public static Map<String, User> users = null;
     public static LinkedList<User> Profiles = new LinkedList<>();
-    public static ArrayList<Post> Posts = new ArrayList<>();
 
     public static boolean isServerUp() {
         return isServerUp;

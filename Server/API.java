@@ -92,7 +92,6 @@ public class API {
         Post post = (Post)input.get("post");
 
         Server.users.get(user.getUsername()).addPost(post);
-        Server.Posts.add(post);
         message.put("command" , Commands.addPost);
         message.put("post" , post);
         message.put("user" , user);
