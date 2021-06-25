@@ -42,7 +42,7 @@ public class myProfile {
         birthDate.setText(user.getBirthDate());
         followers.setText(String.valueOf(user.getFollowers().size()));
         followings.setText(String.valueOf(user.getFollowings().size()));
-        selfPosts = API.getselfPosts(Main.getUser().getUsername());
+        selfPosts = API.getPosts(Main.getUser().getUsername());
         myPosts.setItems(FXCollections.observableArrayList(selfPosts));
         myPosts.setCellFactory(myPosts -> new PostItem());
         if(user.getProfilePhoto()!=null){

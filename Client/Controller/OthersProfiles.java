@@ -36,7 +36,7 @@ public class OthersProfiles {
 
     @FXML
     public void initialize() {
-        someoneElsePosts = API.getselfPosts(searched_user.getUsername());
+        someoneElsePosts = API.getPosts(searched_user.getUsername());
         OthersPosts.setItems(FXCollections.observableArrayList(someoneElsePosts));
         OthersPosts.setCellFactory(OthersPosts -> new PostItem());
         if (searched_user.getProfilePhoto() != null) {

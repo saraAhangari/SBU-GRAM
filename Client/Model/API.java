@@ -70,14 +70,6 @@ public class API {
         return (ArrayList<Post>)toReceive.get("answer");
     }
 
-    public static ArrayList<Post> getselfPosts(String username){
-        Map<String , Object> toSend = new HashMap<>();
-        toSend.put("command" , Commands.getselfPosts);
-        toSend.put("username" , username);
-        Map<String , Object> toReceive = Network.serve(toSend);
-        return (ArrayList<Post>)toReceive.get("answer");
-    }
-
     public static ArrayList<User> getUser(String username){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getUser);

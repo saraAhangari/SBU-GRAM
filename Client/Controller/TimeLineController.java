@@ -24,12 +24,12 @@ public class TimeLineController {
     public ListView postListview;
     public VBox vbox;
     public static ArrayList<Post> postArrayList;
-    public static ArrayList<Post> followingPosts;
-    public User user = Main.getUser();
+    public User user;
 
 
     @FXML
     public void initialize(){
+        user = Main.getUser();
     }
 
     public void show_menu(MouseEvent mouseEvent) {

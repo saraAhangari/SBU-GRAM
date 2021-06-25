@@ -137,21 +137,6 @@ public class API {
         return message;
     }
 
-    public static Map<String , Object> getselfPosts(Map<String , Object> input){
-        Map<String , Object> message = new HashMap<>();
-        User user = Server.users.get((String)input.get("username"));
-        ArrayList<Post> timeLine = user.getPosts();
-        timeLine = (ArrayList<Post>) timeLine.stream()
-                .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
-                .collect(Collectors.toList());
-        message.put("command" , Commands.getselfPosts);
-        message.put("answer" , timeLine);
-        Database.getInstance().updateDataBase(); //nedd to be changed ASAP
-        System.out.println(user.getUsername() + " get posts list");
-        System.out.println("time : " + LocalDateTime.now());
-        return message;
-    }
-
     public static Map<String , Object> getUser(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
         User user = Server.users.get((String)input.get("username"));
