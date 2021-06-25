@@ -2,6 +2,7 @@ package Common;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,21 +14,27 @@ public class Post implements Serializable {
     public int like;
     public int repost;
     private final LocalDateTime dateWithTime;
-    private final Map<Integer , Post> likes = new ConcurrentHashMap<>();
-    private final Map<Integer , Post> reposts = new ConcurrentHashMap<>();
+    private final ArrayList<User> likers = new ArrayList<>();
+    private final ArrayList<User> reposters = new ArrayList<>();
     private final Map<String , Post> comments = new ConcurrentHashMap<>();
     public byte[] image;
 
-    public void likePost() {
-        likes.put(like++ , this);
+    public void likePost(User liker) {
+        if (!likers.contains(liker)){
+            likers.add(liker);
+            like++;
+        }
     }
 
-    public void unlikePost() {
-        likes.put(like-- , this);
+    public void unlikePost(User unliker) {
+        if (likers.contains(unliker)){
+            likers.remove(unliker);
+            like--;
+        }
     }
 
-    public void setReposts() {
-        reposts.put(repost++ , this);
+    public void setReposts(User reposter) {
+        reposters.add(reposter);
     }
 
     public void addComment(String comment) {

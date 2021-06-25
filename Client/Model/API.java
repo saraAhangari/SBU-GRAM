@@ -44,10 +44,10 @@ public class API {
         return (boolean)toReceive.get("answer");
     }
 
-    public static boolean addPost(String username , Post post){
+    public static boolean addPost(User user , Post post){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.addPost);
-        toSend.put("username" , username);
+        toSend.put("user" , user);
         toSend.put("post" , post);
         Map<String , Object> toReceive = Network.serve(toSend);
         return (boolean) toReceive.get("answer");
@@ -94,6 +94,24 @@ public class API {
         toSend.put("user", user);
         Map<String,Object> toReceive = Network.serve(toSend);
         if ( toReceive.get("answer") == null ) return false;
+        return (Boolean) toReceive.get("answer");
+    }
+
+    public static Boolean like(Post post , User user){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.Like);
+        toSend.put("post" , post);
+        toSend.put("user" , user);
+        Map<String,Object> toReceive = Network.serve(toSend);
+        return (Boolean) toReceive.get("answer");
+    }
+
+    public static Boolean unlike(Post post , User user){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.Unlike);
+        toSend.put("post" , post);
+        toSend.put("user" , user);
+        Map<String,Object> toReceive = Network.serve(toSend);
         return (Boolean) toReceive.get("answer");
     }
 }

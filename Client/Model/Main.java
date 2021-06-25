@@ -6,11 +6,15 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Main extends Application {
     public static User user;
     public static ArrayList<User> profiles = new ArrayList<>();
+    public static Map<User , User> timLine = new HashMap<>();
+                 //follower , following
     public static User searched_user;
     public static Post post;
 

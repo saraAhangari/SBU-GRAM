@@ -29,7 +29,6 @@ public class TimeLineController {
 
     @FXML
     public void initialize(){
-        user = Main.getUser();
     }
 
     public void show_menu(MouseEvent mouseEvent) {
@@ -47,14 +46,12 @@ public class TimeLineController {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("log_out");
+        new PageLoader().load("login");
     }
 
     public void refresh(ActionEvent actionEvent) {
-        postArrayList = API.getPosts(user.getUsername());
-        for (int i = 0; i <user.getFollowings().size() ; i++) {
-            postArrayList.addAll(user.getFollowings().get(i).getPosts());
-        }
+        postArrayList = API.getPosts(Main.getUser().getUsername());
+        postArrayList.addAll(Main.getUser().getAllPosts());
         //show the post array in list view
         postListview.setItems(FXCollections.observableArrayList(postArrayList));
 

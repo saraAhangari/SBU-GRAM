@@ -33,7 +33,7 @@ public class myProfile {
     public ListView myPosts;
     public VBox vbox;
     public User user = Main.getUser();
-    public static ArrayList<Post> selfPosts = new ArrayList<>(Main.getUser().getPosts());
+    public ArrayList<Post> selfPosts;
 
     @FXML
     public void initialize() {
@@ -42,7 +42,7 @@ public class myProfile {
         birthDate.setText(user.getBirthDate());
         followers.setText(String.valueOf(user.getFollowers().size()));
         followings.setText(String.valueOf(user.getFollowings().size()));
-        selfPosts = API.getPosts(Main.getUser().getUsername());
+        selfPosts = API.getPosts(user.getUsername());
         myPosts.setItems(FXCollections.observableArrayList(selfPosts));
         myPosts.setCellFactory(myPosts -> new PostItem());
         if(user.getProfilePhoto()!=null){

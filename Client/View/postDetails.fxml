@@ -24,7 +24,7 @@
          </font></Label>
       <TextArea fx:id="description" editable="false" layoutX="187.0" layoutY="220.0" prefHeight="132.0" prefWidth="191.0" promptText="post description" />
       <Label fx:id="dateofpost" layoutX="186.0" layoutY="383.0" text="date and time" />
-      <Button layoutX="16.0" layoutY="222.0" mnemonicParsing="false" onAction="#repost" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="repost">
+      <Button fx:id="repost_button" layoutX="16.0" layoutY="222.0" mnemonicParsing="false" onAction="#repost" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="repost">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
@@ -36,7 +36,7 @@
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
-      <Button layoutX="16.0" layoutY="324.0" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="like">
+      <Button fx:id="like_button" layoutX="16.0" layoutY="324.0" mnemonicParsing="false" onAction="#like" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="like">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font></Button>
@@ -89,6 +89,6 @@
             <Font name="Yaqout-Bold" size="16.0" />
          </font>
       </Text>
-      <ListView fx:id="commentsListview" layoutX="18.0" layoutY="681.0" prefHeight="228.0" prefWidth="356.0" style="-fx-background-color: #C2D8D5;" />
+      <ListView fx:id="commentsListview" layoutX="36.0" layoutY="687.0" prefHeight="191.0" prefWidth="303.0" style="-fx-background-color: #C2D8D5;" />
    </children>
 </Pane>

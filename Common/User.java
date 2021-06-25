@@ -18,6 +18,7 @@ public class User implements Serializable {
     private String photoPath;
     private byte[] profileImage ;
     private ArrayList<Post> posts = new ArrayList<>();
+    private ArrayList<Post> allPosts = new ArrayList<>();
     private ArrayList<User> followers = new ArrayList<>();
     private ArrayList<User> followings = new ArrayList<>();
 
@@ -26,6 +27,14 @@ public class User implements Serializable {
     }
 
     public User(){
+    }
+
+    public ArrayList<Post> getAllPosts() {
+        return allPosts;
+    }
+
+    public void setAllPosts(ArrayList<Post> allPosts) {
+        this.allPosts = allPosts;
     }
 
     public void setUsername(String username) {

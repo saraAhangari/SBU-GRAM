@@ -88,17 +88,17 @@ public class API {
 
     public static Map<String , Object> addPost(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
-        String username = (String)input.get("username");
+        User user = (User) input.get("user");
         Post post = (Post)input.get("post");
 
-        Server.users.get(username).addPost(post);
+        Server.users.get(user.getUsername()).addPost(post);
         Server.Posts.add(post);
         message.put("command" , Commands.addPost);
         message.put("post" , post);
-        message.put("username" , username);
+        message.put("user" , user);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
-        System.out.println(username + " publish");
+        System.out.println(user + " publish");
         System.out.println("message : " +"["+ post.title + "] [" + post.writer +"]" );
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -181,7 +181,7 @@ public class API {
         Map<String,Object> message = new HashMap<>();
         Post post = (Post) input.get("post");
         User user = (User) input.get("user");
-        post.likePost();
+        post.likePost(user);
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Like);
         message.put("answer", Boolean.TRUE);
@@ -194,7 +194,8 @@ public class API {
     public static Map<String,Object> unlike(Map<String,Object> input){
         Map<String,Object> message = new HashMap<>();
         Post post = (Post) input.get("post");
-        post.unlikePost();
+        User user = (User) input.get("user");
+        post.unlikePost(user);
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Unlike);
         message.put("answer", Boolean.TRUE);

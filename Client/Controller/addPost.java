@@ -55,7 +55,7 @@ public class addPost {
         currentPost.setDescription(post_description.getText());
         currentPost.setWriter(Main.getUser().getUsername());
         currentPost.setImage(photo);
-        API.addPost(Main.getUser().getUsername() , currentPost);
+        API.addPost(Main.getUser() , currentPost);
     }
 
     public void show_menu(MouseEvent mouseEvent) {

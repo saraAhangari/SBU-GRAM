@@ -1,11 +1,13 @@
 package Client.Controller;
 
+import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -29,6 +31,8 @@ public class postDetails {
     public Label like_count;
     public VBox vbox;
     public ListView commentsListview;
+    public Button like_button;
+    public Button repost_button;
     public Post post = Main.post;
 
     @FXML
@@ -56,6 +60,20 @@ public class postDetails {
     }
 
     public void like(ActionEvent actionEvent) {
+        if (like_button.getText().equals("like")) {
+            Main.post = post;
+            Main.post.likePost(Main.getUser());
+            like_button.setText("unlike");
+            like_count.setText(String.valueOf(post.getLike()));
+            API.like(Main.post, Main.getUser());
+        }
+        else if (like_button.getText().equals("unlike")){
+            Main.post = post;
+            Main.post.unlikePost(Main.getUser());
+            like_button.setText("like");
+            like_count.setText(String.valueOf(post.getLike()));
+            API.unlike(Main.post, Main.getUser());
+        }
     }
 
     public void show_menu(MouseEvent mouseEvent) {

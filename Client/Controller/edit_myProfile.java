@@ -3,8 +3,10 @@ package Client.Controller;
 import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
+import Common.Post;
 import Common.User;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -22,6 +24,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 public class edit_myProfile {
@@ -34,7 +37,8 @@ public class edit_myProfile {
     public TextField Firstname;
     public TextField Lastname;
     public byte[] photo;
-    public User user = new User();
+    public User user;
+    public ArrayList<Post> postArrayList;
     public DatePicker DateBirth;
 
     @FXML
@@ -60,9 +64,12 @@ public class edit_myProfile {
 
     public void save_edit(MouseEvent mouseEvent) throws IOException {
         if (API.updateInfo(user)){
+            Main.setUser(user);
             user.setFirstname(Firstname.getText());
             user.setLastName(Lastname.getText());
             user.setBirthDate(DateBirth.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+            postArrayList = API.getPosts(user.getUsername());
+            user.setPosts(postArrayList);
             Alert alert = new Alert(Alert.AlertType.INFORMATION , "Edited successfully !");
             alert.showAndWait();
             new PageLoader().load("myProfile");
