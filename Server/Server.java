@@ -15,6 +15,7 @@ public class Server {
     private static final int port = 2222;
     private static final boolean isServerUp = true;
     public static Map<String, User> users = null;
+    public static LinkedList<Post> posts = new LinkedList<>();
     public static LinkedList<User> Profiles = new LinkedList<>();
 
     public static boolean isServerUp() {

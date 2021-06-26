@@ -89,6 +89,8 @@ public class API {
         Post post = (Post)input.get("post");
 
         Server.users.get(user.getUsername()).addPost(post);
+        Server.posts.add(post);
+        post.setPublisher(user);
         message.put("command" , Commands.addPost);
         message.put("post" , post);
         message.put("user" , user);
@@ -101,10 +103,15 @@ public class API {
     }
 
     public static Map<String,Object> addComment(Map<String,Object> input){
-        Map<String,Object> message = new HashMap<>();
-        Post post = (Post) input.get("post");
+        Map<String , Object> message = new HashMap<>();
         Comment comment = (Comment) input.get("comment");
-        post.addComment(comment);
+        Post post =(Post) input.get("post");
+        for (int i = 0; i <Server.posts.size() ; i++) {
+            if (Server.posts.get(i).equals(post)){
+                Server.posts.get(i).addComment(comment);
+                break;
+            }
+        }
         Database.getInstance().updateDataBase();
         message.put("command",Commands.addComment);
         message.put("post" , post);
@@ -116,20 +123,6 @@ public class API {
         return message;
     }
 
-    public static Map<String , Object> getComments(Map<String , Object> input){
-        Map<String , Object> message = new HashMap<>();
-        Post post = (Post) input.get("post");
-        Comment comment = (Comment) input.get("comment");
-        ArrayList<Comment> commentArrayList = post.getComments();
-        message.put("command" , Commands.getComments);
-        message.put("post" , post);
-        message.put("comment" , comment);
-        message.put("answer" , commentArrayList);
-        Database.getInstance().updateDataBase();
-        //System.out.println(user.getUsername() + " get posts list");
-        System.out.println("time : " + LocalDateTime.now());
-        return message;
-    }
 
     public static Map<String , Object> addFollower(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
@@ -160,6 +153,23 @@ public class API {
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
         System.out.println(user.getUsername() + " get posts list");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> getComments(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        Comment comment = (Comment) input.get("comment");
+        Vector<Comment> commentArrayList = new Vector<>();
+        for (int i = 0; i <Server.posts.size() ; i++) {
+            if (Server.posts.get(i).getComments().contains(comment)){
+                commentArrayList.addAll(Server.posts.get(i).getComments());
+            }
+        }
+        message.put("command" , Commands.getComments);
+        message.put("answer" , commentArrayList);
+        Database.getInstance().updateDataBase();
+        //System.out.println(user.getUsername() + " get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }

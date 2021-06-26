@@ -80,7 +80,6 @@ public class postDetails {
     }
     public void send_comment(ActionEvent actionEvent) {
         post.addComment(comment);
-        //API.addComment(post.getComment(), post);
         TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
         tt.setToY(-100);
         tt.playFromStart();

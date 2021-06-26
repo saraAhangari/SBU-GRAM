@@ -10,6 +10,7 @@ import javafx.geometry.Pos;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Vector;
 
 public class API {
     public static boolean isUserNameExists(String username2check){
@@ -55,7 +56,7 @@ public class API {
         return (boolean) toReceive.get("answer");
     }
 
-    public static Boolean addComment(Comment comment , Post post){
+    public static Boolean addComment(Post post , Comment comment){
         Map<String,Object> toSend = new HashMap<>();
         toSend.put("command", Commands.addComment);
         toSend.put("post" , post);
@@ -64,12 +65,13 @@ public class API {
         return (Boolean) toReceive.get("answer");
     }
 
-    public static ArrayList<Comment> getComments(Post post){
+    public static Vector<Comment> getComments(Comment comment){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getComments);
-        toSend.put("post" , post);
+        //toSend.put("post" , post);
+        toSend.put("comment" , comment);
         Map<String , Object> toReceive = Network.serve(toSend);
-        return (ArrayList<Comment>)toReceive.get("answer");
+        return (Vector<Comment>)toReceive.get("answer");
     }
 
     public static boolean addFollower(User follower , User following){

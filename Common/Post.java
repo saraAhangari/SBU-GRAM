@@ -4,10 +4,7 @@ import Client.Model.Main;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class Post implements Serializable {
@@ -20,7 +17,7 @@ public class Post implements Serializable {
     public Comment comment;
     private final LocalDateTime dateWithTime;
     public ArrayList<User> likers = new ArrayList<>();
-    public ArrayList<Comment> comments = new ArrayList<>();
+    public Vector<Comment> comments = new Vector<>();
     public byte[] image;
 
     public User getPublisher() {
@@ -76,7 +73,7 @@ public class Post implements Serializable {
         repost = 0;
     }
 
-    public ArrayList<Comment> getComments() {
+    public Vector<Comment> getComments() {
         return comments;
     }
 

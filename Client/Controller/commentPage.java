@@ -15,11 +15,12 @@ import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class commentPage {
     public ListView commentListview;
     public VBox vbox;
-    public ArrayList<Comment> comments;
+    public Vector<Comment> commentVector;
     public Post post = Main.getPost();
 
     public void search(MouseEvent mouseEvent) throws IOException {
@@ -39,8 +40,9 @@ public class commentPage {
     }
 
     public void refresh(ActionEvent actionEvent) {
-        comments = Main.getPost().getComments();
-        commentListview.setItems(FXCollections.observableArrayList(comments));
+        commentVector = API.getComments(post.comment);
+        System.out.println("it idd well"); //واسه چک کردن
+        commentListview.setItems(FXCollections.observableArrayList(commentVector));
         commentListview.setCellFactory(commentListview -> new CommentItem());
     }
 
