@@ -79,6 +79,8 @@ public class postDetails {
         comment.setUser(Main.getUser());
         comment.setText(text);
         post.addComment(comment);
+        API.addComment(post , comment);
+        System.out.println("sakda");
         TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
         tt.setToY(-100);
         tt.playFromStart();

@@ -1,6 +1,8 @@
 package Common;
 
-public class Comment {
+import java.io.Serializable;
+
+public class Comment implements Serializable {
     public String text;
     public User user;
 
