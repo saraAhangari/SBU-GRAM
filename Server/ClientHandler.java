@@ -71,11 +71,17 @@ public class ClientHandler implements Runnable{
                     case deleteAccount:
                         answer = API.deleteAccount(input);
                         break;
-                    case Comment:
-                        answer = API.comment(input);
-                        break;
                     case Logout:
                         answer = API.Logout(input);
+                        break;
+                    case addComment:
+                        answer = API.addComment(input);
+                        break;
+                    case getComments:
+                        answer = API.getComments(input);
+                        break;
+                    case getOthersPosts:
+                        answer = API.getselfPosts(input);
                         break;
                 }
                 socketOut.writeObject(answer);

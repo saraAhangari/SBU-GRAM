@@ -3,8 +3,10 @@ package Client.Controller;
 import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
+import Common.Comment;
 import Common.Post;
 import javafx.animation.TranslateTransition;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,11 +16,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class postDetails {
 
@@ -33,7 +37,13 @@ public class postDetails {
     public ListView commentsListview;
     public Button like_button;
     public Button repost_button;
-    public Post post = Main.post;
+    public AnchorPane anchorPane;
+    public Label comment_writer;
+    public TextArea theComment;
+    public ArrayList<Comment> comments;
+    public Post post = Main.getPost();
+    public Comment comment = Main.getPost().getComment();
+
 
     @FXML
     public void initialize(){
@@ -52,6 +62,7 @@ public class postDetails {
         && !post.getWriter().equals(Main.getUser().getUsername())) {
             Main.setPost(post);
             Main.post.setReposts(Main.getUser(), Main.getPost());
+            Main.getUser().addPost(Main.getPost());
             repost_button.setText("reposted");
             reports_count.setText(String.valueOf(post.getRepost()));
             API.Repost(Main.getPost(), Main.getUser());
@@ -59,12 +70,33 @@ public class postDetails {
     }
 
     public void add_comment(ActionEvent actionEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
+        tt.setToY(540);
+        tt.playFromStart();
+        comment_writer.setText(Main.getUser().getUsername());
+        String text = theComment.getText();
+        theComment.setText(text);
+        post.setComment(comment);
+    }
+    public void send_comment(ActionEvent actionEvent) {
+        post.addComment(comment);
+        //API.addComment(post.getComment(), post);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
+        tt.setToY(-100);
+        tt.playFromStart();
     }
 
-    public void show_comments(ActionEvent actionEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), commentsListview);
+    public void show_comments(ActionEvent actionEvent) throws IOException {
+        new PageLoader().load("commentPage");
+        TranslateTransition ts = new TranslateTransition(Duration.millis(1100), anchorPane);
+        ts.setToY(-290);
+        ts.playFromStart();
+        /*TranslateTransition tt = new TranslateTransition(Duration.millis(1200), commentsListview);
         tt.setToY(-270);
         tt.playFromStart();
+        comments = post.getComments();
+        commentsListview.setItems(FXCollections.observableArrayList(comments));
+        commentsListview.setCellFactory(commentsListview -> new CommentItem());*/
     }
 
     public void like(ActionEvent actionEvent) {
@@ -109,4 +141,6 @@ public class postDetails {
     public void log_out(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("login");
     }
+
+
 }

@@ -5,14 +5,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="anchorPane" prefHeight="60.0" prefWidth="360.0" style="-fx-background-color: #C2D8D5; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" prefHeight="72.0" prefWidth="360.0" style="-fx-background-color: #C2D8D5; -fx-border-color: #000000;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="comment_writer" layoutX="6.0" layoutY="10.0" text="comment writer">
+      <Label fx:id="comment_writer" layoutX="12.0" layoutY="25.0" text="comment writer" textAlignment="CENTER">
          <font>
             <Font name="Yaqout-Bold" size="13.0" />
          </font>
       </Label>
-      <TextArea fx:id="theComment" editable="false" layoutX="114.0" layoutY="10.0" prefHeight="23.0" prefWidth="232.0" />
+      <TextArea fx:id="theComment" editable="false" layoutX="109.0" layoutY="10.0" prefHeight="53.0" prefWidth="242.0" />
    </children>
 </AnchorPane>

@@ -21,7 +21,7 @@ public class Search {
     public TextField search;
     public VBox vbox;
     public ListView search_profiles;
-    public ArrayList<User> userArrayList = new ArrayList<>();
+    public static ArrayList<User> userArrayList = new ArrayList<>();
 
     public void show_menu(MouseEvent mouseEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
@@ -32,12 +32,13 @@ public class Search {
     public void search(MouseEvent mouseEvent) {
         String username2Find = search.getText();
         userArrayList = API.getUser(username2Find);
-        if (userArrayList==null){
-            Alert alert = new Alert(Alert.AlertType.WARNING , "User doesn't exist !");
+        if (userArrayList == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "User doesn't exist !");
             alert.showAndWait();
+        } else {
+            search_profiles.setItems(FXCollections.observableArrayList(userArrayList));
+            search_profiles.setCellFactory(search_profiles -> new profileItem());
         }
-        search_profiles.setItems(FXCollections.observableArrayList(userArrayList));
-        search_profiles.setCellFactory(search_profiles -> new profileItem());
     }
 
     public void Home(MouseEvent mouseEvent) throws IOException {
@@ -53,7 +54,7 @@ public class Search {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("logout");
+        new PageLoader().load("login");
     }
 
 }

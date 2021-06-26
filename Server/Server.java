@@ -1,5 +1,6 @@
 package Server;
 
+import Common.Comment;
 import Common.Post;
 import Common.User;
 

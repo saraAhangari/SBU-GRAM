@@ -23,6 +23,7 @@ public class profileItemController {
 
     public profileItemController(User user) throws IOException {
         new PageLoader().load("ProfileItem" , this);
+        Main.setSearched_user(user);
         this.user = user;
     }
 
@@ -38,7 +39,6 @@ public class profileItemController {
         return anchorpane;
     }
     public void checkOut_user(ActionEvent actionEvent) throws IOException {
-        Main.searched_user = user;
         new PageLoader().load("OthersProfiles");
     }
 }

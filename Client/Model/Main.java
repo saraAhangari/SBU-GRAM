@@ -1,5 +1,6 @@
 package Client.Model;
 
+import Common.Comment;
 import Common.Post;
 import Common.User;
 import javafx.application.Application;
@@ -12,6 +13,7 @@ import java.util.Map;
 
 public class Main extends Application {
     public static User user;
+    public static Comment comment;
     public static ArrayList<User> profiles = new ArrayList<>();
     public static User searched_user;
     public static Post post;
@@ -47,6 +49,14 @@ public class Main extends Application {
 
     public static void setUser(User user) {
         Main.user = user;
+    }
+
+    public static User getSearched_user() {
+        return searched_user;
+    }
+
+    public static void setSearched_user(User searched_user) {
+        Main.searched_user = searched_user;
     }
 }
 

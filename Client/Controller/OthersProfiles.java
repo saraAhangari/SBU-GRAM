@@ -20,6 +20,8 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import static Client.Controller.Search.*;
+
 public class OthersProfiles {
     public ImageView profile_image;
     public ImageView follow_image;
@@ -30,13 +32,13 @@ public class OthersProfiles {
     public Label name_lastname;
     public Label username;
     public Label birthDate;
-    public User user = Main.getUser(); //ali
-    public User searched_user = Main.searched_user; //baran
+    public User user = Main.getUser();
+    public User searched_user = Main.getSearched_user();
     public ArrayList<Post> someoneElsePosts ;
 
     @FXML
     public void initialize() {
-        someoneElsePosts = API.getPosts(searched_user.getUsername());
+        someoneElsePosts = API.getPosts(searched_user);
         OthersPosts.setItems(FXCollections.observableArrayList(someoneElsePosts));
         OthersPosts.setCellFactory(OthersPosts -> new PostItem());
         if (searched_user.getProfilePhoto() != null) {
@@ -50,12 +52,12 @@ public class OthersProfiles {
     }
 
     public void follow(MouseEvent mouseEvent) {
-        if (!user.getFollowings().contains(searched_user)) {
-            user.getFollowings().add(searched_user);
-            searched_user.getFollowers().add(user);
-            user.getAllPosts().addAll(searched_user.getPosts());
-            followers.setText(String.valueOf(searched_user.getFollowers().size()));
-            API.addFollower(user, searched_user);
+        if (!user.getFollowings().contains(userArrayList.get(0))) {
+            user.getFollowings().add(userArrayList.get(0));
+            userArrayList.get(0).getFollowers().add(user);
+            user.getAllPosts().addAll(userArrayList.get(0).getPosts());
+            followers.setText(String.valueOf(userArrayList.get(0).getFollowers().size()));
+            API.addFollower(user, userArrayList.get(0));
             follow_image.setVisible(false);
         }
         else {

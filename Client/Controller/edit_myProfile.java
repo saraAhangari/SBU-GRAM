@@ -68,7 +68,7 @@ public class edit_myProfile {
         user.setFirstname(Firstname.getText());
         user.setLastName(Lastname.getText());
         user.setBirthDate(DateBirth.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-        postArrayList = API.getPosts(user.getUsername());
+        postArrayList = API.getPosts(user);
         user.setPosts(postArrayList);
         Alert alert = new Alert(Alert.AlertType.INFORMATION, "Edited successfully !");
         alert.showAndWait();

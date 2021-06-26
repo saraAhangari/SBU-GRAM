@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -90,5 +91,20 @@
          </font>
       </Text>
       <ListView fx:id="commentsListview" layoutX="36.0" layoutY="687.0" prefHeight="191.0" prefWidth="303.0" style="-fx-background-color: #C2D8D5;" />
+      <AnchorPane fx:id="anchorPane" layoutX="15.0" layoutY="-88.0" prefHeight="72.0" prefWidth="360.0" style="-fx-background-color: #C2D8D5; -fx-border-color: #000000;">
+         <children>
+            <Label fx:id="comment_writer" layoutX="6.0" layoutY="10.0" text="comment writer" textAlignment="CENTER">
+               <font>
+                  <Font name="Yaqout-Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextArea fx:id="theComment" layoutX="109.0" layoutY="10.0" prefHeight="53.0" prefWidth="242.0" />
+            <Button layoutX="6.0" layoutY="33.0" mnemonicParsing="false" onAction="#send_comment" prefHeight="30.0" prefWidth="96.0" text="Send">
+               <font>
+                  <Font name="Yaqout-Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
    </children>
 </Pane>

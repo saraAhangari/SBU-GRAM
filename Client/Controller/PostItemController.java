@@ -1,12 +1,10 @@
 package Client.Controller;
 
-import Client.Model.API;
 import Client.Model.Main;
 import Client.Model.PageLoader;
 import Common.Post;
 import Common.User;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,6 +25,7 @@ public class PostItemController {
 
     public PostItemController(Post post) throws IOException {
         new PageLoader().load("PostItem" , this);
+        Main.setPost(post);
         this.post=post;
     }
 
@@ -40,8 +39,8 @@ public class PostItemController {
                     get("C:\\Users\\baran\\Desktop\\AP\\SBU_gram\\Images\\488px-No-Image-Placeholder.svg.png")
                     .toUri().toString()));
 
-        if (user.getProfilePhoto() != null)
-            profile_image.setImage(new Image(new ByteArrayInputStream(user.getProfilePhoto())));
+        if (post.getPublisher().getProfilePhoto() != null)
+            profile_image.setImage(new Image(new ByteArrayInputStream(post.getPublisher().getProfilePhoto())));
         else
             profile_image.setImage(new Image(Paths.
                     get("C:\\Users\\baran\\Desktop\\AP\\SBU_gram\\Images\\488px-No-Image-Placeholder.svg.png")
@@ -50,7 +49,6 @@ public class PostItemController {
     }
 
     public void show_details(ActionEvent actionEvent) throws IOException {
-        Main.post = post;
         new PageLoader().load("postDetails");
     }
 }

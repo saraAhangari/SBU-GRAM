@@ -2,15 +2,12 @@ package Server;
 
 import Client.Model.Main;
 import Common.Commands;
+import Common.Comment;
 import Common.Post;
 import Common.User;
 
-import javax.xml.stream.events.Comment;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class API {
@@ -103,6 +100,37 @@ public class API {
         return message;
     }
 
+    public static Map<String,Object> addComment(Map<String,Object> input){
+        Map<String,Object> message = new HashMap<>();
+        Post post = (Post) input.get("post");
+        Comment comment = (Comment) input.get("comment");
+        post.addComment(comment);
+        Database.getInstance().updateDataBase();
+        message.put("command",Commands.addComment);
+        message.put("post" , post);
+        message.put("comment" , comment);
+        message.put("answer", Boolean.TRUE);
+        //System.out.println(user.getUsername() + " comment");
+        //message post subject
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> getComments(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        Post post = (Post) input.get("post");
+        Comment comment = (Comment) input.get("comment");
+        ArrayList<Comment> commentArrayList = post.getComments();
+        message.put("command" , Commands.getComments);
+        message.put("post" , post);
+        message.put("comment" , comment);
+        message.put("answer" , commentArrayList);
+        Database.getInstance().updateDataBase();
+        //System.out.println(user.getUsername() + " get posts list");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
     public static Map<String , Object> addFollower(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
         User following = (User)input.get("following");
@@ -123,14 +151,28 @@ public class API {
 
     public static Map<String , Object> getPosts(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
-        User user = Server.users.get((String)input.get("username"));
-        ArrayList<Post> timeLine = user.getPosts();
+        User user = (User) input.get("user");
+        ArrayList<Post> timeLine = Server.users.get(user.getUsername()).getPosts();
         timeLine = (ArrayList<Post>) timeLine.stream()
                 .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
                 .collect(Collectors.toList());
         message.put("command" , Commands.getPosts);
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
+        System.out.println(user.getUsername() + " get posts list");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> getselfPosts(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User user = Server.users.get((String)input.get("username"));
+        ArrayList<Post> timeLine = user.getPosts();
+        timeLine = (ArrayList<Post>) timeLine.stream()
+                .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
+                .collect(Collectors.toList());
+        message.put("command" , Commands.getOthersPosts);
+        message.put("answer" , timeLine);
         System.out.println(user.getUsername() + " get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -146,7 +188,7 @@ public class API {
         }
         message.put("command" , Commands.getUser);
         message.put("answer" , user_profile);
-        Database.getInstance().updateDataBase();
+        //Database.getInstance().updateDataBase();
         System.out.println(user.getUsername() + " get user info");
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -205,24 +247,9 @@ public class API {
         Post post = (Post) input.get("post");
         User user = (User) input.get("user");
         post.setReposts(user , post);
-        user.addPost(post);
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Unlike);
         message.put("answer", Boolean.TRUE);
-        return message;
-    }
-    public static Map<String,Object> comment(Map<String,Object> input){
-        Map<String,Object> message = new HashMap<>();
-        String comment = (String) input.get("comment");
-        Post post = (Post) input.get("post");
-        User user = (User) input.get("user");
-        post.addComment(comment);
-        Database.getInstance().updateDataBase();
-        message.put("command",Commands.Comment);
-        message.put("answer", Boolean.TRUE);
-        System.out.println(user.getUsername() + " comment");
-        //message post subject
-        System.out.println("time : " + LocalDateTime.now());
         return message;
     }
 

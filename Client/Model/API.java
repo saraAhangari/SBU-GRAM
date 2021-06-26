@@ -1,9 +1,11 @@
 package Client.Model;
 
 import Common.Commands;
+import Common.Comment;
 import Common.Post;
 import Common.User;
 import Server.Server;
+import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,6 +55,23 @@ public class API {
         return (boolean) toReceive.get("answer");
     }
 
+    public static Boolean addComment(Comment comment , Post post){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.addComment);
+        toSend.put("post" , post);
+        toSend.put("comment" , comment);
+        Map<String,Object> toReceive = Network.serve(toSend);
+        return (Boolean) toReceive.get("answer");
+    }
+
+    public static ArrayList<Comment> getComments(Post post){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.getComments);
+        toSend.put("post" , post);
+        Map<String , Object> toReceive = Network.serve(toSend);
+        return (ArrayList<Comment>)toReceive.get("answer");
+    }
+
     public static boolean addFollower(User follower , User following){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.addFollower);
@@ -62,9 +81,16 @@ public class API {
         return (boolean) toReceive.get("answer");
     }
 
-    public static ArrayList<Post> getPosts(String username){
+    public static ArrayList<Post> getPosts(User user){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getPosts);
+        toSend.put("user" , user);
+        Map<String , Object> toReceive = Network.serve(toSend);
+        return (ArrayList<Post>)toReceive.get("answer");
+    }
+    public static ArrayList<Post> getselfPosts(String username) {
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.getOthersPosts);
         toSend.put("username" , username);
         Map<String , Object> toReceive = Network.serve(toSend);
         return (ArrayList<Post>)toReceive.get("answer");
@@ -123,4 +149,6 @@ public class API {
         Map<String,Object> toReceive = Network.serve(toSend);
         return (Boolean) toReceive.get("answer");
     }
+
+
 }
