@@ -89,7 +89,7 @@ public class API {
         Map<String , Object> toReceive = Network.serve(toSend);
         return (ArrayList<Post>)toReceive.get("answer");
     }
-    public static ArrayList<Post> getselfPosts(String username) {
+    public static ArrayList<Post> getAllPosts(String username) {
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getOthersPosts);
         toSend.put("username" , username);

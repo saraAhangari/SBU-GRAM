@@ -26,14 +26,21 @@ public class TimeLineController {
     public static ArrayList<Post> postArrayList;
     public User user;
 
-
-    @FXML
-    public void initialize(){
+    public void refresh(ActionEvent actionEvent) {
+        postArrayList = API.getAllPosts(Main.getUser().getUsername());
+        postListview.setItems(FXCollections.observableArrayList(postArrayList));
+        postListview.setCellFactory(postListview -> new PostItem());
     }
 
     public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
         tt.setToX(103);
+        tt.playFromStart();
+    }
+
+    public void back_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(-101);
         tt.playFromStart();
     }
 
@@ -47,12 +54,6 @@ public class TimeLineController {
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("login");
-    }
-
-    public void refresh(ActionEvent actionEvent) {
-        postArrayList = API.getselfPosts(Main.getUser().getUsername());
-        postListview.setItems(FXCollections.observableArrayList(postArrayList));
-        postListview.setCellFactory(postListview -> new PostItem());
     }
 
     public void search(MouseEvent mouseEvent) throws IOException {

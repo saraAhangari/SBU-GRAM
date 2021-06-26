@@ -31,7 +31,7 @@ public class Database{
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(PROFILES_FILE);
             ObjectOutputStream objToFile = new ObjectOutputStream(fileOutputStream);
-            objToFile.writeObject(Server.users); //writing profiles
+            objToFile.writeUnshared(Server.users); //writing profiles
             objToFile.close();
             fileOutputStream.close();
 

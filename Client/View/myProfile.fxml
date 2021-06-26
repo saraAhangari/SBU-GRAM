@@ -31,7 +31,7 @@
             <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/grey-menu-icon-transparent-png-stickpng-menu-icon-png-2000_2000.png" />
          </image>
       </ImageView>
-      <VBox fx:id="vbox" layoutX="-101.0" layoutY="7.0" prefHeight="202.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+      <VBox fx:id="vbox" layoutX="-101.0" layoutY="7.0" onMouseClicked="#back_menu" prefHeight="202.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
          <children>
             <Label onMouseClicked="#Home" prefHeight="56.0" prefWidth="68.0" text="Home">
                <font>

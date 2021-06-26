@@ -28,10 +28,9 @@ public class addPost {
     public TextField post_title;
     public TextArea post_description;
     public VBox vbox;
-    public Post currentPost = new Post();
-    public byte[] photo;
     public ImageView post_image;
-    ArrayList<Post> posts = new ArrayList<>();
+    public Post currentPost;
+    public byte[] photo;
 
     public void add_image(ActionEvent actionEvent) throws IOException {
         Stage stage = new Stage();
@@ -51,18 +50,25 @@ public class addPost {
     }
 
     public void publish(ActionEvent actionEvent) {
+        currentPost = new Post();
         currentPost.setTitle(post_title.getText());
         currentPost.setDescription(post_description.getText());
         currentPost.setWriter(Main.getUser().getUsername());
         currentPost.setImage(photo);
         currentPost.setPublisher(Main.getUser());
-        Main.getUser().addPost(currentPost);
+        //Main.getUser().addPost(currentPost);
         API.addPost(Main.getUser() , currentPost);
     }
 
     public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
         tt.setToX(105);
+        tt.playFromStart();
+    }
+
+    public void back_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(-101);
         tt.playFromStart();
     }
 

@@ -17,8 +17,8 @@ public class User implements Serializable {
     private String SecurityAnswer;
     private String photoPath;
     private byte[] profileImage ;
-    private ArrayList<Post> posts = new ArrayList<>();
-    private ArrayList<Post> allPosts = new ArrayList<>();
+    private ArrayList<Post> posts = new ArrayList<>(); //post haye khodesh
+    private ArrayList<Post> allPosts = new ArrayList<>(); //post haye followings
     private ArrayList<User> followers = new ArrayList<>();
     private ArrayList<User> followings = new ArrayList<>();
 
@@ -33,8 +33,8 @@ public class User implements Serializable {
         return allPosts;
     }
 
-    public void setAllPosts(ArrayList<Post> allPosts) {
-        this.allPosts = allPosts;
+    public void addFollowingPosts(Post followingPost) {
+        allPosts.add(followingPost);
     }
 
     public void setUsername(String username) {

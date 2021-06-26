@@ -20,8 +20,6 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import static Client.Controller.Search.*;
-
 public class OthersProfiles {
     public ImageView profile_image;
     public ImageView follow_image;
@@ -55,7 +53,7 @@ public class OthersProfiles {
         if (!user.getFollowings().contains(searched_user)) {
             user.getFollowings().add(searched_user);
             searched_user.getFollowers().add(user);
-            user.getAllPosts().addAll(searched_user.getPosts());
+            //user.getAllPosts().addAll(searched_user.getPosts());
             followers.setText(String.valueOf(searched_user.getFollowers().size()));
             API.addFollower(user, searched_user);
             follow_image.setVisible(false);

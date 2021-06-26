@@ -50,6 +50,18 @@ public class myProfile {
         }
     }
 
+    public void show_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(102);
+        tt.playFromStart();
+    }
+
+    public void back_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(-101);
+        tt.playFromStart();
+    }
+
     public void Home(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("timeLine");
     }
@@ -61,12 +73,6 @@ public class myProfile {
     public void log_out(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("login");
 
-    }
-
-    public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
-        tt.setToX(102);
-        tt.playFromStart();
     }
 
     public void search(MouseEvent mouseEvent) throws IOException {

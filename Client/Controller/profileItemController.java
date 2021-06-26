@@ -38,6 +38,7 @@ public class profileItemController {
         }
         return anchorpane;
     }
+
     public void checkOut_user(ActionEvent actionEvent) throws IOException {
         new PageLoader().load("OthersProfiles");
     }

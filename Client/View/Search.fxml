@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="374.0" style="-fx-background-color: #81A2AB;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Search">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="380.0" style="-fx-background-color: #81A2AB;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.Search">
    <children>
       <TextField fx:id="search" layoutX="58.0" layoutY="14.0" prefHeight="25.0" prefWidth="271.0" promptText="Search" />
       <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="5.0" layoutY="7.0" onMouseClicked="#show_menu" pickOnBounds="true" preserveRatio="true">
@@ -23,7 +22,7 @@
             <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/search.png" />
          </image>
       </ImageView>
-      <VBox fx:id="vbox" layoutX="-100.0" layoutY="7.0" prefHeight="213.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+      <VBox fx:id="vbox" layoutX="-100.0" layoutY="7.0" onMouseClicked="#back_menu" prefHeight="213.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
          <children>
             <Label onMouseClicked="#Home" prefHeight="56.0" prefWidth="68.0" text="Home">
                <font>
@@ -47,6 +46,6 @@
             </Label>
          </children>
       </VBox>
-      <ListView fx:id="search_profiles" layoutX="4.0" layoutY="220.0" prefHeight="272.0" prefWidth="366.0" />
+      <ListView fx:id="search_profiles" layoutX="5.0" layoutY="220.0" prefHeight="272.0" prefWidth="370.0" />
    </children>
 </Pane>

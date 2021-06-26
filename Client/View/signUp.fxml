@@ -13,38 +13,38 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="360.0" style="-fx-background-color: #2B4851; -fx-border-color: #121617;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.signUpController">
+<Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="665.0" prefWidth="380.0" style="-fx-background-color: #2B4851; -fx-border-color: #121617;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.Controller.signUpController">
     <children>
-        <ImageView fx:id="profileImage" fitHeight="94.0" fitWidth="100.0" layoutX="135.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fx:id="profileImage" fitHeight="94.0" fitWidth="100.0" layoutX="142.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="file:/C:/Users/baran/Desktop/sbu_gram/images/User-icon.png" />
             </image>
         </ImageView>
-        <Button layoutX="128.0" layoutY="163.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddImage" prefHeight="37.0" prefWidth="109.0" text="Add Image">
+        <Button layoutX="135.0" layoutY="163.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#AddImage" prefHeight="37.0" prefWidth="109.0" text="Add Image">
             <font>
                 <Font name="Yaqout" size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="firstname_field" layoutX="19.0" layoutY="212.0" promptText="Firstname" />
-        <TextField fx:id="lastname_field" layoutX="194.0" layoutY="212.0" promptText="Lastname" />
-        <DatePicker fx:id="DateBirth" layoutX="194.0" layoutY="334.0" prefWidth="150.0" promptText="DateofBirth" />
-        <Text fill="#eeefef" layoutX="95.0" layoutY="588.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" wrappingWidth="182.5999755859375">
+        <TextField fx:id="firstname_field" layoutX="26.0" layoutY="212.0" promptText="Firstname" />
+        <TextField fx:id="lastname_field" layoutX="201.0" layoutY="212.0" promptText="Lastname" />
+        <DatePicker fx:id="DateBirth" layoutX="201.0" layoutY="334.0" prefWidth="150.0" promptText="DateofBirth" />
+        <Text fill="#eeefef" layoutX="102.0" layoutY="572.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Already have an account ?" wrappingWidth="182.5999755859375">
             <font>
                 <Font name="Yaqout-Bold" size="15.0" />
             </font>
         </Text>
-        <Button layoutX="134.0" layoutY="599.0" mnemonicParsing="false" onAction="#Sign_In" prefHeight="36.0" prefWidth="94.0" text="Sign In">
+        <Button layoutX="141.0" layoutY="583.0" mnemonicParsing="false" onAction="#Sign_In" prefHeight="36.0" prefWidth="94.0" text="Sign In">
             <font>
                 <Font name="Yaqout" size="14.0" />
             </font>
         </Button>
-        <TextField fx:id="PhoneNumber" layoutX="194.0" layoutY="253.0" prefHeight="25.0" prefWidth="149.0" promptText="Phone Number" />
-      <TextField fx:id="username_field" layoutX="20.0" layoutY="253.0" promptText="username" />
-      <PasswordField fx:id="password_field" layoutX="20.0" layoutY="293.0" promptText="password" />
-      <PasswordField fx:id="confirmation" layoutX="194.0" layoutY="293.0" promptText="confirm password" />
-      <TextField fx:id="email" layoutX="20.0" layoutY="334.0" promptText="Email" />
-      <TextField fx:id="answer" layoutX="108.0" layoutY="454.0" promptText="Answer" />
-      <MenuButton layoutX="84.0" layoutY="378.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Security Question">
+        <TextField fx:id="PhoneNumber" layoutX="201.0" layoutY="253.0" prefHeight="25.0" prefWidth="149.0" promptText="Phone Number" />
+      <TextField fx:id="username_field" layoutX="27.0" layoutY="253.0" promptText="username" />
+      <PasswordField fx:id="password_field" layoutX="27.0" layoutY="293.0" promptText="password" />
+      <PasswordField fx:id="confirmation" layoutX="201.0" layoutY="293.0" promptText="confirm password" />
+      <TextField fx:id="email" layoutX="27.0" layoutY="334.0" promptText="Email" />
+      <TextField fx:id="answer" layoutX="115.0" layoutY="454.0" promptText="Answer" />
+      <MenuButton layoutX="91.0" layoutY="378.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="197.0" text="Security Question">
          <items>
             <MenuItem mnemonicParsing="false" onAction="#Nickname" text="Your Nickname" />
             <MenuItem mnemonicParsing="false" onAction="#color" text="Your favourite color" />
@@ -54,8 +54,8 @@
             <Font name="Yaqout-Bold" size="15.0" />
          </font>
       </MenuButton>
-      <TextField fx:id="question" editable="false" layoutX="108.0" layoutY="421.0" mouseTransparent="true" promptText="Question" />
-      <Button layoutX="125.0" layoutY="494.0" mnemonicParsing="false" onAction="#signUp_button" prefHeight="37.0" prefWidth="109.0" text="Sign Up">
+      <TextField fx:id="question" editable="false" layoutX="115.0" layoutY="421.0" mouseTransparent="true" promptText="Question" />
+      <Button layoutX="132.0" layoutY="494.0" mnemonicParsing="false" onAction="#signUp_button" prefHeight="37.0" prefWidth="109.0" text="Sign Up">
          <font>
             <Font name="Yaqout" size="14.0" />
          </font>

@@ -1,6 +1,5 @@
 package Server;
 
-import Client.Model.Main;
 import Common.Commands;
 import Common.Comment;
 import Common.Post;
@@ -92,8 +91,6 @@ public class API {
         Server.posts.add(post);
         post.setPublisher(user);
         message.put("command" , Commands.addPost);
-        message.put("post" , post);
-        message.put("user" , user);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
         System.out.println(user + " publish");
@@ -130,6 +127,9 @@ public class API {
         User follower = (User) input.get("follower");
         Server.users.get(follower.getUsername()).getFollowings().add(following);
         Server.users.get(following.getUsername()).getFollowers().add(follower);
+        for (int i = 0; i <following.getPosts().size() ; i++) {
+            Server.users.get(follower.getUsername()).addFollowingPosts(following.getPosts().get(i));
+        }
         message.put("command" , Commands.addFollower);
         message.put("following" , following);
         message.put("follower" , follower);
@@ -142,6 +142,7 @@ public class API {
         return message;
     }
 
+    //get posts return posts + reposts for profile page
     public static Map<String , Object> getPosts(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
         User user = (User) input.get("user");
@@ -152,6 +153,23 @@ public class API {
         message.put("command" , Commands.getPosts);
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
+        System.out.println(user.getUsername() + " get posts list");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    //post haye followings + khodesh ro return mikone
+    public static Map<String , Object> getAllPosts(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User user = Server.users.get((String)input.get("username"));
+        ArrayList<Post> timeLine = new ArrayList<>();
+        timeLine.addAll(user.getPosts());
+        timeLine.addAll(user.getAllPosts());
+        timeLine = (ArrayList<Post>) timeLine.stream()
+                .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
+                .collect(Collectors.toList());
+        message.put("command" , Commands.getOthersPosts);
+        message.put("answer" , timeLine);
         System.out.println(user.getUsername() + " get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -170,23 +188,6 @@ public class API {
         message.put("answer" , commentArrayList);
         Database.getInstance().updateDataBase();
         //System.out.println(user.getUsername() + " get posts list");
-        System.out.println("time : " + LocalDateTime.now());
-        return message;
-    }
-
-    public static Map<String , Object> getselfPosts(Map<String , Object> input){
-        Map<String , Object> message = new HashMap<>();
-        User user = Server.users.get((String)input.get("username"));
-        ArrayList<Post> timeLine = user.getPosts();
-        for (int i = 0; i <user.getFollowings().size() ; i++) {
-            timeLine.addAll(user.getFollowings().get(i).getPosts());
-        }
-        timeLine = (ArrayList<Post>) timeLine.stream()
-                .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
-                .collect(Collectors.toList());
-        message.put("command" , Commands.getOthersPosts);
-        message.put("answer" , timeLine);
-        System.out.println(user.getUsername() + " get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -235,7 +236,12 @@ public class API {
         Map<String,Object> message = new HashMap<>();
         Post post = (Post) input.get("post");
         User user = (User) input.get("user");
-        post.likePost(user);
+        for (int i = 0; i <Server.posts.size() ; i++) {
+            if (Server.posts.get(i).equals(post)){
+                Server.posts.get(i).likePost(user);
+                break;
+            }
+        }
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Like);
         message.put("answer", Boolean.TRUE);
@@ -249,7 +255,12 @@ public class API {
         Map<String,Object> message = new HashMap<>();
         Post post = (Post) input.get("post");
         User user = (User) input.get("user");
-        post.unlikePost(user);
+        for (int i = 0; i <Server.posts.size() ; i++) {
+            if (Server.posts.get(i).equals(post)){
+                Server.posts.get(i).unlikePost(user);
+                break;
+            }
+        }
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Unlike);
         message.put("answer", Boolean.TRUE);
@@ -259,9 +270,9 @@ public class API {
         Map<String,Object> message = new HashMap<>();
         Post post = (Post) input.get("post");
         User user = (User) input.get("user");
-        post.setReposts(user , post);
+        Server.users.get(user.getUsername()).addPost(post);
         Database.getInstance().updateDataBase();
-        message.put("command",Commands.Unlike);
+        message.put("command",Commands.Repost);
         message.put("answer", Boolean.TRUE);
         return message;
     }

@@ -23,12 +23,6 @@ public class Search {
     public ListView search_profiles;
     public static ArrayList<User> userArrayList = new ArrayList<>();
 
-    public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
-        tt.setToX(103);
-        tt.playFromStart();
-    }
-
     public void search(MouseEvent mouseEvent) {
         String username2Find = search.getText();
         userArrayList = API.getUser(username2Find);
@@ -39,6 +33,18 @@ public class Search {
             search_profiles.setItems(FXCollections.observableArrayList(userArrayList));
             search_profiles.setCellFactory(search_profiles -> new profileItem());
         }
+    }
+
+    public void show_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(103);
+        tt.playFromStart();
+    }
+
+    public void back_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(-101);
+        tt.playFromStart();
     }
 
     public void Home(MouseEvent mouseEvent) throws IOException {

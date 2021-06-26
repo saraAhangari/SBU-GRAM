@@ -81,7 +81,7 @@ public class ClientHandler implements Runnable{
                         answer = API.getComments(input);
                         break;
                     case getOthersPosts:
-                        answer = API.getselfPosts(input);
+                        answer = API.getAllPosts(input);
                         break;
                 }
                 socketOut.writeObject(answer);
