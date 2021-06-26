@@ -159,10 +159,10 @@ public class API {
 
     public static Map<String , Object> getComments(Map<String , Object> input){
         Map<String , Object> message = new HashMap<>();
-        Comment comment = (Comment) input.get("comment");
+        Post post = (Post) input.get("post");
         Vector<Comment> commentArrayList = new Vector<>();
         for (int i = 0; i <Server.posts.size() ; i++) {
-            if (Server.posts.get(i).getComments().contains(comment)){
+            if (Server.posts.get(i).equals(post)){
                 commentArrayList.addAll(Server.posts.get(i).getComments());
             }
         }

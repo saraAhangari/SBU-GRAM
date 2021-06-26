@@ -65,11 +65,10 @@ public class API {
         return (Boolean) toReceive.get("answer");
     }
 
-    public static Vector<Comment> getComments(Comment comment){
+    public static Vector<Comment> getComments(Post post){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getComments);
-        //toSend.put("post" , post);
-        toSend.put("comment" , comment);
+        toSend.put("post" , post);
         Map<String , Object> toReceive = Network.serve(toSend);
         return (Vector<Comment>)toReceive.get("answer");
     }

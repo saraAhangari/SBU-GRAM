@@ -40,9 +40,8 @@ public class postDetails {
     public AnchorPane anchorPane;
     public Label comment_writer;
     public TextArea theComment;
-    public ArrayList<Comment> comments;
     public Post post = Main.getPost();
-    public Comment comment = Main.getPost().getComment();
+    public Comment comment = new Comment();
 
 
     @FXML
@@ -74,11 +73,11 @@ public class postDetails {
         tt.setToY(540);
         tt.playFromStart();
         comment_writer.setText(Main.getUser().getUsername());
-        String text = theComment.getText();
-        theComment.setText(text);
-        post.setComment(comment);
     }
     public void send_comment(ActionEvent actionEvent) {
+        String text = theComment.getText();
+        comment.setUser(Main.getUser());
+        comment.setText(text);
         post.addComment(comment);
         TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
         tt.setToY(-100);

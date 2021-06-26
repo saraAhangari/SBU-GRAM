@@ -21,7 +21,6 @@ public class User implements Serializable {
     private ArrayList<Post> allPosts = new ArrayList<>();
     private ArrayList<User> followers = new ArrayList<>();
     private ArrayList<User> followings = new ArrayList<>();
-    private ArrayList<Comment> comments = new ArrayList<>();
 
     public User(String username) {
         this.username = username;
@@ -158,14 +157,6 @@ public class User implements Serializable {
 
     public void addPost(Post post) {
         posts.add(post);
-    }
-
-    public void addComment(Comment comment){
-        comments.add(comment);
-    }
-
-    public ArrayList<Comment> getComments() {
-        return comments;
     }
 
     @Override

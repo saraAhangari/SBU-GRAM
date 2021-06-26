@@ -4,9 +4,7 @@ public class Comment {
     public String text;
     public User user;
 
-    public Comment(String text, User user) {
-        this.text = text;
-        this.user = user;
+    public Comment() {
     }
 
     public String getText() {

@@ -40,7 +40,7 @@ public class commentPage {
     }
 
     public void refresh(ActionEvent actionEvent) {
-        commentVector = API.getComments(post.comment);
+        commentVector = API.getComments(post);
         System.out.println("it idd well"); //واسه چک کردن
         commentListview.setItems(FXCollections.observableArrayList(commentVector));
         commentListview.setCellFactory(commentListview -> new CommentItem());
