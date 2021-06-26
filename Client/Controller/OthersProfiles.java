@@ -30,9 +30,11 @@ public class OthersProfiles {
     public Label name_lastname;
     public Label username;
     public Label birthDate;
+    public ImageView unfollow_image;
     public User user = Main.getUser();
     public User searched_user = Main.getSearched_user();
     public ArrayList<Post> someoneElsePosts ;
+
 
     @FXML
     public void initialize() {
@@ -47,22 +49,36 @@ public class OthersProfiles {
         birthDate.setText(searched_user.getBirthDate());
         followers.setText(String.valueOf(searched_user.getFollowers().size()));
         followings.setText(String.valueOf(searched_user.getFollowings().size()));
+
+        if (!user.getFollowings().contains(searched_user)){
+            follow_image.setVisible(true);
+            unfollow_image.setVisible(false);
+        }
+        else if (user.getFollowings().contains(searched_user)){
+            follow_image.setVisible(false);
+            unfollow_image.setVisible(true);
+        }
+
     }
 
     public void follow(MouseEvent mouseEvent) {
-        if (!user.getFollowings().contains(searched_user)) {
-            user.getFollowings().add(searched_user);
-            searched_user.getFollowers().add(user);
-            //user.getAllPosts().addAll(searched_user.getPosts());
-            followers.setText(String.valueOf(searched_user.getFollowers().size()));
-            API.addFollower(user, searched_user);
-            follow_image.setVisible(false);
-        }
-        else {
-            follow_image.setVisible(false);
-            initialize();
-        }
+        user.getFollowings().add(searched_user);
+        searched_user.getFollowers().add(user);
+        followers.setText(String.valueOf(searched_user.getFollowers().size()));
+        API.addFollower(user, searched_user);
+        follow_image.setVisible(false);
+        unfollow_image.setVisible(true);
+        unfollow_image.setX(151);
+        unfollow_image.setY(6);
+    }
 
+    public void unfollow(MouseEvent mouseEvent) {
+        user.getFollowings().remove(searched_user);
+        searched_user.getFollowers().remove(user);
+        followers.setText(String.valueOf(searched_user.getFollowers().size()));
+        API.removeFollower(user, searched_user);
+        follow_image.setVisible(true);
+        unfollow_image.setVisible(false);
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
@@ -92,4 +108,6 @@ public class OthersProfiles {
         tt.setToX(103);
         tt.playFromStart();
     }
+
+
 }

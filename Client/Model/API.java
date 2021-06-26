@@ -82,6 +82,15 @@ public class API {
         return (boolean) toReceive.get("answer");
     }
 
+    public static boolean removeFollower(User follower , User following){
+        Map<String , Object> toSend = new HashMap<>();
+        toSend.put("command" , Commands.removeFollower);
+        toSend.put("following" , following);
+        toSend.put("follower" , follower);
+        Map<String , Object> toReceive = Network.serve(toSend);
+        return (boolean) toReceive.get("answer");
+    }
+
     public static ArrayList<Post> getPosts(User user){
         Map<String , Object> toSend = new HashMap<>();
         toSend.put("command" , Commands.getPosts);

@@ -83,6 +83,9 @@ public class ClientHandler implements Runnable{
                     case getOthersPosts:
                         answer = API.getAllPosts(input);
                         break;
+                    case removeFollower:
+                        answer = API.removeFollower(input);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

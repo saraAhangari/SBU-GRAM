@@ -93,5 +93,13 @@
             <Font name="Yaqout-Bold" size="15.0" />
          </font>
       </Label>
+      <ImageView fx:id="unfollow_image" fitHeight="33.0" fitWidth="35.0" layoutX="161.0" layoutY="16.0" onMouseClicked="#unfollow" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/C:/Users/baran/Desktop/AP/SBU_gram/Images/icons8-remove-user-group-man-man-100.png" />
+         </image>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </ImageView>
    </children>
 </Pane>

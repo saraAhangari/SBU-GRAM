@@ -45,6 +45,8 @@ public class API {
             return message;
         }
         message.put("answer" , user);
+        Database.getInstance().updateDataBase();
+        System.out.println("action : login");
         System.out.println("[" + username + "] : has logged in");
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -77,6 +79,7 @@ public class API {
         message.put("newPassword" , newPassword);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
+        System.out.println("action : Forget Password");
         System.out.println("[" + username + "] : changed password");
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -89,11 +92,16 @@ public class API {
 
         Server.users.get(user.getUsername()).addPost(post);
         Server.posts.add(post);
-        post.setPublisher(user);
+        for (int i = 0; i <Server.posts.size() ; i++) {
+            if (Server.posts.get(i).equals(post)){
+                Server.posts.get(i).setPublisher(user);
+                break;
+            }
+        }
         message.put("command" , Commands.addPost);
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
-        System.out.println(user + " publish");
+        System.out.println("[" + user + "]" + " publish");
         System.out.println("message : " +"["+ post.title + "] [" + post.writer +"]" );
         System.out.println("time : " + LocalDateTime.now());
         return message;
@@ -136,8 +144,29 @@ public class API {
         message.put("answer" , Boolean.TRUE);
         Database.getInstance().updateDataBase();
         System.out.println("action : follow");
-        System.out.println(follower.getUsername() + " follow someone new");
-        //message: [target_user_name]
+        System.out.println("[" + follower.getUsername() + "] followed ");
+        System.out.println("message : [" + following.getUsername() +"]");
+        System.out.println("time : " + LocalDateTime.now());
+        return message;
+    }
+
+    public static Map<String , Object> removeFollower(Map<String , Object> input){
+        Map<String , Object> message = new HashMap<>();
+        User following = (User)input.get("following");
+        User follower = (User) input.get("follower");
+        Server.users.get(follower.getUsername()).getFollowings().remove(following);
+        Server.users.get(following.getUsername()).getFollowers().remove(follower);
+        for (int i = 0; i <following.getPosts().size() ; i++) {
+            Server.users.get(follower.getUsername()).getAllPosts().remove(following.getPosts().get(i));
+        }
+        message.put("command" , Commands.removeFollower);
+        message.put("following" , following);
+        message.put("follower" , follower);
+        message.put("answer" , Boolean.TRUE);
+        Database.getInstance().updateDataBase();
+        System.out.println("action : unfollow");
+        System.out.println("[" + follower.getUsername() + "] unfollowed ");
+        System.out.println("message : [" + following.getUsername() +"]");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -153,7 +182,7 @@ public class API {
         message.put("command" , Commands.getPosts);
         message.put("answer" , timeLine);
         Database.getInstance().updateDataBase();
-        System.out.println(user.getUsername() + " get posts list");
+        System.out.println("[" + user.getUsername() + "] get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -174,7 +203,7 @@ public class API {
                 .collect(Collectors.toList());
         message.put("command" , Commands.getOthersPosts);
         message.put("answer" , timeLine);
-        System.out.println(user.getUsername() + " get posts list");
+        System.out.println("[" + user.getUsername() + "] get posts list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -206,8 +235,9 @@ public class API {
         }
         message.put("command" , Commands.getUser);
         message.put("answer" , user_profile);
-        //Database.getInstance().updateDataBase();
-        System.out.println(user.getUsername() + " get user info");
+        Database.getInstance().updateDataBase();
+        System.out.println("[" + user.getUsername() + "] get info [" + user_profile.get(0).getUsername() + "]");
+        System.out.println("message : [" + user_profile.get(0).getUsername() + "]");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -218,7 +248,7 @@ public class API {
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Logout);
         message.put("answer" , Boolean.TRUE);
-        System.out.println(username + " log out");
+        System.out.println("[" + username + "] log out");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -231,7 +261,7 @@ public class API {
         Database.getInstance().updateDataBase();
         message.put("command",Commands.UpdateProfile);
         message.put("answer",Boolean.TRUE);
-        System.out.println(username + " : update info");
+        System.out.println("[" + username + "] : update info");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -250,8 +280,8 @@ public class API {
         message.put("command",Commands.Like);
         message.put("answer", Boolean.TRUE);
         System.out.println("action : like");
-        System.out.println(user.getUsername() + " like");
-        //message : post sender - post subject
+        System.out.println("[" + user.getUsername() + "] like");
+        System.out.println("message : [" + user.getUsername() + "][" + post.title + "]");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -268,16 +298,29 @@ public class API {
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Unlike);
         message.put("answer", Boolean.TRUE);
+        System.out.println("action : unlike");
+        System.out.println("[" + user.getUsername() + "] unlike");
+        System.out.println("message : [" + user.getUsername() + "][" + post.title + "]");
+        System.out.println("time : " + LocalDateTime.now());
         return message;
     }
     public static Map<String,Object> Repost(Map<String,Object> input){
         Map<String,Object> message = new HashMap<>();
         Post post = (Post) input.get("post");
         User user = (User) input.get("user");
-        Server.users.get(user.getUsername()).addPost(post);
+        for (int i = 0; i <Server.Profiles.size() ; i++) {
+            if (Server.Profiles.get(i).equals(user)){
+                Server.Profiles.get(i).addPost(post);
+                break;
+            }
+        }
         Database.getInstance().updateDataBase();
         message.put("command",Commands.Repost);
         message.put("answer", Boolean.TRUE);
+        System.out.println("action : repost");
+        System.out.println("[" + user.getUsername() + "] repost");
+        System.out.println("message : [" + user.getUsername() + "][" + post.title + "]");
+        System.out.println("time : " + LocalDateTime.now());
         return message;
     }
 
@@ -289,7 +332,7 @@ public class API {
         Database.getInstance().updateDataBase();
         message.put("command",Commands.deleteAccount);
         message.put("answer" , Boolean.TRUE);
-        System.out.println(username + " delete account");
+        System.out.println("[" + username + "] delete account");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }

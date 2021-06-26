@@ -69,7 +69,7 @@ public class PostItemController {
             Main.getUser().addPost(Main.getPost());
             repost_button.setText("reposted");
             reports_count.setText(String.valueOf(post.getRepost()));
-            API.Repost(Main.getPost(), Main.getUser());
+            API.Repost(Main.getPost() , Main.getUser());
         }
     }
 
