@@ -52,12 +52,12 @@ public class OthersProfiles {
     }
 
     public void follow(MouseEvent mouseEvent) {
-        if (!user.getFollowings().contains(userArrayList.get(0))) {
-            user.getFollowings().add(userArrayList.get(0));
-            userArrayList.get(0).getFollowers().add(user);
-            user.getAllPosts().addAll(userArrayList.get(0).getPosts());
-            followers.setText(String.valueOf(userArrayList.get(0).getFollowers().size()));
-            API.addFollower(user, userArrayList.get(0));
+        if (!user.getFollowings().contains(searched_user)) {
+            user.getFollowings().add(searched_user);
+            searched_user.getFollowers().add(user);
+            user.getAllPosts().addAll(searched_user.getPosts());
+            followers.setText(String.valueOf(searched_user.getFollowers().size()));
+            API.addFollower(user, searched_user);
             follow_image.setVisible(false);
         }
         else {

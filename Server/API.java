@@ -168,6 +168,9 @@ public class API {
         Map<String , Object> message = new HashMap<>();
         User user = Server.users.get((String)input.get("username"));
         ArrayList<Post> timeLine = user.getPosts();
+        for (int i = 0; i <user.getFollowings().size() ; i++) {
+            timeLine.addAll(user.getFollowings().get(i).getPosts());
+        }
         timeLine = (ArrayList<Post>) timeLine.stream()
                 .sorted((p1 , p2) ->-p1.getDateWithTime().compareTo(p2.getDateWithTime()))
                 .collect(Collectors.toList());

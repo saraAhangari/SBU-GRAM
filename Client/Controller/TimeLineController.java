@@ -50,12 +50,7 @@ public class TimeLineController {
     }
 
     public void refresh(ActionEvent actionEvent) {
-        postArrayList = API.getPosts(Main.getUser());
-        for (int i = 0; i <Main.profiles.size() ; i++) {
-            if (Main.getUser().getFollowings().contains(Main.profiles.get(i))){
-                postArrayList.addAll(Main.profiles.get(i).getPosts());
-            }
-        }
+        postArrayList = API.getselfPosts(Main.getUser().getUsername());
         postListview.setItems(FXCollections.observableArrayList(postArrayList));
         postListview.setCellFactory(postListview -> new PostItem());
     }
