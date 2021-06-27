@@ -327,6 +327,12 @@ public class API {
         String username = (String) input.get("username");
         User user = (User) input.get("user");
         Server.users.remove(username , user);
+        Server.Profiles.remove(user);
+        for (int i = 0; i <Server.posts.size() ; i++) {
+            if (Server.posts.get(i).getPublisher().equals(user)){
+                Server.posts.remove(i);
+            }
+        }
         Database.getInstance().updateDataBase();
         message.put("command",Commands.deleteAccount);
         message.put("answer" , Boolean.TRUE);

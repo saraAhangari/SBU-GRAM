@@ -82,6 +82,7 @@ public class OthersProfiles {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
+        API.Logout(Main.getUser().getUsername());
         new PageLoader().load("login");
     }
 
@@ -98,13 +99,13 @@ public class OthersProfiles {
     }
 
     public void back_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
         tt.setToX(-101);
         tt.playFromStart();
     }
 
     public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
         tt.setToX(103);
         tt.playFromStart();
     }

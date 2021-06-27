@@ -60,6 +60,7 @@ public class Search {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
+        API.Logout(Main.getUser().getUsername());
         new PageLoader().load("login");
     }
 

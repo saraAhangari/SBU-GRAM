@@ -46,21 +46,6 @@ public class edit_myProfile {
         user = Main.getUser();
         username.setText(user.getUsername());
     }
-    public void Home(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("timeLine");
-    }
-
-    public void search(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("Search");
-    }
-
-    public void add_post(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("add_post");
-    }
-
-    public void log_out(MouseEvent mouseEvent) throws IOException {
-        new PageLoader().load("login");
-    }
 
     public void save_edit(MouseEvent mouseEvent) throws IOException {
         API.updateInfo(user);
@@ -97,8 +82,33 @@ public class edit_myProfile {
     }
 
     public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
         tt.setToX(103);
         tt.playFromStart();
     }
+
+    public void back_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(-101);
+        tt.playFromStart();
+    }
+
+    public void Home(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("timeLine");
+    }
+
+    public void search(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("Search");
+    }
+
+    public void add_post(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("add_post");
+    }
+
+    public void log_out(MouseEvent mouseEvent) throws IOException {
+        API.Logout(Main.getUser().getUsername());
+        new PageLoader().load("login");
+    }
+
+
 }

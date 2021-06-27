@@ -26,9 +26,14 @@
             <Font name="Yaqout-Bold" size="15.0" />
          </font>
       </Button>
-      <VBox fx:id="vbox" layoutX="-100.0" layoutY="5.0" prefHeight="194.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
+      <VBox fx:id="vbox" layoutX="-100.0" layoutY="3.0" onMouseClicked="#back_menu" prefHeight="228.0" prefWidth="100.0" style="-fx-background-color: #96BBC6;">
          <children>
-            <Label onMouseClicked="#search" prefHeight="56.0" prefWidth="68.0" text="Search">
+            <Label onMouseClicked="#Home" prefHeight="40.0" prefWidth="68.0" text="Home">
+               <font>
+                  <Font name="Yaqout-Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label onMouseClicked="#search" prefHeight="52.0" prefWidth="68.0" text="Search">
                <font>
                   <Font name="Yaqout-Bold" size="18.0" />
                </font>

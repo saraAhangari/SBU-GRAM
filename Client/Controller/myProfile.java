@@ -71,6 +71,7 @@ public class myProfile {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
+        API.Logout(Main.getUser().getUsername());
         new PageLoader().load("login");
 
     }
@@ -81,5 +82,10 @@ public class myProfile {
 
     public void edit_profile(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("edit_myProfile");
+    }
+
+    public void delete_account(MouseEvent mouseEvent) throws IOException {
+        API.deleteAccount(Main.getUser() , Main.getUser().getUsername());
+        new PageLoader().load("login");
     }
 }

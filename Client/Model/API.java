@@ -160,5 +160,14 @@ public class API {
         return (Boolean) toReceive.get("answer");
     }
 
+    public static Boolean deleteAccount(User user , String username){
+        Map<String,Object> toSend = new HashMap<>();
+        toSend.put("command", Commands.deleteAccount);
+        toSend.put("username" , username);
+        toSend.put("user" , user);
+        Map<String,Object> toReceive = Network.serve(toSend);
+        return (Boolean) toReceive.get("answer");
+    }
+
 
 }

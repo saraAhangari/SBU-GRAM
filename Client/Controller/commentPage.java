@@ -38,6 +38,16 @@ public class commentPage {
         comment_writer.setText(Main.getUser().getUsername());
     }
 
+    public void send_comment(ActionEvent actionEvent) {
+        comment = new Comment();
+        comment.setText(theComment.getText());
+        comment.setUser(Main.getUser());
+        API.addComment(post , comment);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
+        tt.setToY(-100);
+        tt.playFromStart();
+    }
+
     public void search(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Search");
     }
@@ -51,6 +61,7 @@ public class commentPage {
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {
+        API.Logout(Main.getUser().getUsername());
         new PageLoader().load("login");
     }
 
@@ -61,18 +72,18 @@ public class commentPage {
     }
 
     public void show_menu(MouseEvent mouseEvent) {
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
         tt.setToX(103);
         tt.playFromStart();
     }
 
-    public void send_comment(ActionEvent actionEvent) {
-        comment = new Comment();
-        comment.setText(theComment.getText());
-        comment.setUser(Main.getUser());
-        API.addComment(post , comment);
-        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
-        tt.setToY(-100);
+    public void back_menu(MouseEvent mouseEvent) {
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
+        tt.setToX(-101);
         tt.playFromStart();
+    }
+
+    public void Home(MouseEvent mouseEvent) throws IOException {
+        new PageLoader().load("timeLine");
     }
 }
