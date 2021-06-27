@@ -86,7 +86,6 @@ public class myProfile {
 
     public void delete_account(MouseEvent mouseEvent) throws IOException {
         API.deleteAccount(Main.getUser() , Main.getUser().getUsername());
-        initialize();
         new PageLoader().load("login");
     }
 }

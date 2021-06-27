@@ -86,6 +86,12 @@ public class ClientHandler implements Runnable{
                     case removeFollower:
                         answer = API.removeFollower(input);
                         break;
+                    case FollowerNumber:
+                        answer = API.getFollowerNumber(input);
+                        break;
+                    case FollowingNumber:
+                        answer = API.getFollowingNumber(input);
+                        break;
                 }
                 socketOut.writeObject(answer);
                 socketOut.flush();

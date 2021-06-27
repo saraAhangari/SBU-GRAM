@@ -348,4 +348,22 @@ public class API {
         return message;
     }
 
+    public static Map<String, Object> getFollowerNumber(Map<String, Object> income){
+        String username=(String) income.get("username");
+        Integer followerNum=Server.users.get(username).getFollowers().size();
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.FollowerNumber);
+        answer.put("answer" , followerNum);
+        return answer;
+    }
+
+    public static Map<String, Object> getFollowingNumber(Map<String, Object> income) {
+        String username=(String) income.get("username");
+        Integer followingNum=Server.users.get(username).getFollowings().size();
+        Map<String , Object> answer=new HashMap<>();
+        answer.put("command" , Commands.FollowingNumber);
+        answer.put("answer" , followingNum);
+        return answer;
+    }
+
 }

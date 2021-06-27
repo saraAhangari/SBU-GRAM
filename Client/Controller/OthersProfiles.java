@@ -47,8 +47,8 @@ public class OthersProfiles {
         name_lastname.setText(searched_user.getFirstname() + " " + searched_user.getLastName());
         username.setText(searched_user.getUsername());
         birthDate.setText(searched_user.getBirthDate());
-        followers.setText(String.valueOf(searched_user.getFollowers().size()));
-        followings.setText(String.valueOf(searched_user.getFollowings().size()));
+        followers.setText(Integer.toString(API.getFollowerNumber(searched_user.getUsername())));
+        followings.setText(Integer.toString(API.getFollowingNumber(searched_user.getUsername())));
 
         if (!user.getFollowings().contains(searched_user)){
             follow_image.setVisible(true);

@@ -4,8 +4,6 @@ import Common.Commands;
 import Common.Comment;
 import Common.Post;
 import Common.User;
-import Server.Server;
-import javafx.geometry.Pos;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -167,6 +165,22 @@ public class API {
         toSend.put("user" , user);
         Map<String,Object> toReceive = Network.serve(toSend);
         return (Boolean) toReceive.get("answer");
+    }
+
+    public static Integer getFollowerNumber(String username){
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.FollowerNumber);
+        toSend.put("username" , username);
+        Map<String , Object> received= Network.serve(toSend);
+        return (Integer) received.get("answer");
+    }
+
+    public static Integer getFollowingNumber(String username) {
+        Map<String , Object> toSend= new HashMap<>();
+        toSend.put("command" , Commands.FollowingNumber);
+        toSend.put("username" , username);
+        Map<String , Object> received= Network.serve(toSend);
+        return (Integer) received.get("answer");
     }
 
 
