@@ -25,8 +25,15 @@ public class CommentItemController {
     }
 
     public AnchorPane init() {
-        comment_writer.setText(comment.getUser().getUsername());
-        theComment.setText(comment.getText());
+        for (int i = 0; i <post.getComments().size() ; i++) {
+            if (post.getComments().get(i).equals(comment)){
+                comment_writer.setText(comment.getUser().getUsername());
+                theComment.setText(post.getComments().get(i).getText());
+                API.addComment(post , comment);
+                break;
+            }
+        }
+
         return anchorPane;
     }
 

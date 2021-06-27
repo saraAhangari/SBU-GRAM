@@ -8,13 +8,16 @@ import Common.Post;
 import javafx.animation.TranslateTransition;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Vector;
 
 public class commentPage {
@@ -22,6 +25,18 @@ public class commentPage {
     public VBox vbox;
     public Vector<Comment> commentVector;
     public Post post = Main.getPost();
+    public AnchorPane anchorPane;
+    public Label comment_writer;
+    public TextArea theComment;
+    public Comment comment;
+
+    @FXML
+    public void initialize(){
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
+        tt.setToY(550);
+        tt.playFromStart();
+        comment_writer.setText(Main.getUser().getUsername());
+    }
 
     public void search(MouseEvent mouseEvent) throws IOException {
         new PageLoader().load("Search");
@@ -40,8 +55,7 @@ public class commentPage {
     }
 
     public void refresh(ActionEvent actionEvent) {
-        commentVector = API.getComments(post);
-        System.out.println("it idd well"); //واسه چک کردن
+        commentVector = post.getComments();
         commentListview.setItems(FXCollections.observableArrayList(commentVector));
         commentListview.setCellFactory(commentListview -> new CommentItem());
     }
@@ -49,6 +63,16 @@ public class commentPage {
     public void show_menu(MouseEvent mouseEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1500), vbox);
         tt.setToX(103);
+        tt.playFromStart();
+    }
+
+    public void send_comment(ActionEvent actionEvent) {
+        comment = new Comment();
+        comment.setText(theComment.getText());
+        comment.setUser(Main.getUser());
+        API.addComment(post , comment);
+        TranslateTransition tt = new TranslateTransition(Duration.millis(1200), anchorPane);
+        tt.setToY(-100);
         tt.playFromStart();
     }
 }

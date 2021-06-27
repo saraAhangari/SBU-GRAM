@@ -73,11 +73,14 @@ public class PostItemController {
         }
     }
 
-    public void show_comments(ActionEvent actionEvent) throws IOException {
+    public void add_comment(ActionEvent actionEvent) throws IOException {
+        Main.setPost(post);
         new PageLoader().load("commentPage");
-        /*TranslateTransition ts = new TranslateTransition(Duration.millis(1100), anchorPane);
-        ts.setToY(-290);
-        ts.playFromStart();*/
+    }
+
+    public void show_comments(ActionEvent actionEvent) throws IOException {
+        Main.setPost(post);
+        new PageLoader().load("commentPage");
     }
 
     public void showHisProfile(ActionEvent actionEvent) throws IOException{

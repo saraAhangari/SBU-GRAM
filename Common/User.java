@@ -1,7 +1,4 @@
 package Common;
-
-import Client.Model.Main;
-import javafx.scene.image.Image;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -60,10 +57,6 @@ public class User implements Serializable {
         return username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     public void setPassword(String password) {
         this.password = password;
     }
@@ -84,17 +77,11 @@ public class User implements Serializable {
         this.lastName = lastName;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -136,17 +123,11 @@ public class User implements Serializable {
         return followers;
     }
 
-    public void setFollowers(ArrayList<User> followers) {
-        this.followers = followers;
-    }
 
     public ArrayList<User> getFollowings() {
         return followings;
     }
 
-    public void setFollowings(ArrayList<User> followings) {
-        this.followings = followings;
-    }
 
     public User Submission(String username , String password) {
         if (this.username.equals(username) && this.password.equals(password)) {

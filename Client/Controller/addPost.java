@@ -56,7 +56,6 @@ public class addPost {
         currentPost.setWriter(Main.getUser().getUsername());
         currentPost.setImage(photo);
         currentPost.setPublisher(Main.getUser());
-        //Main.getUser().addPost(currentPost);
         API.addPost(Main.getUser() , currentPost);
     }
 

@@ -119,8 +119,6 @@ public class API {
         }
         Database.getInstance().updateDataBase();
         message.put("command",Commands.addComment);
-        message.put("post" , post);
-        message.put("comment" , comment);
         message.put("answer", Boolean.TRUE);
         //System.out.println(user.getUsername() + " comment");
         //message post subject

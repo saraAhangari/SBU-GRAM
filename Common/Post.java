@@ -5,7 +5,6 @@ import Client.Model.Main;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class Post implements Serializable {
     public User publisher;
@@ -105,9 +104,6 @@ public class Post implements Serializable {
         return like;
     }
 
-    public void setLike(int like) {
-        this.like = like;
-    }
 
     public int getRepost() {
         return repost;
@@ -136,10 +132,5 @@ public class Post implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(writer, title);
-    }
-
-
-    public int compareTo(Object o) {
-        return this.getDateWithTime().compareTo(((Post) o).getDateWithTime());
     }
 }

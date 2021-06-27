@@ -16,5 +16,4 @@ public class PostItem extends ListCell<Post> {
             }
         }
     }
-
 }

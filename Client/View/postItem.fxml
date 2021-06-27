@@ -27,12 +27,12 @@
             <Font name="Yaqout-Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="15.0" layoutY="229.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="add comment">
+      <Button layoutX="15.0" layoutY="229.0" mnemonicParsing="false" onAction="#add_comment" prefHeight="30.0" prefWidth="104.0" style="-fx-background-color: #C2D8D5;" text="add comment">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font>
       </Button>
-      <Button layoutX="15.0" layoutY="264.0" mnemonicParsing="false" style="-fx-background-color: #C2D8D5;" text="show comments">
+      <Button layoutX="15.0" layoutY="264.0" mnemonicParsing="false" onAction="#show_comments" style="-fx-background-color: #C2D8D5;" text="show comments">
          <font>
             <Font name="Yaqout-Bold" size="12.0" />
          </font>
