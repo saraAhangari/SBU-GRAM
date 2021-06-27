@@ -4,6 +4,7 @@ import Common.Commands;
 import Common.Comment;
 import Common.Post;
 import Common.User;
+import javafx.scene.control.Alert;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -33,13 +34,13 @@ public class API {
         String username = (String)input.get("username");
         String password = (String)input.get("password");
         boolean exists;
-        if (Server.users.get(username) != null)
-            exists = true;
-        else
-            exists = false;
+        exists = Server.users.get(username) != null;
         message.put("command",Commands.Login);
         message.put("exists",exists);
 
+        if (!exists){
+            return message;
+        }
         user = Server.users.get(username).Submission(username , password);
         if(user==null){
             return message;
@@ -113,6 +114,7 @@ public class API {
         Post post =(Post) input.get("post");
         for (int i = 0; i <Server.posts.size() ; i++) {
             if (Server.posts.get(i).equals(post)){
+                System.out.println("just to check if it works");
                 Server.posts.get(i).addComment(comment);
                 break;
             }
@@ -120,8 +122,8 @@ public class API {
         Database.getInstance().updateDataBase();
         message.put("command",Commands.addComment);
         message.put("answer", Boolean.TRUE);
-        //System.out.println(user.getUsername() + " comment");
-        //message post subject
+        System.out.println("[" + comment.getUser().getUsername() + "] comment");
+        System.out.println("message : [" + post.getTitle() + "]");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -218,7 +220,7 @@ public class API {
         message.put("command" , Commands.getComments);
         message.put("answer" , commentArrayList);
         Database.getInstance().updateDataBase();
-        //System.out.println(user.getUsername() + " get posts list");
+        System.out.println("[" + post.getPublisher() + "] get comments list");
         System.out.println("time : " + LocalDateTime.now());
         return message;
     }
@@ -328,11 +330,16 @@ public class API {
         User user = (User) input.get("user");
         Server.users.remove(username , user);
         Server.Profiles.remove(user);
-        for (int i = 0; i <Server.posts.size() ; i++) {
-            if (Server.posts.get(i).getPublisher().equals(user)){
-                Server.posts.remove(i);
-            }
+        Server.posts.removeAll(user.getAllPosts());
+        Server.posts.removeAll(user.getPosts());
+        for (int i = 0; i <Server.Profiles.size() ; i++) {
+            Server.Profiles.get(i).getFollowings().remove(user);
+            Server.Profiles.get(i).getFollowers().remove(user);
         }
+        for (int i = 0; i <Server.Profiles.size() ; i++) {
+            Server.Profiles.get(i).getPosts().removeAll(user.getPosts());
+        }
+
         Database.getInstance().updateDataBase();
         message.put("command",Commands.deleteAccount);
         message.put("answer" , Boolean.TRUE);

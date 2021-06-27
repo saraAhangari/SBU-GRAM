@@ -52,7 +52,7 @@ public class myProfile {
 
     public void show_menu(MouseEvent mouseEvent) {
         TranslateTransition tt = new TranslateTransition(Duration.millis(1300), vbox);
-        tt.setToX(102);
+        tt.setToX(170);
         tt.playFromStart();
     }
 
@@ -86,6 +86,7 @@ public class myProfile {
 
     public void delete_account(MouseEvent mouseEvent) throws IOException {
         API.deleteAccount(Main.getUser() , Main.getUser().getUsername());
+        initialize();
         new PageLoader().load("login");
     }
 }

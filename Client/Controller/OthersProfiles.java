@@ -62,23 +62,27 @@ public class OthersProfiles {
     }
 
     public void follow(MouseEvent mouseEvent) {
-        user.getFollowings().add(searched_user);
-        searched_user.getFollowers().add(user);
-        followers.setText(String.valueOf(searched_user.getFollowers().size()));
-        API.addFollower(user, searched_user);
-        follow_image.setVisible(false);
-        unfollow_image.setVisible(true);
-        unfollow_image.setX(151);
-        unfollow_image.setY(6);
+        if (!user.getFollowings().contains(searched_user)) {
+            user.getFollowings().add(searched_user);
+            searched_user.getFollowers().add(user);
+            followers.setText(String.valueOf(searched_user.getFollowers().size()));
+            API.addFollower(user, searched_user);
+            follow_image.setVisible(false);
+            unfollow_image.setVisible(true);
+            unfollow_image.setX(151);
+            unfollow_image.setY(6);
+        }
     }
 
     public void unfollow(MouseEvent mouseEvent) {
-        user.getFollowings().remove(searched_user);
-        searched_user.getFollowers().remove(user);
-        followers.setText(String.valueOf(searched_user.getFollowers().size()));
-        API.removeFollower(user, searched_user);
-        follow_image.setVisible(true);
-        unfollow_image.setVisible(false);
+        if (user.getFollowings().contains(searched_user)) {
+            user.getFollowings().remove(searched_user);
+            searched_user.getFollowers().remove(user);
+            followers.setText(String.valueOf(searched_user.getFollowers().size()));
+            API.removeFollower(user, searched_user);
+            follow_image.setVisible(true);
+            unfollow_image.setVisible(false);
+        }
     }
 
     public void log_out(MouseEvent mouseEvent) throws IOException {

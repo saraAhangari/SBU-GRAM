@@ -66,7 +66,7 @@ public class commentPage {
     }
 
     public void refresh(ActionEvent actionEvent) {
-        commentVector = post.getComments();
+        commentVector = API.getComments(Main.getPost());
         commentListview.setItems(FXCollections.observableArrayList(commentVector));
         commentListview.setCellFactory(commentListview -> new CommentItem());
     }
